@@ -35,11 +35,11 @@
 		</div>
 	  *{  <a href="#" class="logout rt">forgot password?</a>}*
 	    <a href="#" class="logout rt">Register</a>
-	    <a href="#" class="logout rt">Log in</a>
+	    <a href="@{auth.Secure.login()}" class="logout rt">Log in</a>
 	</div>
 	<ul id="mun" class="mun clearfix">
 		<li class="clearfix" id="page_home">
-		    <a href=""><strong>Home</strong></a>
+		    <a href="@{Application.index()}"><strong>Home</strong></a>
 		</li>
 		<li class="clearfix" id="page_demo">
 		    <a href="#"><strong>How It Works</strong></a>

@@ -1,39 +1,59 @@
 #{extends 'main.html' /}
 
-<div id="login">
+<div class="loginico lt"></div>
+
+<div class="logindiv rt">
+	<h2 class="title">Login</h2>
+
+	<br/>
+	<br/>
 	
-	<h1>Login</h1>
-		
-	#{form @authenticate()}
-		
-		#{if flash.error}
-			<p class="error">
-				&{flash.error}
-			</p>
-		#{/if}
-		#{if flash.success}
-			<p class="success">
-				&{flash.success}
-			</p>
-		#{/if}
-	
+    #{form @auth.Secure.login()}
+	<div id="login:userNameDecorate">
+    	<div class="entry">
+    		<div class="spacer"></div>
+    		<span class="label">Username:</span>
+    		<span class="input">
+        		<input type="text" size="19" name="username" id="username" class="boxtpl" value="${flash.username}">
+        	</span>
+    	</div>
+    </div>
 
-		<p id="username-field" class="entry">
-			<input type="text" name="username" id="username" value="${flash.username}" />
-			<label for="username">Username</label>
-		</p>
-		<p id="password-field" class="entry">
-			<input type="password" name="password" id="password" value="" />
-			<label for="password">Password</label>
-		</p>
-		<p id="signin-field" class="entry">
-			<input type="submit" id="signin" value="Sign in" />
-		</p>
-		<div id="remember-field" class="entry">
-			<input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
-			<label for="remember">Remember me?</label>
-		</div>
+	<div id="login:loginPasswdDecorate">
+    	<div class="entry">
+    		<div class="spacer"></div>
+    		<span class="label ">Password:</span>
+    		<span class="input ">
+	    		<input type="password" name="password" id="password" value="" size="19" class="boxtpl"/>
+        	</span>
+    	</div>
+    </div>
 
+	*{ <p id="remember-field">
+		<input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
+		<label for="remember">Remember me</label>
+	</p>
+		    	
+    <div class="entry">
+    	<div class="spacer"></div>
+    	<span class="label "><span> &#160;</span>
+    	</span>
+    	<span class="input">
+			<a href="#">Forgot your password?</a>
+        </span>
+    </div>}*
 
-		#{/form}
+	<br/>
+	<br/>
+
+	<div class="bt_box">
+		<span class="btn_login">
+			<input type="submit" value="Login" class="btn">
+		</span>
+		<span class="btn_register">
+			<input onclick="location.href='#'; return false;" class="btn" value="Register" type="button">
+		</span>
+	</div>
+
+    #{/form}
 </div>
