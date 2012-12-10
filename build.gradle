@@ -1,0 +1,9 @@
+sourceSets.main{
+  java.srcDirs = ['app']
+  resources.srcDirs = ['app']
+}
+	
+build << { println "source sets=$sourceSets.main.java.srcDirs" }
+
+hello << {println "- Do something specific xxxx"}
+

@@ -1,0 +1,28 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET  /api/keyrequest/{secureKey}                 ApiKeyRequest.newKey
+POST /api/postdata                               ApiKeyRequest.postTextMessage    
+
+# Home page
+GET     /                                       Application.index
+GET     /viewtables/{tableName}                 Application.viewTable
+
+GET			/login			auth.Secure.login
+POST        /login          auth.Secure.authenticate
+GET         /logout         auth.Secure.logout
+
+GET  /admin								Admin.index
+GET  /admin/users                       Admin.users
+GET  /admin/user/{username}             Admin.becomeUser
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+#disable this thing, not really needed and confusing for newbs...
+#*       /{controller}/{action}                  {controller}.{action}

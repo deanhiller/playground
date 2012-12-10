@@ -1,0 +1,2 @@
+2000:plugins.AddLogContextPlugin
+5000:com.alvazan.play.NoSqlPlugin

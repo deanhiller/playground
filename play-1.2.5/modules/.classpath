@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="crud/app"/>
+	<classpathentry kind="src" path="docviewer/app"/>
+	<classpathentry kind="src" path="grizzly/src"/>
+	<classpathentry kind="src" path="secure/app"/>
+	<classpathentry kind="src" path="testrunner/app"/>
+	<classpathentry kind="src" path="testrunner/src"/>
+	<classpathentry kind="lib" path="grizzly/lib/grizzly-http-webserver-1.9.18-e.jar"/>
+	<classpathentry kind="lib" path="grizzly/lib/play-grizzly.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/apache-mime4j-0.6.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/commons-codec-1.4.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/cssparser-0.9.5.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/htmlunit-2.8.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/htmlunit-core-js-2.8.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/httpclient-4.0.1.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/httpcore-4.0.1.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/httpmime-4.0.1.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/nekohtml-1.9.14.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/sac-1.3.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/serializer-2.7.1.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/xalan-2.7.1.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/xercesImpl-2.9.1.jar"/>
+	<classpathentry kind="lib" path="testrunner/firephoque/xml-apis-1.3.04.jar"/>
+	<classpathentry kind="lib" path="testrunner/lib/play-testrunner.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
