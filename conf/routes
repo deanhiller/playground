@@ -2,10 +2,11 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET  /api/keyrequest/{secureKey}                 ApiKeyRequest.newKey
-POST /api/postdata                               ApiKeyRequest.postTextMessage    
+GET  /api/keyrequest/{secureKey}               ApiKeyRequest.newKey
+POST /api/postdata                             ApiKeyRequest.postTextMessage    
 
-GET  /test                                      Application.test
+GET  /how                                      Application.how
+GET  /setup                                    Application.setup
 
 # Home page
 GET     /                                       Application.index

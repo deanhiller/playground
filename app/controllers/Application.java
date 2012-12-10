@@ -13,7 +13,11 @@ public class Application extends Controller {
         render();
     }
 
-    public static void test() {
+    public static void how() {
+    	render();
+    }
+    
+    public static void setup() {
     	render();
     }
 }

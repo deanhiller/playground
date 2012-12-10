@@ -41,14 +41,14 @@
 		<li class="clearfix" id="page_home">
 		    <a href="@{Application.index()}"><strong>Home</strong></a>
 		</li>
-		<li class="clearfix" id="page_demo">
-		    <a href="#"><strong>How It Works</strong></a>
+		<li class="clearfix" id="page_how">
+		    <a href="@{Application.how()}"><strong>How It Works</strong></a>
 		</li>
-		<li class="clearfix" id="page_pricing">
-			<a href=""><strong>Set up Free</strong></a>
+		<li class="clearfix" id="page_setup">
+			<a href="@{Application.setup()}"><strong>Set up Free</strong></a>
 		</li>
 		<li class="clearfix" id="page_blog">
-			<a href="http://blog.alvazan.com"><strong>Blog</strong></a>
+			<a href="http://sniffyourkid.com/blog"><strong>Blog</strong></a>
 		</li>
 	</ul>
 </div>
@@ -59,7 +59,7 @@
         		        obj.className = className;
         		    }
 				}
-        		setClass("page_" + "${_tab}", "cutter");
+        		setClass("page_" + "#{get 'tab'/}", "cutter");
 </script>
 
 <!-- begin container -->
@@ -83,9 +83,8 @@
 	
 	<!-- begin footer -->
 	<div class="footer">
-		<p>Please contact support@alvazan.com for any issues or feedback
-					Version=${version} </p>
-		<p>All Rights Reserved. Software and WebSite done by &copy; Alvazan, Inc 2007 - Present</p>
+		<p>Please contact support@sniffyourkid.com for any issues or feedback Version=${version} </p>
+		<p>All Rights Reserved. Software and WebSite done by &copy; Sniff Your Kids, Inc 2007 - Present</p>
 	</div>
 	<!-- end footer -->
 </div>
