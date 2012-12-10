@@ -1,0 +1,171 @@
+@import url(public.css);
+.container {
+	margin: 23px 13px 0 13px;
+}
+.homecontent {
+	width: 939px;
+}
+.con_box_t {
+	background: url(images/bg_conter.jpg) no-repeat;
+	height: 289px;
+	padding: 5px 5px 0 9px;
+}
+.box_lt {
+	width: 470px;
+	padding-top: 5px;
+}
+.box_lt .title {
+	background: url(images/bell.jpg) no-repeat;
+	height: 49px;
+	padding: 6px 0 0 54px;
+}
+.box_lt .title h3 {
+	color: #069;
+	font-size: 24px;
+	line-height: 35px;
+	border-bottom: solid 2px #069;
+	height: 35px;
+	float: left;
+	display: inline;
+	font-weight: normal;
+}
+.box_lt .title h3.h3_lt {
+	padding-right: 8px;
+}
+.box_lt .title h3.h3_rt {
+	padding-left: 8px;
+}
+.box_lt .title strong {
+	color: #f60;
+	font-size: 36px;
+	line-height: 27px;
+	border-bottom: solid 2px #f60;
+	height: 35px;
+	float: left;
+	display: inline;
+	font-weight: normal;
+}
+.box_lt p {
+	padding: 0px 0 0 54px;
+}
+.box_lt .btn {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 18px;
+	height: 54px;
+	color:#fff;
+	cursor: pointer;
+	text-align: center;
+	font-weight: bold;
+}
+
+
+a.btn_green {
+	background: transparent url("images/btn_green_lt.gif") no-repeat left top;
+	color: #ffffff;
+	display: block;
+	float: left;
+	height: 54px;
+	padding-right: 10px;
+	padding-left:8px;
+    margin-top: 17px;
+	margin-right: 15px;
+	margin-left:15px;
+	min-width:180px;
+	text-align:center;
+	text-decoration: none;
+	cursor: hand;
+	_float: left; /*IE6 Hack*/
+	_zoom: 1; /*IE6 Hack*/
+	display:inline;
+}
+a.btn_green span {
+	background: transparent url("images/btn_green_rt.gif") no-repeat right top;
+	height: 54px;
+	display: block;
+	line-height: 54px;
+	padding-right:5px;
+	width: 180px;
+	color: white;
+	font-size: 20px;
+	font-weight:bold;
+	cursor: hand;
+	_float: left; /*IE6 Hack*/
+}
+
+a.btn_orange {
+	background: transparent url("images/btn_orange_lt.gif") no-repeat left top;
+	color: #ffffff;
+	display: block;
+	float: left;
+	height: 54px;
+	padding-right: 10px;
+	padding-left:8px;
+    margin-top: 17px;
+	margin-right: 15px;
+	margin-left:15px;
+	min-width:180px;
+	text-align:center;
+	text-decoration: none;
+	cursor: hand;
+	_float: left; /*IE6 Hack*/
+	_zoom: 1; /*IE6 Hack*/
+	display:inline;
+}
+a.btn_orange span {
+	background: transparent url("images/btn_orange_rt.gif") no-repeat right top;
+	height: 54px;
+	display: block;
+	line-height: 54px;
+	padding-right:5px;
+	color: white;
+	width: 180px;
+	font-size: 20px;
+	font-weight:bold;
+	cursor: hand;
+	_float: left; /*IE6 Hack*/
+}
+a.btn_orange:hover span,
+a.btn_green:hover span {
+	background: transparent url("images/btn_gray_rt.gif") no-repeat right top;
+}
+a.btn_orange:hover,
+a.btn_green:hover {
+	background: transparent url("images/btn_gray_lt.gif") no-repeat left top;
+}
+.con_box_b {
+	margin-top: 25px;
+}
+.con_box_b .box {
+	margin-right:18px;
+	width: 301px;
+	background: url(images/bg_home_box_m.gif) repeat-y;
+}
+.con_box_b .box.last {
+	margin-right: 0;
+}
+.con_box_b .box .box_t {
+	background: url(images/bg_home_box_t.gif) no-repeat;
+	height: 15px;
+}
+.con_box_b .box .box_m {
+	padding: 0 12px;
+	background: url(images/bg_home_box_b.gif) no-repeat left bottom;
+}
+.con_box_b .box .box_m h3 {
+	height: 29px;
+	background: url(images/content_line.gif) repeat-x left bottom;
+	font-size: 20px;
+	color: #069;
+	margin-bottom: 13px;
+	padding: 0 4px;
+}
+.con_box_b .box .box_m p, .con_box_b .box .box_m ul li {
+	line-height: 24px;
+	padding: 0 4px;
+}
+.box_text{
+	min-height: 290px;
+	padding-bottom: 20px;
+}

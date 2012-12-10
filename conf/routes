@@ -5,6 +5,8 @@
 GET  /api/keyrequest/{secureKey}                 ApiKeyRequest.newKey
 POST /api/postdata                               ApiKeyRequest.postTextMessage    
 
+GET  /test                                      Application.test
+
 # Home page
 GET     /                                       Application.index
 GET     /viewtables/{tableName}                 Application.viewTable
@@ -22,6 +24,7 @@ GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
+GET     /res/                                   staticDir:public/res
 
 # Catch all
 #disable this thing, not really needed and confusing for newbs...
