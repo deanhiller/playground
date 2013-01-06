@@ -38,17 +38,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class RegisterPostAndGet {
+public class RegisterCellPhone {
 	
-	private final static Logger log = LoggerFactory.getLogger(RegisterPostAndGet.class);
+	private final static Logger log = LoggerFactory.getLogger(RegisterCellPhone.class);
 	
 	@Test
 	public void registerPostAndGet() throws JsonGenerationException, JsonMappingException, IOException {
 		DefaultHttpClient httpclient = new DefaultHttpClient();
 		
 		String registerKey = "AAAAB3NzaC1kc3MAAACBAI0XYYyhYT861agRCv2BCIg6HjgARc3GnbmuXGkbrXzACzZAy1uQ6wteRDZpByiPVJaL8DKncf91QoFIBZKJ0ao7ZuOiCQ03VUfxb6YwMXMeLikjcSI+zRBh6NPP833mtYVpLG1kDpGGxmJdmt38iWvxqa9HJcLOzYQA6lqyPAAAAFQDUa2rnAC9arD905h42VwI2da+tawAAAIEAhzarb59ddJWTW831YZorBrpKPZp+WWAmO+4rjp82owQsI9aua4qfcSenb4+U";
-		String key = getData(registerKey, httpclient);
-		String key2 = getData(registerKey, httpclient);
+		String key = getData(registerKey, "3034445555", httpclient);
+		String key2 = getData(registerKey, "3032228888", httpclient);
 
 		postMessage(httpclient, "5678", "8765", "hel there 1", key, time(1));
 		postMessage(httpclient, "1234", "4321", "hi there buddy", key, time(-1));
@@ -64,8 +64,8 @@ public class RegisterPostAndGet {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private String getData(String key, DefaultHttpClient httpClient) throws ClientProtocolException, IOException {
-		String requestUri = "/api/keyrequest/"+key;
+	private String getData(String key, String phone, DefaultHttpClient httpClient) throws ClientProtocolException, IOException {
+		String requestUri = "/api/keyrequest/"+phone+"/"+key;
 		String theString = Utility.sendRequest(httpClient, requestUri, null);
 		
 		log.info("strResp="+theString);

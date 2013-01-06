@@ -2,23 +2,25 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET  /api/keyrequest/{secureKey}               ApiKeyRequest.newKey
+GET  /api/keyrequest/{phoneNumber}/{secureKey} ApiKeyRequest.newKey
 POST /api/postdata                             ApiKeyRequest.postTextMessage    
 
+GET  /                                         Application.index
 GET  /how                                      Application.how
-GET  /setup                                    Application.setup
 
-# Home page
-GET     /                                       Application.index
-GET     /viewtables/{tableName}                 Application.viewTable
+#from the setup page a user can post a key he got off the cell phone
+GET  /setup                                    Application.setup
+POST /registerkey                              Application.postKey
+
+POST /register                                 Register.postRegister
+
+GET /cellphones                                MyStuff.cellPhones
+GET /cell/{number}                             MyStuff.cell
+GET /cell/{number}/{time}                    MyStuff.texts
 
 GET			/login			auth.Secure.login
 POST        /login          auth.Secure.authenticate
 GET         /logout         auth.Secure.logout
-
-GET  /admin								Admin.index
-GET  /admin/users                       Admin.users
-GET  /admin/user/{username}             Admin.becomeUser
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

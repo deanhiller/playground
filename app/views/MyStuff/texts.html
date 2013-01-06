@@ -1,0 +1,29 @@
+#{extends './userTemplate.html' /}
+#{set subtab:'cell'/}
+
+<h2>Cell Phones</h2>
+
+	<table border="1">
+		<thead>
+		    <tr>
+	            <th>Time of Message</th>
+	            <th>Direction</th>
+	            <th>Remote Caller Id</th>
+	            <th>Message Size</th>
+	            <th>Message</th>
+		    </tr>
+		</thead>
+		<tbody>
+		    #{list period.messages, as:'msg'}
+		        <tr>
+		        	<td>${msg.timeString}</td>
+		            <td>${msg.direction}</td>
+		            <td>${msg.remoteNumber}</td>
+		            <td>${msg.size}</td>
+		            <td>${msg.textMessage}</td>
+		        </tr>
+		    #{/list}
+		</tbody>
+	</table>
+
+

@@ -26,6 +26,8 @@ public class CellPhone {
 	private List<TimePeriodDbo> periods = new ArrayList<TimePeriodDbo>();
 
 	private transient Map<DateTime, TimePeriodDbo> timePeriods;
+
+	private String phoneNumber;
 	
 	public String getKey() {
 		return key;
@@ -61,4 +63,21 @@ public class CellPhone {
 		}
 		return timePeriods.get(time);
 	}
+
+	protected void addUser(UserDbo userDbo) {
+		this.users.add(userDbo);
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void addPeriod(TimePeriodDbo period) {
+		periods.add(period);
+		period.setPhone(this);
+	}
+
 }

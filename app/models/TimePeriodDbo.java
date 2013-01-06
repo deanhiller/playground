@@ -5,22 +5,29 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import com.alvazan.orm.api.base.anno.NoSqlEntity;
 import com.alvazan.orm.api.base.anno.NoSqlId;
 import com.alvazan.orm.api.base.anno.NoSqlIndexed;
+import com.alvazan.orm.api.base.anno.NoSqlManyToOne;
 import com.alvazan.orm.api.base.anno.NoSqlOneToMany;
 
 @NoSqlEntity
 public class TimePeriodDbo {
 
-	@NoSqlId
+	private static DateTimeFormatter fmt = DateTimeFormat.forPattern("MMM dd, yyyy");
+	
+	@NoSqlId(usegenerator=false)
 	private String id;
 	
 	private DateTime beginOfMonth;
 	
-	@NoSqlIndexed
 	private long beginOfMonthLong;
+	
+	@NoSqlManyToOne
+	private CellPhone phone;
 	
 	@NoSqlOneToMany
 	private List<TextMessageDbo> messages = new ArrayList<TextMessageDbo>();
@@ -29,17 +36,20 @@ public class TimePeriodDbo {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public DateTime getBeginOfMonth() {
-		return beginOfMonth;
-	}
-
-	public void setBeginOfMonth(DateTime beginOfMonth) {
+	public void setId(String number, DateTime beginOfMonth) {
 		this.beginOfMonth = beginOfMonth;
 		this.beginOfMonthLong = beginOfMonth.getMillis();
+		this.id = formKey(number, beginOfMonthLong);
+	}
+
+	public String getRange() {
+		DateTime end = beginOfMonth.plusMonths(1);
+		end = end.minusDays(1);
+		return fmt.print(beginOfMonth) +" to "+ fmt.print(end);
+	}
+	
+	public DateTime getBeginOfMonth() {
+		return beginOfMonth;
 	}
 
 	public List<TextMessageDbo> getMessages() {
@@ -50,4 +60,25 @@ public class TimePeriodDbo {
 		messages.add(msg);
 		msg.setTimePeriod(this);
 	}
+
+	public CellPhone getPhone() {
+		return phone;
+	}
+
+	public void setPhone(CellPhone phone) {
+		this.phone = phone;
+	}
+
+	public long getBeginOfMonthLong() {
+		return beginOfMonthLong;
+	}
+
+	public void setBeginOfMonthLong(long beginOfMonthLong) {
+		this.beginOfMonthLong = beginOfMonthLong;
+	}
+
+	public static String formKey(String number, long period) {
+		return number+"-"+period;
+	}
+	
 }

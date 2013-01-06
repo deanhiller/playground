@@ -20,7 +20,7 @@ public class UserDbo {
 	private String password;
 	
 	@NoSqlOneToMany
-	private List<CellPhone> keys = new ArrayList<CellPhone>();
+	private List<CellPhone> phones = new ArrayList<CellPhone>();
 
 	public String getId() {
 		return id;
@@ -46,12 +46,14 @@ public class UserDbo {
 		this.password = password;
 	}
 
-	public List<CellPhone> getKeys() {
-		return keys;
+	public List<CellPhone> getPhones() {
+		return phones;
 	}
 
-	public void setKeys(List<CellPhone> keys) {
-		this.keys = keys;
+	public void addPhone(CellPhone c) {
+		this.phones.add(c);
+		c.addUser(this);
 	}
+
 	
 }

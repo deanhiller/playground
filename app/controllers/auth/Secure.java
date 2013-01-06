@@ -13,6 +13,7 @@ import play.libs.Time;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.Http;
+import play.mvc.Util;
 import play.mvc.Scope.Session;
 import play.utils.Java;
 import controllers.Application;
@@ -70,7 +71,7 @@ public class Secure extends Controller {
                     logout();
                 }
                 if(Crypto.sign(restOfCookie).equals(sign)) {
-                    session.put("username", username);
+                    addUserToSession(username);
                     redirectToOriginalURL();
                 }
             }
@@ -102,7 +103,8 @@ public class Secure extends Controller {
         Session temp = session;
         
         // Mark user as connected
-        session.put("username", username);
+        addUserToSession(username);
+        
         // Remember if needed
         if(remember) {
             Date expiration = new Date();
@@ -114,6 +116,11 @@ public class Secure extends Controller {
         // Redirect to the original URL (or /)
         redirectToOriginalURL();
     }
+
+    @Util
+	public static void addUserToSession(String username) {
+		session.put("username", username);
+	}
 
     public static void logout() throws Throwable {
         log.info("logging out, redirect to login page");

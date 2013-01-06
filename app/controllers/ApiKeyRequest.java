@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 import models.CellPhone;
+import models.NumberToCell;
 import models.TextMessageDbo;
 import models.TimePeriodDbo;
 import models.message.NewKeyResponse;
@@ -45,7 +46,7 @@ public class ApiKeyRequest extends Controller {
 		return str;
 	}
 
-	public static void newKey(String secureKey) {
+	public static void newKey(String secureKey, String phoneNumber) {
 		if(!("AAAAB3NzaC1kc3MAAACBAI0XYYyhYT861agRCv2BCIg6HjgARc3GnbmuXGkbrXzACzZAy1uQ6wte"+
 	         "RDZpByiPVJaL8DKncf91QoFIBZKJ0ao7ZuOiCQ03VUfxb6YwMXMeLikjcSI+zRBh6NPP833mtYV"+
 			  "pLG1kDpGGxmJdmt38iWvxqa9HJcLOzYQA6lqyPAAAAFQDUa2rnAC9arD905h42VwI2da+tawA"+
@@ -54,7 +55,7 @@ public class ApiKeyRequest extends Controller {
 			badRequest("you hacker, get out of here.  The key is 320 BYTES not bits long so good luck ;)");
 		}
 		
-		String key = UniqueKeyGenerator.generateKey();
+		String key = UniqueKeyGenerator.generateKey().toUpperCase();
 		String random = nextRandom();
 		String all = key+random;
 		all = all.replace(".", "");
@@ -68,9 +69,19 @@ public class ApiKeyRequest extends Controller {
 				newKey+="-";
 		}
 
+		if(newKey.endsWith("-"))
+			newKey = newKey.substring(0, newKey.length()-1);
+		
 		CellPhone p = new CellPhone();
 		p.setKey(newKey);
+		p.setPhoneNumber(phoneNumber);
 		NoSql.em().put(p);
+		
+		NumberToCell n = new NumberToCell();
+		n.setId(phoneNumber);
+		n.setValue(p.getKey());
+		NoSql.em().put(n);
+		
 		NoSql.em().flush();
 
 		NewKeyResponse resp = new NewKeyResponse();
@@ -110,14 +121,16 @@ public class ApiKeyRequest extends Controller {
 		TimePeriodDbo period = cell.getPeriod(beginOfMonth);
 		if(period == null) {
 			period = new TimePeriodDbo();
-			period.setBeginOfMonth(beginOfMonth);
+			period.setId(cell.getPhoneNumber(), beginOfMonth);
 			NoSql.em().fillInWithKey(period);
 		}
 
 		period.addMessage(msgDbo);
-		
+		cell.addPeriod(period);
+
 		NoSql.em().put(period);
 		NoSql.em().put(msgDbo);
+		NoSql.em().put(cell);
 		NoSql.em().flush();
 		
 		ok();

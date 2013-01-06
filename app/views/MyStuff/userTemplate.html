@@ -1,30 +1,28 @@
 #{extends 'main.html' /}
-#{set title:'My Data' /}
-#{set tab:'groups' /}
+#{set tab:'dashboard'/}
+#{set title:'SniffYourKid'/}
+#{set templateName:'userTemplate'/}
+		
+<div class="sidebar lt">
+	<div class="t"></div>
+	<div class="m">
+		<ul>
+			<li class="subtab" id="subtab_cell"><span>Phones</span></li>
+			*{<li class="subtab" id="subtab_settings"><span>Settings</span></li>}*
+		</ul>
 
-
-
-<div id="rightside">
-<h2>More Options</h2>
-<ul id="subnav">
-	<li class="subtab"><a href="" id="subtab_groups"></a></li>
-	<li class="subtab"><a href="" id="subtab_schemas"></a></li>
-	<li class="subtab"><a href="" id="subtab_tables"></a></li>
-</ul>
-
+		<script type="text/javascript" language="JavaScript">
+   		    function setTabClass(id, className) {
+   		        var obj = document.getElementById(id);
+      			     if (obj != null) {
+       		        obj.className = className;
+       		    }
+			}
+       		setTabClass("subtab_" + "#{get 'subtab' /}", "cutter");
+   		</script>
+	</div>
 </div>
 
-
-
-
-<script type="text/javascript" language="JavaScript">
-	function setClass(id, className) {
-		var obj = document.getElementById(id);
-   		if (obj != null) {
-    		obj.className = className;
-    	}
-	}
-	setClass("subtab_" + "#{get 'subtab' /}", "selected");
-</script>
-  		
-#{doLayout /}
+<div class="content rt">
+	#{doLayout /}
+</div>

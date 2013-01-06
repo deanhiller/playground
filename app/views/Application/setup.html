@@ -2,5 +2,30 @@
 #{set title:'Home' /}
 #{set tab:'setup' /}
 
-Welcome to our awesome website
+<ol>
+   <li>Step 1: Download the SniffYourKid mobile app to your phone</li>
+   <li>Step 2: Open the SniffYourKid app and it displays a key.  Write this key down</li>
+   <li>Step 3: Type your key in below</li>
+</ol>
 
+    #{form @Application.postKey()}
+	<div id="login:userNameDecorate">
+    	<div class="entry">
+    		<div class="spacer"></div>
+    		<span class="label">Key:</span>
+    		<span class="input">
+        		<input type="text" size="19" name="key" id="key" class="boxtpl" value="">
+        	</span>
+    	</div>
+    </div>
+
+	<br/>
+	<br/>
+
+	<div class="bt_box">
+		<span class="btn_login">
+			<input type="submit" value="Submit" class="btn">
+		</span>
+	</div>
+
+    #{/form}

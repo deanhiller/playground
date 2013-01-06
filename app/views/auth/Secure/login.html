@@ -1,18 +1,17 @@
 #{extends 'main.html' /}
 
-<div class="loginico lt"></div>
+<div class="lt">
 
-<div class="logindiv rt">
 	<h2 class="title">Login</h2>
 
 	<br/>
 	<br/>
 	
-    #{form @auth.Secure.login()}
+    #{form @auth.Secure.authenticate()}
 	<div id="login:userNameDecorate">
     	<div class="entry">
     		<div class="spacer"></div>
-    		<span class="label">Username:</span>
+    		<span class="label">Email:</span>
     		<span class="input">
         		<input type="text" size="19" name="username" id="username" class="boxtpl" value="${flash.username}">
         	</span>
@@ -29,31 +28,56 @@
     	</div>
     </div>
 
-	*{ <p id="remember-field">
-		<input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
-		<label for="remember">Remember me</label>
-	</p>
-		    	
-    <div class="entry">
-    	<div class="spacer"></div>
-    	<span class="label "><span> &#160;</span>
-    	</span>
-    	<span class="input">
-			<a href="#">Forgot your password?</a>
-        </span>
-    </div>}*
-
 	<br/>
 	<br/>
 
-	<div class="bt_box">
 		<span class="btn_login">
 			<input type="submit" value="Login" class="btn">
 		</span>
-		<span class="btn_register">
-			<input onclick="location.href='#'; return false;" class="btn" value="Register" type="button">
-		</span>
-	</div>
-
     #{/form}
 </div>
+
+<div class="rt">
+
+	<h2 class="title">Register</h2>
+	
+	Email needs to be correct to receive notifications and to keep account active.
+
+    #{form @Register.postRegister()}
+		<div id="login:userNameDecorate">
+	    	<div class="entry">
+	    		<div class="spacer"></div>
+	    		<span class="label">Email:</span>
+	    		<span class="input">
+	        		<input type="text" size="19" name="email" id="email" class="boxtpl" value="${flash.username}">
+	        	</span>
+	    	</div>
+	    </div>
+	
+		<div id="login:loginPasswdDecorate">
+	    	<div class="entry">
+	    		<div class="spacer"></div>
+	    		<span class="label ">Password:</span>
+	    		<span class="input ">
+		    		<input type="password" name="password" id="password" value="" size="19" class="boxtpl"/>
+	        	</span>
+	    	</div>
+	    </div>    
+
+		<div id="login:loginPasswdDecorate">
+	    	<div class="entry">
+	    		<div class="spacer"></div>
+	    		<span class="label ">Verify Password:</span>
+	    		<span class="input ">
+		    		<input type="password" name="verifyPassword" id="verifyPassword" value="" size="19" class="boxtpl"/>
+	        	</span>
+	    	</div>
+	    </div>
+	        
+    	<span class="btn_register">
+			<input type="submit" value="Register" class="btn">
+		</span>    
+    #{/form}
+</div>
+
+

@@ -17,7 +17,7 @@ em { white-space: nowrap;}
 table, td {	border-collapse: collapse;	padding: 0;	margin: 0;}
 a {	text-decoration: none;	outline: 0;}
 a:hover { outline: 0;}
-.lt { float: left; display: inline;}
+.lt { float: left; display: inline; width: 460px;}
 .rt { float: right; display: inline;}
 p {	text-indent: 2em;	line-height: 24px;}
 .note { color: #ff6600; font-weight: bold; font-size: 12px;}

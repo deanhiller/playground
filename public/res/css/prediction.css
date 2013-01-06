@@ -374,31 +374,31 @@ text-decoration:none;text-align:center}
 	background: none;
 	cursor: pointer;
 }
-.bt_box .btn_login {
+.btn_login {
 	background: url(images/btn_login.jpg) no-repeat;
 }
-.bt_box .btn_next {
+.btn_next {
 	background: url(images/btn_next.jpg) no-repeat;
 }
-.bt_box .btn_next .btn {
+.btn_next .btn {
 	padding: 0 16px 0 48px;
 	*padding: 0 0 0 36px;
 }
-.bt_box .btn_login .btn {
+.btn_login .btn {
 	padding: 0 17px 0 42px;
 	*padding: 0 0 0 26px;
 }
-.bt_box .btn_register {
+.btn_register {
 	background: url(images/btn_register.jpg) no-repeat;
 }
-.bt_box .btn_register .btn {
+.btn_register .btn {
 	padding: 0 8px 0 31px;
 	*padding: 0 0 0 18px;
 }
-.bt_box .btn_cancel {
+.btn_cancel {
 	background: url(images/btn_cancel.jpg) no-repeat;
 }
-.bt_box .btn_cancel .btn {
+.btn_cancel .btn {
 	padding: 0 12px 0 36px;
 	*padding: 0 0 0 24px;
 }

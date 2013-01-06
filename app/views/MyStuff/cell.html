@@ -1,0 +1,27 @@
+#{extends './userTemplate.html' /}
+#{set subtab:'cell'/}
+
+<h2>Time Periods containing Text Messages</h2>
+
+	<table border="1">
+		<thead>
+		    <tr>
+	            <th>Date Range</th> 
+	            <th>Number of Text Messages</th>
+		    </tr>
+		</thead>
+		<tbody>
+		    #{list phone.periods, as:'period'}
+		        <tr>
+		            <td>
+		            	<a href="@{MyStuff.texts(phone.phoneNumber, period.beginOfMonthLong)}"><span style="color: gray;">${period.range}</span></a>
+		            </td>
+		            <td>
+		            	${period.messages.size()}
+		            </td>
+		        </tr>
+		    #{/list}
+		</tbody>
+	</table>
+
+

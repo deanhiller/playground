@@ -34,16 +34,23 @@
 			<h1><a href="#"><img src="/res/images/logo.gif" alt="alvazan.com" /></a></h1>
 		</div>
 	  *{  <a href="#" class="logout rt">forgot password?</a>}*
-	    <a href="#" class="logout rt">Register</a>
+	  	#{if session.get('username') == null}
+	    <a href="@{auth.Secure.login()}" class="logout rt">Register</a>
 	    <a href="@{auth.Secure.login()}" class="logout rt">Log in</a>
+	    #{/if}
+	    #{else}
+	    <a href="@{auth.Secure.logout()}" class="logout rt">Log out ${session.get('username')}</a>
+	    #{/else}
 	</div>
 	<ul id="mun" class="mun clearfix">
 		<li class="clearfix" id="page_home">
 		    <a href="@{Application.index()}"><strong>Home</strong></a>
 		</li>
-		<li class="clearfix" id="page_how">
-		    <a href="@{Application.how()}"><strong>How It Works</strong></a>
-		</li>
+		#{if session.get('username') != null}
+			<li class="clearfix" id="page_how">
+			    <a href="@{MyStuff.cellPhones()}"><strong>My Account</strong></a>
+			</li>
+		#{/if}
 		<li class="clearfix" id="page_setup">
 			<a href="@{Application.setup()}"><strong>Set up Free</strong></a>
 		</li>

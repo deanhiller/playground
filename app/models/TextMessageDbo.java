@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.joda.time.Instant;
 import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import com.alvazan.orm.api.base.anno.NoSqlEntity;
 import com.alvazan.orm.api.base.anno.NoSqlId;
@@ -13,6 +16,8 @@ import com.alvazan.orm.api.base.anno.NoSqlManyToOne;
 @NoSqlEntity
 public class TextMessageDbo {
 
+	private static DateTimeFormatter fmt = DateTimeFormat.forPattern("MMM dd, yyyy hh:mm a");
+	
 	@NoSqlId
 	private String id;
 
@@ -55,6 +60,9 @@ public class TextMessageDbo {
 		this.remoteNumber = remoteNumber;
 	}
 
+	public int getSize() {
+		return textMessage.length();
+	}
 	public String getTextMessage() {
 		return textMessage;
 	}
@@ -93,5 +101,17 @@ public class TextMessageDbo {
 
 	public void setToCell(boolean isToCell) {
 		this.isToCell = isToCell;
+	}
+	
+	public String getDirection() {
+		if(isToCell) 
+			return "Received";
+		return "Sent";
+	}
+	
+	public String getTimeString() {
+		Instant instant = new Instant(this.cellTimeReceived);
+		DateTime time = instant.toDateTime();
+		return fmt.print(time);
 	}
 }
