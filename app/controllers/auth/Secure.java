@@ -3,8 +3,14 @@ package controllers.auth;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
+import models.EmailToUserDbo;
+import models.UserDbo;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.alvazan.orm.api.base.NoSqlEntityManager;
+import com.alvazan.play.NoSql;
 
 import play.Play;
 import play.data.validation.Required;
@@ -168,7 +174,14 @@ public class Secure extends Controller {
          * @return true if the authentication process succeeded
          */
         static boolean authenticate(String username, String password) {
-            return true;
+        	NoSqlEntityManager em = NoSql.em();
+        	EmailToUserDbo email = em.find(EmailToUserDbo.class, username);
+        	if(email != null) {
+        		UserDbo user = em.find(UserDbo.class, email.getValue());
+        		if(user != null && user.getPassword().equals(password))
+        			return true;
+        	}
+            return false;
         }
 
         /**
