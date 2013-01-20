@@ -2,7 +2,7 @@
 
 <div class="lt">
 
-	<h2 class="title">Login</h2>
+	<h2 class="title">Existing Members Login</h2>
 
 	<br/>
 	<br/>
@@ -48,6 +48,16 @@
 	    	<div class="entry">
 	    		<div class="spacer"></div>
 	    		<span class="label">Email:</span>
+	    		<span class="input">
+	        		<input type="text" size="19" name="email" id="email" class="boxtpl" value="${flash.username}">
+	        	</span>
+	    	</div>
+	    </div>
+	    
+	    <div id="login:userNameDecorate">
+	    	<div class="entry">
+	    		<div class="spacer"></div>
+	    		<span class="label">Confirm Email:</span>
 	    		<span class="input">
 	        		<input type="text" size="19" name="email" id="email" class="boxtpl" value="${flash.username}">
 	        	</span>
