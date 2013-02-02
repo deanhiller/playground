@@ -23,7 +23,14 @@ import play.templates.JavaExtensions;
 public class TagHelp extends FastTags {
 	
 	private static final Logger log = LoggerFactory.getLogger(TagHelp.class);
-	
+
+	public static void _mytest(Map<?, ?> args, Closure body, PrintWriter out, ExecutableTemplate template, int fromLine) {
+        Map<String,Object> field = new HashMap<String,Object>();
+        Object objId = args.get("field");
+        
+        body.setProperty("field", field);
+        body.call();
+	}
 	public static void _xfield(Map<?, ?> args, Closure body, PrintWriter out, ExecutableTemplate template, int fromLine) {
         Map<String,Object> field = new HashMap<String,Object>();
         Object objId = args.get("objectId");

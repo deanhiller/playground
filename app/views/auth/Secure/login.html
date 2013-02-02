@@ -8,28 +8,11 @@
 	<br/>
 	
     #{form @auth.Secure.authenticate()}
-	<div id="login:userNameDecorate">
-    	<div class="entry">
-    		<div class="spacer"></div>
-    		<span class="label">Email:</span>
-    		<span class="input">
-        		<input type="text" size="19" name="username" id="username" class="boxtpl" value="${flash.username}">
-        	</span>
-    	</div>
-    </div>
-
-	<div id="login:loginPasswdDecorate">
-    	<div class="entry">
-    		<div class="spacer"></div>
-    		<span class="label ">Password:</span>
-    		<span class="input ">
-	    		<input type="password" name="password" id="password" value="" size="19" class="boxtpl"/>
-        	</span>
-    	</div>
-    </div>
-
-	<br/>
-	<br/>
+    
+        #{text objectId:'username',label:'Email:', help:'Email to login', length:50, type:'text'/}
+    	#{text objectId:'password',label:'Password:', help:'Password', length:50, type:'password'/}
+		<br/>
+		<br/>
 
 		<span class="btn_login">
 			<input type="submit" value="Login" class="btn">
@@ -44,46 +27,10 @@
 	Email needs to be correct to receive notifications and to keep account active.
 
     #{form @Register.postRegister()}
-		<div id="login:userNameDecorate">
-	    	<div class="entry">
-	    		<div class="spacer"></div>
-	    		<span class="label">Email:</span>
-	    		<span class="input">
-	        		<input type="text" size="19" name="email" id="email" class="boxtpl" value="${flash.username}">
-	        	</span>
-	    	</div>
-	    </div>
+        #{text objectId:'email',label:'Email:', help:'Email to login', length:50, type:'text'/}
+    	#{text objectId:'password',label:'Password:', help:'Password', length:50, type:'password'/}
+		#{text objectId:'verifyPassword',label:'Verify Password:',help:'Confirmation password',type:'password'/}
 	    
-	    <div id="login:userNameDecorate">
-	    	<div class="entry">
-	    		<div class="spacer"></div>
-	    		<span class="label">Confirm Email:</span>
-	    		<span class="input">
-	        		<input type="text" size="19" name="email" id="email" class="boxtpl" value="${flash.username}">
-	        	</span>
-	    	</div>
-	    </div>
-	
-		<div id="login:loginPasswdDecorate">
-	    	<div class="entry">
-	    		<div class="spacer"></div>
-	    		<span class="label ">Password:</span>
-	    		<span class="input ">
-		    		<input type="password" name="password" id="password" value="" size="19" class="boxtpl"/>
-	        	</span>
-	    	</div>
-	    </div>    
-
-		<div id="login:loginPasswdDecorate">
-	    	<div class="entry">
-	    		<div class="spacer"></div>
-	    		<span class="label ">Verify Password:</span>
-	    		<span class="input ">
-		    		<input type="password" name="verifyPassword" id="verifyPassword" value="" size="19" class="boxtpl"/>
-	        	</span>
-	    	</div>
-	    </div>
-	        
     	<span class="btn_register">
 			<input type="submit" value="Register" class="btn">
 		</span>    
