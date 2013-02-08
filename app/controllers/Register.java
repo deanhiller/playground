@@ -13,12 +13,14 @@ import play.mvc.Controller;
 public class Register extends Controller {
 
 	public static void postRegister(String email, String password, String verifyPassword) throws Throwable {
+		validation.required(email);
 		if(password == null) {
 			validation.addError("password", "password must be supplied");
 		} else if(!password.equals(verifyPassword)) {
 			validation.addError("verifyPassword", "Passwords do not match");
-		}
-
+		} else if(!email.contains("@"))
+			validation.addError("email", "This is not a valid email");
+		
 		EmailToUserDbo existing = NoSql.em().find(EmailToUserDbo.class, email);
 		if(existing != null) {
 			validation.addError("email", "This email already exists");
