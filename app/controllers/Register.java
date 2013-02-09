@@ -17,7 +17,7 @@ public class Register extends Controller {
 		if(password == null) {
 			validation.addError("password", "password must be supplied");
 		} else if(!password.equals(verifyPassword)) {
-			validation.addError("verifyPassword", "Passwords do not match");
+			validation.addError("verifyPassword", "Passwords did not match");
 		} else if(!email.contains("@"))
 			validation.addError("email", "This is not a valid email");
 		

@@ -31,6 +31,7 @@ public class TagHelp extends FastTags {
         body.setProperty("field", field);
         body.call();
 	}
+	
 	public static void _xfield(Map<?, ?> args, Closure body, PrintWriter out, ExecutableTemplate template, int fromLine) {
         Map<String,Object> field = new HashMap<String,Object>();
         Object objId = args.get("objectId");
@@ -48,7 +49,8 @@ public class TagHelp extends FastTags {
         Object flashObj = Flash.current().get(_arg);
         Object flashArray = new String[0]; 
         if(flashObj != null && !StringUtils.isEmpty(flashObj.toString()))
-        	flashArray = field.get("flash").toString().split(",");
+        	flashArray = flashObj.toString().split(",");
+
         Object error = Validation.error(_arg);
         Object errorClass = error != null ? "hasError" : "";
         field.put("name", _arg);
@@ -60,6 +62,8 @@ public class TagHelp extends FastTags {
         field.put("flashArray", flashArray);
         field.put("error", error);
         field.put("errorClass", errorClass);
+        if("password".equals(args.get("type")))
+        		flashObj = "";
         String[] pieces = _arg.split("\\.");
         Object obj = body.getProperty(pieces[0]);
         if(obj != null){
@@ -85,7 +89,9 @@ public class TagHelp extends FastTags {
             }else{
                 field.put("value", obj);
             }
-        }
+        } else if(flashObj != null)
+        	field.put("value", flashObj);
+        
         body.setProperty("field", field);
         body.call();
     }
