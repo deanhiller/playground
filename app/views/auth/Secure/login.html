@@ -25,18 +25,6 @@
 	
 	Email needs to be correct to receive notifications and to keep account active.
 
-	#{error 'email'/}
-
-#{ifErrors}
- 
-   <h1>Oops…</h1>
- 
-   #{errors}
-       <li>${error}</li>
-   #{/errors}
- 
-#{/ifErrors}
-
     #{form @Register.postRegister()}
         #{text objectId:'email',label:'Email:', help:'Email to login', length:50, type:'text'/}
     	#{text objectId:'password',label:'Password:', help:'Password', length:50, type:'password'/}
