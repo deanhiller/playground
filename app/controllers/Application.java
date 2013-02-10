@@ -29,6 +29,10 @@ public class Application extends Controller {
         render();
     }
 
+	public static void hiw() {
+    	render();
+    }
+
     public static void how() {
     	render();
     }

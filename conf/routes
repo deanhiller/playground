@@ -7,6 +7,7 @@ POST /api/postdata                             ApiKeyRequest.postTextMessage
 
 GET  /                                         Application.index
 GET  /how                                      Application.how
+GET  /hiw                                      Application.hiw
 
 #from the setup page a user can post a key he got off the cell phone
 GET  /setup                                    Application.setup
