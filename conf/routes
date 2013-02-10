@@ -16,6 +16,7 @@ POST /registerkey                              Application.postKey
 
 POST /register                                 Register.postRegister
 
+GET /accountsettings                           MyStuff.accountsettings				
 GET /cellphones                                MyStuff.cellPhones
 GET /cell/{number}                             MyStuff.cell
 GET /cell/{number}/{time}                    MyStuff.texts
