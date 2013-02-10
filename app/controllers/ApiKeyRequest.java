@@ -148,7 +148,7 @@ public class ApiKeyRequest extends Controller {
 		msgDbo.setCellNumber(msg.getCellNumber());
 		msgDbo.setRemoteNumber(msg.getRemoteNumber());
 		msgDbo.setTextMessage(msg.getTextMessage());
-		msgDbo.setToCell(msg.isToCell);
+		msgDbo.setOutgoing(msg.isOutgoing());
 		NoSql.em().fillInWithKey(msgDbo);
 		return msgDbo;
 	}

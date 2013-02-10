@@ -42,9 +42,6 @@ public class MyStuff extends Controller {
 		String id = TimePeriodDbo.formKey(number, time);
 		TimePeriodDbo period = NoSql.em().find(TimePeriodDbo.class, id);
 		
-		for(TextMessageDbo msg : period.getMessages()) {
-			String textMsg = msg.getTextMessage();
-		}
 		render(period);
 	}
 }

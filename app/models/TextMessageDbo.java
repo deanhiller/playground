@@ -22,7 +22,7 @@ public class TextMessageDbo {
 	private String id;
 	@NoSqlManyToOne
 	private TimePeriodDbo timePeriod;
-	private boolean isToCell;
+	private boolean isOutgoing;
 	private DateTime timeReceived;
 	private long cellTimeReceived;
 	private String cellNumber;
@@ -89,18 +89,18 @@ public class TextMessageDbo {
 		this.timePeriod = timePeriods;
 	}
 
-	public boolean isToCell() {
-		return isToCell;
+	public boolean isOutgoing() {
+		return isOutgoing;
 	}
 
-	public void setToCell(boolean isToCell) {
-		this.isToCell = isToCell;
+	public void setOutgoing(boolean outgoing) {
+		this.isOutgoing = outgoing;
 	}
-	
+
 	public String getDirection() {
-		if(isToCell) 
-			return "Received";
-		return "Sent";
+		if(isOutgoing) 
+			return "Sent";
+		return "Received";
 	}
 	
 	public String getTimeString() {
