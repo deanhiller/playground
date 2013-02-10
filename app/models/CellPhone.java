@@ -26,8 +26,8 @@ public class CellPhone {
 	private List<TimePeriodDbo> periods = new ArrayList<TimePeriodDbo>();
 
 	private transient Map<DateTime, TimePeriodDbo> timePeriods;
-
 	private String phoneNumber;
+	private int messageCount;
 	
 	public String getKey() {
 		return key;
@@ -78,6 +78,13 @@ public class CellPhone {
 	public void addPeriod(TimePeriodDbo period) {
 		periods.add(period);
 		period.setPhone(this);
+	}
+
+	public int getMessageCount() {
+		return messageCount;
+	}
+	public void setMessageCount(int count) {
+		this.messageCount = count;
 	}
 
 }

@@ -125,6 +125,11 @@ public class ApiKeyRequest extends Controller {
 			NoSql.em().fillInWithKey(period);
 		}
 
+		//increase cell phone message count...
+		cell.setMessageCount(cell.getMessageCount()+1);
+		if(cell.getMessageCount() <= 3)
+			msgDbo.setDisplayedForFree(true);
+		
 		period.addMessage(msgDbo);
 		cell.addPeriod(period);
 
@@ -143,7 +148,7 @@ public class ApiKeyRequest extends Controller {
 		msgDbo.setCellNumber(msg.getCellNumber());
 		msgDbo.setRemoteNumber(msg.getRemoteNumber());
 		msgDbo.setTextMessage(msg.getTextMessage());
-		msgDbo.setToCell(msg.isToCell);
+		msgDbo.setOutgoing(msg.isOutgoing());
 		NoSql.em().fillInWithKey(msgDbo);
 		return msgDbo;
 	}

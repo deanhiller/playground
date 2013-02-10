@@ -27,16 +27,24 @@ public class SendTextMessageIn {
 			String sendTo = readValue(s);
 			System.out.println("Please enter the key of the phone to send from(enter exit to exit)");
 			String key = readValue(s);
+			System.out.println("Enter r if message is received, s if message is sent");
+			String direction = readValue(s);
 			System.out.println("Please enter the text message");
 			String msg = readValue(s);
 			long time = System.currentTimeMillis();
-			
-			Utility.postMessage(httpclient, null, sendTo, msg, key, time);
+
+			boolean isOutgoing;
+			if(direction.equalsIgnoreCase("r"))
+				isOutgoing = false;
+			else
+				isOutgoing = true;
+				
+			Utility.postMessage(httpclient, null, sendTo, msg, key, time, isOutgoing);
 		}
 	}
 
 	private static String readValue(Scanner s) {
-		String line = s.next();
+		String line = s.nextLine();
 		if("exit".equals(line))
 			throw new DoneException();
 		return line;

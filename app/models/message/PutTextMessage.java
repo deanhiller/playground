@@ -27,9 +27,9 @@ public class PutTextMessage {
 	@XmlElement(name="remoteNumber")
     public String remoteNumber;
 
-	@JsonProperty("isToCell")
-	@XmlElement(name="isToCell")
-    public boolean isToCell;
+	@JsonProperty("isOutgoing")
+	@XmlElement(name="isOutgoing")
+    public boolean isOutgoing;
 	
 	@JsonProperty("phoneTime")
 	@XmlElement(name="phoneTime")
@@ -77,6 +77,14 @@ public class PutTextMessage {
 
 	public void setTextMessage(String textMessage) {
 		this.textMessage = textMessage;
+	}
+
+	public boolean isOutgoing() {
+		return isOutgoing;
+	}
+
+	public void setOutgoing(boolean isOutgoing) {
+		this.isOutgoing = isOutgoing;
 	}
 	
 } // PutMessage

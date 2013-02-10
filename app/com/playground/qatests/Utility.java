@@ -114,7 +114,7 @@ public class Utility {
 	}
 	
 	public static void postMessage(DefaultHttpClient httpclient, String cellNum, 
-			String remoteNum, String txtMsg, String key, long time) throws UnsupportedEncodingException,
+			String remoteNum, String txtMsg, String key, long time, boolean isOutgoing) throws UnsupportedEncodingException,
 			IOException, ClientProtocolException {
 		
 		PutTextMessage msg = new PutTextMessage();
@@ -122,6 +122,7 @@ public class Utility {
 		msg.setPhoneTime(time);
 		msg.setRemoteNumber(remoteNum);
 		msg.setTextMessage(txtMsg);
+		msg.setOutgoing(isOutgoing);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(msg);

@@ -49,11 +49,11 @@ public class RegisterCellPhone {
 		String key = Utility.getData(registerKey, "3034445555", httpclient);
 		String key2 = Utility.getData(registerKey, "3032228888", httpclient);
 
-		Utility.postMessage(httpclient, "5678", "8765", "hel there 1", key, time(1));
-		Utility.postMessage(httpclient, "1234", "4321", "hi there buddy", key, time(-1));
+		Utility.postMessage(httpclient, "5678", "8765", "hel there 1", key, time(1), true);
+		Utility.postMessage(httpclient, "1234", "4321", "hi there buddy", key, time(-1), false);
 
-		Utility.postMessage(httpclient, "5555", "6666", "555 to 666", key2, time(2));
-		Utility.postMessage(httpclient, "4444", "3333", "444 to 3333", key2, time(3));
+		Utility.postMessage(httpclient, "5555", "6666", "555 to 666", key2, time(2), true);
+		Utility.postMessage(httpclient, "4444", "3333", "444 to 3333", key2, time(3), false);
 	}
 
 	private long time(int days) {
