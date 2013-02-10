@@ -239,7 +239,7 @@ td.first {
 	text-align: center; 
 	margin-left: auto; 
 	margin-right: auto; 
-	width: 480px; 
+	width: 400px; 
 	clear: both;
 	/** overflow tells div to expand to surround internal elements**/
 	/** breaks the calendar overflow: auto; **/
@@ -251,7 +251,7 @@ td.first {
 }
 
 .entry .label {
-	width: 160px;
+	width: 150px;
 	float: left;
 	text-align: right;
 	padding-right: 10px;
@@ -268,7 +268,7 @@ td.first {
 	font-size: 13px;
  	text-align: left; 
  	float: left; 
- 	width: 300px;
+ 	/*width: 300px;*/
 }
 
 .entry span.hasError input {

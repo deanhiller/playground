@@ -76,7 +76,14 @@
 <!-- begin container -->
 	<div class="container clearfix">
 
-		<div style="font-size: small;font-weight: bold;text-align: center;color: red">	
+		<div style="font-size: small;font-weight: bold;text-align: center;color: red">
+			#{ifErrors}
+			   <h1>Oops…</h1>
+			   #{errors}
+			       <li>${error}</li>
+			   #{/errors}
+			#{/ifErrors}
+				
 	        #{if flash.error}
             	${flash.error}
             #{/if}

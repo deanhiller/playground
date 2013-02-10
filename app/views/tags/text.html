@@ -1,3 +1,7 @@
-	#{generic _field}
-		<input type="text" class="inputtext" name="${_field?.name}" value="${_field?.value}" maxlength="${_length}">
-	#{/generic}
+
+#{xfield objectId:_objectId,label:_label, help:_help, type:_type}
+   	#{generic field}
+	   	<input type="${_type}" class="inputtext" name="${field?.name}" value="${field?.value}" maxlength="${_length}">
+   	#{/generic}
+#{/xfield}
+	    
