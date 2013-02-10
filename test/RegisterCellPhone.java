@@ -37,24 +37,23 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.playground.qatests.Utility;
 
 public class RegisterCellPhone {
-	
-	private final static Logger log = LoggerFactory.getLogger(RegisterCellPhone.class);
 	
 	@Test
 	public void registerPostAndGet() throws JsonGenerationException, JsonMappingException, IOException {
 		DefaultHttpClient httpclient = new DefaultHttpClient();
 		
 		String registerKey = "AAAAB3NzaC1kc3MAAACBAI0XYYyhYT861agRCv2BCIg6HjgARc3GnbmuXGkbrXzACzZAy1uQ6wteRDZpByiPVJaL8DKncf91QoFIBZKJ0ao7ZuOiCQ03VUfxb6YwMXMeLikjcSI+zRBh6NPP833mtYVpLG1kDpGGxmJdmt38iWvxqa9HJcLOzYQA6lqyPAAAAFQDUa2rnAC9arD905h42VwI2da+tawAAAIEAhzarb59ddJWTW831YZorBrpKPZp+WWAmO+4rjp82owQsI9aua4qfcSenb4+U";
-		String key = getData(registerKey, "3034445555", httpclient);
-		String key2 = getData(registerKey, "3032228888", httpclient);
+		String key = Utility.getData(registerKey, "3034445555", httpclient);
+		String key2 = Utility.getData(registerKey, "3032228888", httpclient);
 
-		postMessage(httpclient, "5678", "8765", "hel there 1", key, time(1));
-		postMessage(httpclient, "1234", "4321", "hi there buddy", key, time(-1));
+		Utility.postMessage(httpclient, "5678", "8765", "hel there 1", key, time(1));
+		Utility.postMessage(httpclient, "1234", "4321", "hi there buddy", key, time(-1));
 
-		postMessage(httpclient, "5555", "6666", "555 to 666", key2, time(2));
-		postMessage(httpclient, "4444", "3333", "444 to 3333", key2, time(3));
+		Utility.postMessage(httpclient, "5555", "6666", "555 to 666", key2, time(2));
+		Utility.postMessage(httpclient, "4444", "3333", "444 to 3333", key2, time(3));
 	}
 
 	private long time(int days) {
@@ -62,34 +61,4 @@ public class RegisterCellPhone {
 		DateTime newTime = t.plusDays(days);
 		return newTime.getMillis();
 	}
-
-	@SuppressWarnings("rawtypes")
-	private String getData(String key, String phone, DefaultHttpClient httpClient) throws ClientProtocolException, IOException {
-		String requestUri = "/api/keyrequest/"+phone+"/"+key;
-		String theString = Utility.sendRequest(httpClient, requestUri, null);
-		
-		log.info("strResp="+theString);
-		ObjectMapper mapper = new ObjectMapper();
-		NewKeyResponse keyResponse = mapper.readValue(theString, NewKeyResponse.class);
-		
-		log.info("response="+keyResponse);
-		return keyResponse.getKey();
-	}
-
-	public static void postMessage(DefaultHttpClient httpclient, String cellNum, 
-			String remoteNum, String txtMsg, String key, long time) throws UnsupportedEncodingException,
-			IOException, ClientProtocolException {
-		
-		PutTextMessage msg = new PutTextMessage();
-		msg.setKey(key);
-		msg.setCellNumber(cellNum);
-		msg.setPhoneTime(time);
-		msg.setRemoteNumber(remoteNum);
-		msg.setTextMessage(txtMsg);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(msg);
-		Utility.sendPostRequest(httpclient, "http://localhost:9000/api/postdata", json);
-	}
-
 }
