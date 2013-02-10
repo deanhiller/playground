@@ -45,7 +45,7 @@ public class RegisterCellPhone {
 		System.out.println("Enter the cell phone that will register right now with the server");
 
 		Scanner s = new Scanner(System.in);
-		String phoneNumber = s.next();
+		String phoneNumber = s.nextLine();
 		
 		DefaultHttpClient httpclient = new DefaultHttpClient();
 

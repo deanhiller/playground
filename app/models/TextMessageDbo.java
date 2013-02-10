@@ -20,21 +20,15 @@ public class TextMessageDbo {
 	
 	@NoSqlId
 	private String id;
-
 	@NoSqlManyToOne
 	private TimePeriodDbo timePeriod;
-	
 	private boolean isToCell;
-	
 	private DateTime timeReceived;
-
 	private long cellTimeReceived;
-	
 	private String cellNumber;
-	
 	private String remoteNumber;
-	
 	private String textMessage;
+	private boolean displayedForFree;
 
 	public String getId() {
 		return id;
@@ -114,4 +108,12 @@ public class TextMessageDbo {
 		DateTime time = instant.toDateTime();
 		return fmt.print(time);
 	}
+
+	public void setDisplayedForFree(boolean displayed) {
+		this.displayedForFree = displayed;
+	}
+	public boolean isDisplayedForFree() {
+		return displayedForFree;
+	}
+	
 }

@@ -36,7 +36,7 @@ public class SendTextMessageIn {
 	}
 
 	private static String readValue(Scanner s) {
-		String line = s.next();
+		String line = s.nextLine();
 		if("exit".equals(line))
 			throw new DoneException();
 		return line;

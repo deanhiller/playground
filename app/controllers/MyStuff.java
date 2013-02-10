@@ -6,6 +6,7 @@ import com.alvazan.play.NoSql;
 
 import models.CellPhone;
 import models.NumberToCell;
+import models.TextMessageDbo;
 import models.TimePeriodDbo;
 import models.UserDbo;
 import controllers.auth.Check;
@@ -22,7 +23,7 @@ public class MyStuff extends Controller {
 		
 		render(user, phones);
 	}
-	
+
 	public static void cell(String number) {
 		NumberToCell ref = NoSql.em().find(NumberToCell.class, number);
 		if(ref == null)
@@ -36,11 +37,14 @@ public class MyStuff extends Controller {
 		}
 		render(phone);
 	}
-	
+
 	public static void texts(String number, long time) {
 		String id = TimePeriodDbo.formKey(number, time);
 		TimePeriodDbo period = NoSql.em().find(TimePeriodDbo.class, id);
 		
+		for(TextMessageDbo msg : period.getMessages()) {
+			String textMsg = msg.getTextMessage();
+		}
 		render(period);
 	}
 }

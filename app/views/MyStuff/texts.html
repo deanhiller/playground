@@ -1,7 +1,7 @@
 #{extends './userTemplate.html' /}
 #{set subtab:'cell'/}
 
-<h2>Cell Phones</h2>
+<h2>Cell Phone ${period.phone.phoneNumber}</h2>
 
 	<table border="1">
 		<thead>
@@ -20,7 +20,12 @@
 		            <td>${msg.direction}</td>
 		            <td>${msg.remoteNumber}</td>
 		            <td>${msg.size}</td>
-		            <td>${msg.textMessage}</td>
+		            #{if msg.displayedForFree}
+			            <td>${msg.textMessage}</td>
+		            #{/if}
+		            #{else}
+			            <td> (You have not 100% completed registration) Click here to complete </td>
+		            #{/else}
 		        </tr>
 		    #{/list}
 		</tbody>
