@@ -22,6 +22,10 @@ public class MyStuff extends Controller {
 		
 		render(user, phones);
 	}
+
+	public static void accountsettings() {
+        render();
+    }
 	
 	public static void cell(String number) {
 		NumberToCell ref = NoSql.em().find(NumberToCell.class, number);
