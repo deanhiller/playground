@@ -46,14 +46,16 @@ public class RegisterCellPhone {
 		DefaultHttpClient httpclient = new DefaultHttpClient();
 		
 		String registerKey = "AAAAB3NzaC1kc3MAAACBAI0XYYyhYT861agRCv2BCIg6HjgARc3GnbmuXGkbrXzACzZAy1uQ6wteRDZpByiPVJaL8DKncf91QoFIBZKJ0ao7ZuOiCQ03VUfxb6YwMXMeLikjcSI+zRBh6NPP833mtYVpLG1kDpGGxmJdmt38iWvxqa9HJcLOzYQA6lqyPAAAAFQDUa2rnAC9arD905h42VwI2da+tawAAAIEAhzarb59ddJWTW831YZorBrpKPZp+WWAmO+4rjp82owQsI9aua4qfcSenb4+U";
-		String key = Utility.getData(registerKey, "3034445555", httpclient);
-		String key2 = Utility.getData(registerKey, "3032228888", httpclient);
+		String key = Utility.getData(registerKey, "3032225555", httpclient);
+		//String key2 = Utility.getData(registerKey, "3032228888", httpclient);
 
 		Utility.postMessage(httpclient, "5678", "8765", "hel there 1", key, time(1), true);
 		Utility.postMessage(httpclient, "1234", "4321", "hi there buddy", key, time(-1), false);
-
-		Utility.postMessage(httpclient, "5555", "6666", "555 to 666", key2, time(2), true);
-		Utility.postMessage(httpclient, "4444", "3333", "444 to 3333", key2, time(3), false);
+		Utility.postMessage(httpclient, "5678", "8765", "hel there 1", key, time(1), true);
+		Utility.postMessage(httpclient, "1234", "4321", "hi there buddy", key, time(-1), false);
+		
+		//Utility.postMessage(httpclient, "5555", "6666", "555 to 666", key2, time(2), true);
+		//Utility.postMessage(httpclient, "4444", "3333", "444 to 3333", key2, time(3), false);
 	}
 
 	private long time(int days) {

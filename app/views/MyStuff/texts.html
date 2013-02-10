@@ -24,7 +24,7 @@
 			            <td>${msg.textMessage}</td>
 		            #{/if}
 		            #{else}
-			            <td> (You have not 100% completed registration) Click here to complete </td>
+			            <td> <a href="@{Application.completeRegister()}">(You have not 100% completed registration) Click here to complete</a> </td>
 		            #{/else}
 		        </tr>
 		    #{/list}

@@ -10,7 +10,8 @@ GET  /how                                      Application.how
 GET  /hiw                                      Application.hiw
 
 #from the setup page a user can post a key he got off the cell phone
-GET  /setup                                    Application.setup
+GET /setup                                    Application.setup
+GET /completeregister                         Application.completeRegister
 POST /registerkey                              Application.postKey
 
 POST /register                                 Register.postRegister
