@@ -1,6 +1,6 @@
 tmp/
-eclipse/
+/eclipse/
 *.pyc
-.classpath
-.project
-.settings
+/.classpath
+/.project
+/.settings
