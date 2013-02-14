@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+#{set tab:'setup' /}
+
+We will charge your credit card 7.00 dollars every month.  You can cancel at any time by sending an email to support@sniffyapp.com
+
+    #{form @MyStuff.postPayment(number)}
+        #{text objectId:'creditCard',label:'Credit Card#:', help:'Email to login', length:50, type:'text'/}
+    	#{text objectId:'name',label:'Full Name:', help:'Name as it appears on your credit card', length:50, type:'text'/}
+    	#{text objectId:'cvv',label:'Full Name:', help:'Cvv is the number on the back of your credit card', length:4, type:'text'/}
+    	
+		<br/>
+		<br/>
+
+		<span class="btn_login">
+			<input type="submit" value="Pay Now" class="btn">
+		</span>
+    #{/form}

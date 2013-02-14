@@ -3,7 +3,7 @@
 # ~~~~
 
 GET  /api/keyrequest/{phoneNumber}/{secureKey} ApiKeyRequest.newKey
-POST /api/postdata                             ApiKeyRequest.postTextMessage    
+POST /api/postdata                             ApiKeyRequest.postTextMessage
 
 GET  /                                         Application.index
 GET  /how                                      Application.how
@@ -11,7 +11,9 @@ GET  /hiw                                      Application.hiw
 
 #from the setup page a user can post a key he got off the cell phone
 GET /setup                                    Application.setup
-GET /completeregister                         Application.completeRegister
+GET /completeregister/{number}                MyStuff.completeRegister
+GET /pay/{number}                             MyStuff.makePayment
+POST /pay/{number}                            MyStuff.postPayment
 POST /registerkey                              Application.postKey
 
 POST /register                                 Register.postRegister

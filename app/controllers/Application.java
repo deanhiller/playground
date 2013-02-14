@@ -41,10 +41,6 @@ public class Application extends Controller {
     	render();
     }
     
-    public static void completeRegister() {
-    	render();
-    }
-    
     public static void postKey(String key) throws Throwable {
     	String username = session.get("username");
     	if(username == null) {

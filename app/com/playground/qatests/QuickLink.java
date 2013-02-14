@@ -155,14 +155,14 @@ public class QuickLink
 	 * 		name, number, exp_month, exp_year, and cvs of previous transaction)
 	 * @return - Results returned by Trinity QuickLink Service for the desired transaction
 	 */
-	public HashMap Authorize 
+	public HashMap authorize 
 	(
 		String name, String number, String exp_month, String exp_year, 
 		String cvs, String address, String city, String state, String zip, String amount, String transaction_id
 	)
 	{
 		//process one-time or instant authorize request on credit card
-		return Process("AUTHORIZATION", address, city, state, zip, amount, name, number, exp_month, 
+		return process("AUTHORIZATION", address, city, state, zip, amount, name, number, exp_month, 
 				exp_year, cvs, "", "", "", "", "", transaction_id, "");
 	}
 	
@@ -183,14 +183,14 @@ public class QuickLink
 	 * 		name, number, exp_month, exp_year, and cvs of previous transaction)
 	 * @return Results returned by Trinity QuickLink Service for the desired transaction
 	 */
-	public HashMap Charge 
+	public HashMap charge 
 	(
 		String name, String number, String exp_month, String exp_year, 
 		String cvs, String address, String city, String state, String zip, String amount, String transaction_id
 	)
 	{
 		//process one-time or instant charge request on credit card
-		return Process("AUTHORIZATION_CAPTURE", address, city, state, zip, amount, name, number, 
+		return process("AUTHORIZATION_CAPTURE", address, city, state, zip, amount, name, number, 
 				exp_month, exp_year, cvs, "", "", "", "", "", transaction_id, "");
 	}
 
@@ -211,14 +211,14 @@ public class QuickLink
 	 * 		name, number, exp_month, exp_year, and cvs of previous transaction)
 	 * @return Results returned by Trinity QuickLink Service for the desired transaction
 	 */
-	public HashMap Refund
+	public HashMap refund
 	(
 		String name, String number, String exp_month, String exp_year, 
 		String cvs, String address, String city, String state, String zip, String amount, String transaction_id
 	)
 	{
 		//process one-time or instant refund request on credit card
-		return Process("CREDIT", address, city, state, zip, amount, name, number, exp_month, 
+		return process("CREDIT", address, city, state, zip, amount, name, number, exp_month, 
 				exp_year, cvs, "", "", "", "", "", transaction_id, "");
 	}
 	
@@ -248,7 +248,7 @@ public class QuickLink
 	 * @param start - YYYY-MM-DD Note: must be a valid date that exists
 	 * @return - Results returned by Trinity QuickLink Service for the desired transaction
 	 */
-	public HashMap Schedule_Authorize
+	public HashMap scheduleAuthorize
 	(
 		String name, String number, String exp_month, String exp_year, 
 		String cvs, String address, String city, String state, String zip, String amount, String transaction_id,
@@ -256,7 +256,7 @@ public class QuickLink
 	)
 	{
 		//process one-time or instant authorize request on recurring transaction of credit card
-		return Process("AUTHORIZATION", address, city, state, zip, amount, name, number, exp_month, 
+		return process("AUTHORIZATION", address, city, state, zip, amount, name, number, exp_month, 
 				exp_year, cvs, create, limit, periodic_number, periodic_type, start, transaction_id, "");	
 	}
 	
@@ -286,7 +286,7 @@ public class QuickLink
 	 * @param start - YYYY-MM-DD Note: must be a valid date that exists
 	 * @return - Results returned by Trinity Gateway Service for the desired transaction
 	 */
-	public HashMap Schedule_Charge
+	public HashMap scheduleCharge
 	(
 		String name, String number, String exp_month, String exp_year, 
 		String cvs, String address, String city, String state, String zip, String amount, String transaction_id,
@@ -294,7 +294,7 @@ public class QuickLink
 	)
 	{
 		//process one-time or instant charge request on recurring transaction of credit card
-		return Process("AUTHORIZATION_CAPTURE", address, city, state, zip, amount, name, number, exp_month, 
+		return process("AUTHORIZATION_CAPTURE", address, city, state, zip, amount, name, number, exp_month, 
 				exp_year, cvs, create, limit, periodic_number, periodic_type, start, transaction_id, "");
 	}
 	
@@ -324,7 +324,7 @@ public class QuickLink
 	 * @param start - YYYY-MM-DD Note: must be a valid date that exists
 	 * @return - Results returned by Trinity QuickLink Service for the desired transaction
 	 */
-	public HashMap Schedule_Refund
+	public HashMap scheduleRefund
 	(
 		String name, String number, String exp_month, String exp_year, 
 		String cvs, String address, String city, String state, String zip, String amount, String transaction_id, String create,
@@ -332,7 +332,7 @@ public class QuickLink
 	)
 	{
 		//process one-time or instant refund request on recurring transaction of credit card
-		return Process("CREDIT", address, city, state, zip, amount, name, number, exp_month, 
+		return process("CREDIT", address, city, state, zip, amount, name, number, exp_month, 
 				exp_year, cvs, create, limit, periodic_number, periodic_type, start, transaction_id, "");
 	}
 
@@ -344,13 +344,13 @@ public class QuickLink
 	 * 		name, number, exp_month, exp_year, and cvs of previous transaction)
 	 * @return - Results returned by Trinity Gateway Service for the desired transaction
 	 */
-	public HashMap Posture
+	public HashMap posture
 	(
 		String posture, String transaction_id
 	)
 	{
 		//process request to update the posture of a transaction
-		return Process ("update", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", transaction_id, posture);
+		return process ("update", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", transaction_id, posture);
 	}
 	
 	/**
@@ -358,10 +358,10 @@ public class QuickLink
 	 * only be used by advanced clients that need custom settlement behaviors.
 	 * @return - Results returned by Trinity Gateway Service for the desired transaction
 	 */
-	public HashMap Settlement()
+	public HashMap settlement()
 	{
 		//process request to initiate settlement
-		return Process("settle", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+		return process("settle", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 	}
 	
 	/**
@@ -391,7 +391,7 @@ public class QuickLink
 	 * @param posture - "capture", "void", "hold"
 	 * @return
 	 */
-	private HashMap Process 
+	private HashMap process 
 	(
 		String transaction_type, String address, String city, String state, String zip, String amount,
 		String name, String number, String expiration_month, String expiration_year,
@@ -523,7 +523,7 @@ public class QuickLink
 		
 		System.out.println("Normal Transaction:");
 		
-		HashMap response1 = ql.Charge ("Test Transaction", "4444333322221111", "12", "12", "999", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.00", "");
+		HashMap response1 = ql.charge ("Test Transaction", "4444333322221111", "12", "12", "999", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.00", "");
 		
 		//save transaction ID to use with instant transaction
 		String transaction_id1 = (String) response1.get ("dc_transaction_id");
@@ -533,14 +533,14 @@ public class QuickLink
                 
         System.out.println("\nInstant Transaction:");
         
-       	HashMap response2 = ql.Charge ("", "", "", "", "", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.01", transaction_id1);
+       	HashMap response2 = ql.charge ("", "", "", "", "", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.01", transaction_id1);
        	
        	//print the results of the request
        	printResults(response2);
 
         System.out.println("\nRecurring Transaction:");
         
-        HashMap response3 = ql.Schedule_Charge ("Recurring Transaction", "4444333322221111", "12", "12", "999", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.02", "", "true", "5", "1", "month", "2010-12-01");
+        HashMap response3 = ql.scheduleCharge ("Recurring Transaction", "4444333322221111", "12", "12", "999", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.02", "", "true", "5", "1", "month", "2010-12-01");
         
 		//save transaction ID to use with instant transaction
         String transaction_id2 = (String) response3.get (new String ("dc_transaction_id"));
@@ -550,14 +550,14 @@ public class QuickLink
 
         System.out.println("\nRecurring Instant Transaction:");
         
-        HashMap response4 = ql.Schedule_Charge ("", "", "", "", "", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.03", transaction_id2, "true", "5", "2", "week", "2010-12-02");
+        HashMap response4 = ql.scheduleCharge ("", "", "", "", "", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.03", transaction_id2, "true", "5", "2", "week", "2010-12-02");
 	    
        	//print the results of the request
         printResults(response4);
         
         System.out.println("\nTransaction Posture Update (Void) - Transaction ID: " + transaction_id1);
         
-        HashMap response5 = ql.Posture("void", transaction_id1);
+        HashMap response5 = ql.posture("void", transaction_id1);
 
        	//print the results of the request
         printResults(response5);
@@ -565,7 +565,7 @@ public class QuickLink
         System.out.println("\nSettlement");
         
         //might take a little time to initiate settlement
-        HashMap response6 = ql.Settlement();
+        HashMap response6 = ql.settlement();
         
        	//print the results of the request
         printResults(response6);

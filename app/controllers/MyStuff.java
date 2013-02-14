@@ -49,4 +49,17 @@ public class MyStuff extends Controller {
 		
 		render(period);
 	}
+	
+    public static void completeRegister(String number) {
+    	render(number);
+    }
+    
+    public static void makePayment(String number) {
+    	render(number);
+    }
+    
+    public static void postPayment(String number) {
+
+    	MyStuff.cell(number);
+    }
 }
