@@ -69,7 +69,8 @@ import javax.net.ssl.HttpsURLConnection;
  * to communicate via TCP/IP with port 443 of the PayJunction server.
  * @author Erin Howard
  */
-public class QuickLink 
+//Used to be called QuickLink.java
+public class CreditCardProcessor 
 {
 	private String security = "";
 	private String logon, password;
@@ -79,7 +80,7 @@ public class QuickLink
 	 * @param logon - QuickLink Login identifying your account
 	 * @param password - QuickLink Password for your account
 	 */
-	public QuickLink (String logon, String password)
+	public CreditCardProcessor (String logon, String password)
 	{
 		this.logon = logon;
 		this.password = password;
@@ -258,6 +259,20 @@ public class QuickLink
 		//process one-time or instant authorize request on recurring transaction of credit card
 		return process("AUTHORIZATION", address, city, state, zip, amount, name, number, exp_month, 
 				exp_year, cvs, create, limit, periodic_number, periodic_type, start, transaction_id, "");	
+	}
+	
+	public HashMap scheduleCharge(String typeOfTransaction, CreditCard card, RecurringInfo info) {
+		return scheduleCharge(typeOfTransaction, card.getNumber(), card.getExp_month(), card.getExp_year(), 
+				card.getCvs(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), 
+				info.getAmount(), "", info.getCreate(),
+				info.getLimit(), info.getPeriodic_number(), info.getPeriodic_type(), info.getStartDate());
+	}
+	
+	public HashMap scheduleRecurring(String transactionId, RecurringInfo info) {
+        //HashMap response4 = scheduleCharge ("", "", "", "", "", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.03", transaction_id2, "true", "5", "2", "week", "2010-12-02");
+		//HashMap response4 = scheduleCharge ("", "", "", "", "", "", "", "", "", "2.03", transaction_id2, "true", "5", "2", "week", "2010-12-02");
+		return scheduleCharge("", "", "", "", "", "", "", "", "", info.getAmount(), transactionId, info.getCreate(),
+				info.getLimit(), info.getPeriodic_number(), info.getPeriodic_type(), info.getStartDate());
 	}
 	
 	/**
@@ -514,7 +529,7 @@ public class QuickLink
 	
 	public static void main (String args [])
 	{
-		QuickLink ql = new QuickLink ("pj-ql-01", "pj-ql-01p");
+		CreditCardProcessor ql = new CreditCardProcessor ("pj-ql-01", "pj-ql-01p");
 
 		//to change security settings:
 		//ql.setSecurity("A", "M", "false", "true", "false");
@@ -539,9 +554,27 @@ public class QuickLink
        	printResults(response2);
 
         System.out.println("\nRecurring Transaction:");
-        
-        HashMap response3 = ql.scheduleCharge ("Recurring Transaction", "4444333322221111", "12", "12", "999", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.02", "", "true", "5", "1", "month", "2010-12-01");
-        
+
+		CreditCard card = new CreditCard();
+		card.setNumber("4444333322221111");
+		card.setExp_month("12");
+		card.setExp_year("12");
+		card.setCvs("999");
+		card.setAddress("8320 Test St");
+		card.setCity("Santa Barbara");
+		card.setState("Ca");
+		card.setZip("85284");
+		RecurringInfo info = new RecurringInfo();
+		info.setAmount("2.02");
+		info.setCreate("true");
+		info.setLimit("5");
+		info.setPeriodic_number("1");
+		info.setPeriodic_type("month");
+		info.setStartDate("2010-12-01");
+        HashMap response3 = ql.scheduleCharge ("Recurring Transaction", card, info);
+//        HashMap response3 = ql.scheduleCharge ("Recurring Transaction", "4444333322221111", "12", "12", "999", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.02", "",              "true", "5", "1", "month", "2010-12-01");
+//        HashMap response4 = ql.scheduleCharge ("",                                      "",   "",   "",    "", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.03", transaction_id2, "true", "5", "2", "week", "2010-12-02");
+
 		//save transaction ID to use with instant transaction
         String transaction_id2 = (String) response3.get (new String ("dc_transaction_id"));
         
@@ -550,8 +583,8 @@ public class QuickLink
 
         System.out.println("\nRecurring Instant Transaction:");
         
-        HashMap response4 = ql.scheduleCharge ("", "", "", "", "", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.03", transaction_id2, "true", "5", "2", "week", "2010-12-02");
-	    
+        //HashMap response4 = ql.scheduleCharge ("", "", "", "", "", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.03", transaction_id2, "true", "5", "2", "week", "2010-12-02");
+	    HashMap response4 = ql.scheduleRecurring(transaction_id2, info);
        	//print the results of the request
         printResults(response4);
         
