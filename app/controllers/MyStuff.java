@@ -24,7 +24,7 @@ public class MyStuff extends Controller {
 		render(user, phones);
 	}
 
-	public static void accountsettings() {
+	public static void settings() {
         render();
     }
 	
