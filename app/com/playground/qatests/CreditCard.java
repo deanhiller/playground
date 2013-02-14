@@ -1,6 +1,7 @@
 package com.playground.qatests;
 
 public class CreditCard {
+	private String name;
 	private String number;
 	private String exp_month;
 	private String exp_year;
@@ -10,6 +11,12 @@ public class CreditCard {
 	private String state;
 	private String zip;
 
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getNumber() {
 		return number;
 	}

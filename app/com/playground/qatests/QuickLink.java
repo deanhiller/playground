@@ -8,41 +8,17 @@ package com.playground.qatests;
 * 
 
 --Protecting your Website and Payment Applications from Man-In-The-Middle-Attacks--
-Our API allows merchants and developers to connect to PayJunction via an encrypted SSL communications link.
- In order for your website or payment application to verify that your connection to PayJunction has not
-  been intercepted, all code that connects to PayJunction must verify then authenticity of our SSL certificate
-   by performing strict server certificate verification against PayJunction's root certificate authority.
-    It has come to our attention that some merchants have disabled the SSL certificate verification for
-     testing purpose; while the SSL connection remains secure, it is possible that an attacker could try
-      to initiate a Man-In-The-Middle attack in an attempt to intercept your website's or
-       applications connection to PayJunction.
+Our API allows merchants and developers to connect to PayJunction via an encrypted SSL communications link. In order for your website or payment application to verify that your connection to PayJunction has not been intercepted, all code that connects to PayJunction must verify then authenticity of our SSL certificate by performing strict server certificate verification against PayJunction's root certificate authority. It has come to our attention that some merchants have disabled the SSL certificate verification for testing purpose; while the SSL connection remains secure, it is possible that an attacker could try to initiate a Man-In-The-Middle attack in an attempt to intercept your website's or applications connection to PayJunction.
 
-Common Mistake: Anyone website or application that does not verify the authenticity
- of PayJunction's SSL certificate upon connecting to our QuickLink API.
+Common Mistake: Anyone website or application that does not verify the authenticity of PayJunction's SSL certificate upon connecting to our QuickLink API.
 
-Solution: Turn SSL verification on prior to connecting to PayJunction for transaction authorizations.
- In the event that your website is unable to verify the authenticity of PayJunction's
-  root certificate, your website and/or application should not transmit any transaction
-   information and should reject your customer's transactions.
-    If you believe your application is unable to verify the authenticity of PayJunction's
-     certificate, contact our support department.
+Solution: Turn SSL verification on prior to connecting to PayJunction for transaction authorizations. In the event that your website is unable to verify the authenticity of PayJunction's root certificate, your website and/or application should not transmit any transaction information and should reject your customer's transactions. If you believe your application is unable to verify the authenticity of PayJunction's certificate, contact our support department.
 
 --PayJunction Security Requirements and Best Practices for Merchants and Developers--
 https://www.payjunction.com/trinity/support/view.action?knowledgeBase.knbKnowledgeBaseId=451
 
 --Please note--
-There is no warranty for the programs or example code provided in PayJunction's
- support center. The copyright holders and/or other parties provide the program
-  "as is" without warranty of any kind, either expressed or implied, including,
-   but not limited to, the implied warranties of merchantability and fitness
-    for a particular purpose. The entire risk as to the quality and performance
-     of the program is with you. Should the program prove defective, you assume
-      the cost of all necessary servicing, repair or correction. It is the merchant's
-       responsibility to ensure their systems meet the PCI requirements. PayJunction's
-        Gateway Agreement have been updated to include the referenced "PayJunction
-         Security Requirements and Best Practices for Merchants and Developers;" it
-          is the merchant's responsibility to review this knowledge base on a
-           regular basis for the security of the merchant's account and to protect cardholder data.
+There is no warranty for the programs or example code provided in PayJunction's support center. The copyright holders and/or other parties provide the program "as is" without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of the program is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction. It is the merchant's responsibility to ensure their systems meet the PCI requirements. PayJunction's Gateway Agreement have been updated to include the referenced "PayJunction Security Requirements and Best Practices for Merchants and Developers;" it is the merchant's responsibility to review this knowledge base on a regular basis for the security of the merchant's account and to protect cardholder data.
 
 Please contact us if you have any questions.
 
@@ -69,8 +45,7 @@ import javax.net.ssl.HttpsURLConnection;
  * to communicate via TCP/IP with port 443 of the PayJunction server.
  * @author Erin Howard
  */
-//Used to be called QuickLink.java
-public class CreditCardProcessor 
+public class QuickLink 
 {
 	private String security = "";
 	private String logon, password;
@@ -80,7 +55,7 @@ public class CreditCardProcessor
 	 * @param logon - QuickLink Login identifying your account
 	 * @param password - QuickLink Password for your account
 	 */
-	public CreditCardProcessor (String logon, String password)
+	public QuickLink (String logon, String password)
 	{
 		this.logon = logon;
 		this.password = password;
@@ -126,6 +101,7 @@ public class CreditCardProcessor
 		try{
 			//return URL encoded string such that it can later be concatenated
 			//with the string being sent to Trinity Gateway Service
+			String data;
 			if (value != null && value.length() >= 1)
 			{
 				return ("&" + URLEncoder.encode(name, "UTF-8") + "=" + URLEncoder.encode(value, "UTF-8"));
@@ -133,19 +109,11 @@ public class CreditCardProcessor
 		}
 		catch (Exception e)
 		{
-			throw new RuntimeException(e);
+			System.out.println  ("Error " + e);
 		}
 		return "";
 	}
 	
-	public HashMap authorize(CreditCard card, String amount) {
-		return authorize(card.getName(), card.getNumber(), card.getExp_month(), card.getExp_year(), 
-				card.getCvs(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), amount, "");
-	}
-	
-	public HashMap authorize(String transactionId, String amount) {
-		return authorize("", "", "", "", "", "", "", "", "", amount, transactionId);
-	}
 	/**
 	 * Requests authorization of card from Trinity QuickLink Information
 	 * @param name - The name of the cardholder
@@ -163,25 +131,15 @@ public class CreditCardProcessor
 	 * 		name, number, exp_month, exp_year, and cvs of previous transaction)
 	 * @return - Results returned by Trinity QuickLink Service for the desired transaction
 	 */
-	private HashMap authorize 
+	public HashMap Authorize 
 	(
 		String name, String number, String exp_month, String exp_year, 
 		String cvs, String address, String city, String state, String zip, String amount, String transaction_id
 	)
 	{
 		//process one-time or instant authorize request on credit card
-		return process("AUTHORIZATION", address, city, state, zip, amount, name, number, exp_month, 
+		return Process("AUTHORIZATION", address, city, state, zip, amount, name, number, exp_month, 
 				exp_year, cvs, "", "", "", "", "", transaction_id, "");
-	}
-	
-	public HashMap charge(CreditCard card, String amount) {
-		return charge(card.getName(), card.getNumber(), card.getExp_month(), card.getExp_year(), 
-				card.getCvs(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), 
-				amount, "");
-	}
-
-	public HashMap charge(String transactionId, String amount) {
-		return charge("", "", "", "", "", "", "", "", "", amount, transactionId);
 	}
 	
 	/**
@@ -201,25 +159,17 @@ public class CreditCardProcessor
 	 * 		name, number, exp_month, exp_year, and cvs of previous transaction)
 	 * @return Results returned by Trinity QuickLink Service for the desired transaction
 	 */
-	private HashMap charge 
+	public HashMap Charge 
 	(
 		String name, String number, String exp_month, String exp_year, 
 		String cvs, String address, String city, String state, String zip, String amount, String transaction_id
 	)
 	{
 		//process one-time or instant charge request on credit card
-		return process("AUTHORIZATION_CAPTURE", address, city, state, zip, amount, name, number, 
+		return Process("AUTHORIZATION_CAPTURE", address, city, state, zip, amount, name, number, 
 				exp_month, exp_year, cvs, "", "", "", "", "", transaction_id, "");
 	}
 
-	public HashMap refund(CreditCard card, String amount) {
-		return refund(card.getName(), card.getNumber(), card.getExp_month(), card.getExp_year(), 
-				card.getCvs(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), amount, "");
-	}
-	
-	public HashMap refund(String transactionId, String amount) {
-		return refund("", "", "", "", "", "", "", "", "", amount, transactionId);
-	}
 	/**
 	 * Requests refund from Trinity QuickLink Information
 	 * @param name - The name of the cardholder
@@ -237,14 +187,14 @@ public class CreditCardProcessor
 	 * 		name, number, exp_month, exp_year, and cvs of previous transaction)
 	 * @return Results returned by Trinity QuickLink Service for the desired transaction
 	 */
-	private HashMap refund
+	public HashMap Refund
 	(
 		String name, String number, String exp_month, String exp_year, 
 		String cvs, String address, String city, String state, String zip, String amount, String transaction_id
 	)
 	{
 		//process one-time or instant refund request on credit card
-		return process("CREDIT", address, city, state, zip, amount, name, number, exp_month, 
+		return Process("CREDIT", address, city, state, zip, amount, name, number, exp_month, 
 				exp_year, cvs, "", "", "", "", "", transaction_id, "");
 	}
 	
@@ -274,7 +224,7 @@ public class CreditCardProcessor
 	 * @param start - YYYY-MM-DD Note: must be a valid date that exists
 	 * @return - Results returned by Trinity QuickLink Service for the desired transaction
 	 */
-	public HashMap scheduleAuthorize
+	public HashMap Schedule_Authorize
 	(
 		String name, String number, String exp_month, String exp_year, 
 		String cvs, String address, String city, String state, String zip, String amount, String transaction_id,
@@ -282,22 +232,8 @@ public class CreditCardProcessor
 	)
 	{
 		//process one-time or instant authorize request on recurring transaction of credit card
-		return process("AUTHORIZATION", address, city, state, zip, amount, name, number, exp_month, 
+		return Process("AUTHORIZATION", address, city, state, zip, amount, name, number, exp_month, 
 				exp_year, cvs, create, limit, periodic_number, periodic_type, start, transaction_id, "");	
-	}
-	
-	public HashMap scheduleRecurringCharge(CreditCard card, RecurringInfo info) {
-		return scheduleCharge(card.getName(), card.getNumber(), card.getExp_month(), card.getExp_year(), 
-				card.getCvs(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), 
-				info.getAmount(), "", info.getCreate(),
-				info.getLimit(), info.getPeriodic_number(), info.getPeriodic_type(), info.getStartDate());
-	}
-	
-	public HashMap scheduleRecurringCharge(String transactionId, RecurringInfo info) {
-        //HashMap response4 = scheduleCharge ("", "", "", "", "", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.03", transaction_id2, "true", "5", "2", "week", "2010-12-02");
-		//HashMap response4 = scheduleCharge ("", "", "", "", "", "", "", "", "", "2.03", transaction_id2, "true", "5", "2", "week", "2010-12-02");
-		return scheduleCharge("", "", "", "", "", "", "", "", "", info.getAmount(), transactionId, info.getCreate(),
-				info.getLimit(), info.getPeriodic_number(), info.getPeriodic_type(), info.getStartDate());
 	}
 	
 	/**
@@ -326,7 +262,7 @@ public class CreditCardProcessor
 	 * @param start - YYYY-MM-DD Note: must be a valid date that exists
 	 * @return - Results returned by Trinity Gateway Service for the desired transaction
 	 */
-	private HashMap scheduleCharge
+	public HashMap Schedule_Charge
 	(
 		String name, String number, String exp_month, String exp_year, 
 		String cvs, String address, String city, String state, String zip, String amount, String transaction_id,
@@ -334,7 +270,7 @@ public class CreditCardProcessor
 	)
 	{
 		//process one-time or instant charge request on recurring transaction of credit card
-		return process("AUTHORIZATION_CAPTURE", address, city, state, zip, amount, name, number, exp_month, 
+		return Process("AUTHORIZATION_CAPTURE", address, city, state, zip, amount, name, number, exp_month, 
 				exp_year, cvs, create, limit, periodic_number, periodic_type, start, transaction_id, "");
 	}
 	
@@ -364,7 +300,7 @@ public class CreditCardProcessor
 	 * @param start - YYYY-MM-DD Note: must be a valid date that exists
 	 * @return - Results returned by Trinity QuickLink Service for the desired transaction
 	 */
-	public HashMap scheduleRefund
+	public HashMap Schedule_Refund
 	(
 		String name, String number, String exp_month, String exp_year, 
 		String cvs, String address, String city, String state, String zip, String amount, String transaction_id, String create,
@@ -372,7 +308,7 @@ public class CreditCardProcessor
 	)
 	{
 		//process one-time or instant refund request on recurring transaction of credit card
-		return process("CREDIT", address, city, state, zip, amount, name, number, exp_month, 
+		return Process("CREDIT", address, city, state, zip, amount, name, number, exp_month, 
 				exp_year, cvs, create, limit, periodic_number, periodic_type, start, transaction_id, "");
 	}
 
@@ -384,13 +320,13 @@ public class CreditCardProcessor
 	 * 		name, number, exp_month, exp_year, and cvs of previous transaction)
 	 * @return - Results returned by Trinity Gateway Service for the desired transaction
 	 */
-	public HashMap posture
+	public HashMap Posture
 	(
 		String posture, String transaction_id
 	)
 	{
 		//process request to update the posture of a transaction
-		return process ("update", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", transaction_id, posture);
+		return Process ("update", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", transaction_id, posture);
 	}
 	
 	/**
@@ -398,10 +334,10 @@ public class CreditCardProcessor
 	 * only be used by advanced clients that need custom settlement behaviors.
 	 * @return - Results returned by Trinity Gateway Service for the desired transaction
 	 */
-	public HashMap settlement()
+	public HashMap Settlement()
 	{
 		//process request to initiate settlement
-		return process("settle", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+		return Process("settle", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 	}
 	
 	/**
@@ -431,7 +367,7 @@ public class CreditCardProcessor
 	 * @param posture - "capture", "void", "hold"
 	 * @return
 	 */
-	private HashMap process 
+	private HashMap Process 
 	(
 		String transaction_type, String address, String city, String state, String zip, String amount,
 		String name, String number, String expiration_month, String expiration_year,
@@ -525,7 +461,7 @@ public class CreditCardProcessor
 		} 
 		catch (Exception e) 
 		{
-			throw new RuntimeException(e);
+			System.out.println  ("Error " + e);
 		}
 		
 		//return results of request
@@ -554,11 +490,6 @@ public class CreditCardProcessor
 	
 	public static void main (String args [])
 	{
-		runCharges();
-		//runCharges2();
-	}
-
-	private static void runCharges2() {
 		QuickLink ql = new QuickLink ("pj-ql-01", "pj-ql-01p");
 
 		//to change security settings:
@@ -568,7 +499,7 @@ public class CreditCardProcessor
 		
 		System.out.println("Normal Transaction:");
 		
-		HashMap response1 = ql.Charge ("Dean Bobx", "4444333322221111", "12", "12", "999", "8320 Test St", "Broomfield", "Co", "80200", "2.10", "");
+		HashMap response1 = ql.Charge ("Dean Bob", "4444333322221111", "12", "12", "999", "8320 Test St", "Broomfield", "Co", "80200", "2.00", "");
 		
 		//save transaction ID to use with instant transaction
 		String transaction_id1 = (String) response1.get ("dc_transaction_id");
@@ -578,16 +509,14 @@ public class CreditCardProcessor
                 
         System.out.println("\nInstant Transaction:");
         
-       	HashMap response2 = ql.Charge ("", "", "", "", "", "", "", "", "", "2.11", transaction_id1);
-       	//&dc_logon=pj-ql-01&dc_password=pj-ql-01p
-       	//&dc_transaction_type=AUTHORIZATION_CAPTURE&dc_version=1.2&dc_transaction_amount=2.11&dc_transaction_id=394961
+       	HashMap response2 = ql.Charge ("", "", "", "", "", "8320 Test St", "Broomfield", "Co", "80020", "2.01", transaction_id1);
        	
        	//print the results of the request
        	printResults(response2);
 
         System.out.println("\nRecurring Transaction:");
         
-        HashMap response3 = ql.Schedule_Charge ("Dean Bobw", "4444333322221111", "12", "12", "999", "8320 Test St", "Broomfield", "Co", "80200", "2.02", "", "true", "5", "1", "month", "2012-02-15");
+        HashMap response3 = ql.Schedule_Charge ("Dean Bob", "4444333322221111", "12", "12", "999", "8320 Test St", "Broomfield", "Co", "80200", "2.02", "", "true", "5", "1", "month", "2012-02-15");
         
 		//save transaction ID to use with instant transaction
         String transaction_id2 = (String) response3.get (new String ("dc_transaction_id"));
@@ -617,76 +546,6 @@ public class CreditCardProcessor
        	//print the results of the request
         printResults(response6);
         
-		System.out.println( "finished" );		
-	}
-
-	private static void runCharges() {
-		CreditCardProcessor ql = new CreditCardProcessor ("pj-ql-01", "pj-ql-01p");
-
-		//to change security settings:
-		//ql.setSecurity("A", "M", "false", "true", "false");
-		//commented out so that following transactions can be performed
-		//without security changes, as is the most common case
-
-		System.out.println("Normal Transaction:");
-
-		CreditCard card = new CreditCard();
-		card.setName("Dean Smiths");
-		card.setNumber("4444333322221111");
-		card.setExp_month("12");
-		card.setExp_year("12");
-		card.setCvs("999");
-		card.setAddress("8320 Test St");
-		card.setCity("Santa Barbara");
-		card.setState("Ca");
-		card.setZip("85284");
-		HashMap response1 = ql.charge(card, "6.10");
-		
-		//save transaction ID to use with instant transaction
-		String transaction_id1 = (String) response1.get ("dc_transaction_id");
-		
-		//print the results of the request
-        printResults(response1);
-                
-        System.out.println("\nInstant Transaction:");
-        
-       	HashMap response2 = ql.charge (transaction_id1, "6.11");
-       	
-       	//print the results of the request
-       	printResults(response2);
-
-        System.out.println("\nRecurring Transaction:");
-
-		RecurringInfo info = new RecurringInfo();
-		info.setAmount("7.02");
-		info.setCreate("true");
-		info.setLimit("12");
-		info.setPeriodic_number("1");
-		info.setPeriodic_type("month");
-		info.setStartDate("2012-02-14");
-        
-        //HashMap response4 = ql.scheduleCharge ("", "", "", "", "", "8320 Test St", "Santa Barbara", "Ca", "85284", "2.03", transaction_id2, "true", "5", "2", "week", "2010-12-02");
-	    HashMap response4 = ql.scheduleRecurringCharge(transaction_id1, info);
-	    
-       	//print the results of the request
-        printResults(response4);
-        
-//        System.out.println("\nTransaction Posture Update (Void) - Transaction ID: " + transaction_id1);
-//        
-//        HashMap response5 = ql.posture("void", transaction_id1);
-//
-//       	//print the results of the request
-//        printResults(response5);
-//        
-//        System.out.println("\nSettlement");
-//        
-//        //might take a little time to initiate settlement
-//        HashMap response6 = ql.settlement();
-//        
-//       	//print the results of the request
-//        printResults(response6);
-//        
-//		System.out.println( "finished" );
+		System.out.println( "finished" );
 	}
 }
-
