@@ -112,8 +112,13 @@ public class TextMessageDbo {
 	public void setDisplayedForFree(boolean displayed) {
 		this.displayedForFree = displayed;
 	}
+	
 	public boolean isDisplayedForFree() {
 		return displayedForFree;
+	}
+	
+	public boolean isCanDisplay() {
+		return displayedForFree || this.getTimePeriod().getPhone().isPaid();
 	}
 	
 }

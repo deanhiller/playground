@@ -20,7 +20,7 @@
 		            <td>${msg.direction}</td>
 		            <td>${msg.remoteNumber}</td>
 		            <td>${msg.size}</td>
-		            #{if msg.displayedForFree}
+		            #{if msg.canDisplay}
 			            <td>${msg.textMessage}</td>
 		            #{/if}
 		            #{else}

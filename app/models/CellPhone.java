@@ -28,6 +28,7 @@ public class CellPhone {
 	private transient Map<DateTime, TimePeriodDbo> timePeriods;
 	private String phoneNumber;
 	private int messageCount;
+	private boolean paid;
 	
 	public String getKey() {
 		return key;
@@ -85,6 +86,14 @@ public class CellPhone {
 	}
 	public void setMessageCount(int count) {
 		this.messageCount = count;
+	}
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
+	}
+
+	public boolean isPaid() {
+		return paid;
 	}
 
 }
