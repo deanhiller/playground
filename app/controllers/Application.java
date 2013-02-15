@@ -64,6 +64,8 @@ public class Application extends Controller {
     	}
     	
     	if(validation.hasErrors()) {
+    		params.flash(); // add http parameters to the flash scope
+    		validation.keep(); // keep the errors for the next request
     		setup();
     	}
     	

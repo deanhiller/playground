@@ -1,11 +1,19 @@
 package controllers;
 
+import java.util.HashMap;
 import java.util.List;
 
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alvazan.play.NoSql;
+import com.playground.qatests.CreditCard;
+import com.playground.qatests.CreditCardProcessor;
+import com.playground.qatests.RecurringInfo;
+import com.playground.qatests.Result;
 
 import models.CellPhone;
 import models.NumberToCell;
@@ -21,6 +29,8 @@ import play.mvc.With;
 public class MyStuff extends Controller {
 
 	private static final Logger log = LoggerFactory.getLogger(MyStuff.class);
+
+	private static int monthlyPriceCents = 700;
 	
 	private static CellPhone lookupCell(String number) {
 		UserDbo user = Utility.fetchUser();
@@ -81,12 +91,57 @@ public class MyStuff extends Controller {
     	render(number);
     }
 
-    public static void postPayment(String number) {
+    public static void postPayment(String number, CreditCard card) {
     	CellPhone phone = lookupCell(number);
+    	
+    	int amount = calculateProrateAmount();
+    	String amountStr = centsToDollars(amount);
+    	CreditCardProcessor processor = new CreditCardProcessor("pj-ql-01", "pj-ql-01p");
+    	Result res = processor.charge(card, amountStr);
+    	if(res.isFailed()) {
+    		
+    	}
+    	
+    	if(validation.hasErrors()) {
+    		params.flash(); // add http parameters to the flash scope
+    		validation.keep(); // keep the errors for the next request
+    		render(number, card);    		
+    	}
+    	
     	phone.setPaid(true);
     	NoSql.em().put(phone);
     	NoSql.em().flush();
     	
+    	RecurringInfo info = new RecurringInfo();
+    	info.setAmount(centsToDollars(monthlyPriceCents));
+		//Now we need to try the recurring charge and make sure that works as well, but since the first charge worked
+    	//we will set paid on the phone to true
+    	processor.scheduleRecurringCharge(res.getTransactionId(), info );
+    	
     	MyStuff.cell(number);
     }
+
+	private static String centsToDollars(int moneyInCents) {
+		String s = ""+moneyInCents;
+ 		while(s.length() < 3) {
+ 			s = "0"+s;
+ 		}
+ 		String dollars = s.substring(0, s.length()-2);
+ 		String cents = s.substring(s.length()-2);
+		return dollars+"."+cents;
+	}
+
+	private static int calculateProrateAmount() {
+		DateTime time = DateTime.now();
+		DateTime endOfMonth = time.dayOfMonth().withMaximumValue();
+		DateTime beginOfMonth = time.dayOfMonth().withMinimumValue();
+		Duration duration = new Duration(time, endOfMonth);
+		Duration monthDuration = new Duration(beginOfMonth, endOfMonth);
+		
+		int numDaysTillNextMonth = (int) duration.getStandardDays();
+		int numDaysMonth = (int) monthDuration.getStandardDays();
+		
+		int prorated = monthlyPriceCents*numDaysTillNextMonth / numDaysMonth;
+		return prorated;
+	}
 }

@@ -174,7 +174,11 @@ public class CreditCardProcessor
 				exp_year, cvs, "", "", "", "", "", transaction_id, "");
 	}
 	
-	public HashMap charge(CreditCard card, String amount) {
+	public Result charge(CreditCard card, String amount) {
+		HashMap result = chargeImpl(card, amount);
+		return new Result(result);
+	}
+	public HashMap chargeImpl(CreditCard card, String amount) {
 		return charge(card.getName(), card.getNumber(), card.getExp_month(), card.getExp_year(), 
 				card.getCvs(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), 
 				amount, "");
@@ -554,8 +558,9 @@ public class CreditCardProcessor
 	
 	public static void main (String args [])
 	{
-		runCharges();
-		//runCharges2();
+		//runRecurring();
+		//runCharges();
+		runCharges2();
 	}
 
 	private static void runCharges2() {
@@ -568,7 +573,7 @@ public class CreditCardProcessor
 		
 		System.out.println("Normal Transaction:");
 		
-		HashMap response1 = ql.Charge ("Dean Bobx", "4444333322221111", "12", "12", "999", "8320 Test St", "Broomfield", "Co", "80200", "2.10", "");
+		HashMap response1 = ql.Charge ("Dean Bobx", "4444333322221111", "12", "12", "999", "8320 Test St", "Broomfield", "Co", "80200", "2.20", "");
 		
 		//save transaction ID to use with instant transaction
 		String transaction_id1 = (String) response1.get ("dc_transaction_id");
@@ -578,7 +583,7 @@ public class CreditCardProcessor
                 
         System.out.println("\nInstant Transaction:");
         
-       	HashMap response2 = ql.Charge ("", "", "", "", "", "", "", "", "", "2.11", transaction_id1);
+       	HashMap response2 = ql.Charge ("", "", "", "", "", "", "", "", "", "2.21", transaction_id1);
        	//&dc_logon=pj-ql-01&dc_password=pj-ql-01p
        	//&dc_transaction_type=AUTHORIZATION_CAPTURE&dc_version=1.2&dc_transaction_amount=2.11&dc_transaction_id=394961
        	
@@ -587,7 +592,7 @@ public class CreditCardProcessor
 
         System.out.println("\nRecurring Transaction:");
         
-        HashMap response3 = ql.Schedule_Charge ("Dean Bobw", "4444333322221111", "12", "12", "999", "8320 Test St", "Broomfield", "Co", "80200", "2.02", "", "true", "5", "1", "month", "2012-02-15");
+        HashMap response3 = ql.Schedule_Charge ("Dean Bobw", "4444333322221111", "12", "12", "999", "8320 Test St", "Broomfield", "Co", "80200", "2.23", "", "true", "5", "1", "month", "2012-02-15");
         
 		//save transaction ID to use with instant transaction
         String transaction_id2 = (String) response3.get (new String ("dc_transaction_id"));
@@ -597,7 +602,7 @@ public class CreditCardProcessor
 
         System.out.println("\nRecurring Instant Transaction:");
         
-        HashMap response4 = ql.Schedule_Charge ("", "", "", "", "", "8320 Test St", "Broomfield", "Co", "80020", "2.03", transaction_id2, "true", "5", "2", "week", "2012-02-14");
+        HashMap response4 = ql.Schedule_Charge ("", "", "", "", "", "8320 Test St", "Broomfield", "Co", "80020", "2.24", transaction_id2, "true", "5", "2", "week", "2012-02-14");
 	    
        	//print the results of the request
         printResults(response4);
@@ -620,6 +625,53 @@ public class CreditCardProcessor
 		System.out.println( "finished" );		
 	}
 
+	private static void runRecurring() {
+		CreditCardProcessor ql = new CreditCardProcessor ("pj-ql-01", "pj-ql-01p");
+
+		CreditCard card = new CreditCard();
+		card.setName("Dean Catalina");
+		card.setNumber("4444333322221111");
+		card.setExp_month("12");
+		card.setExp_year("12");
+		card.setCvs("999");
+		card.setAddress("8320 Test St");
+		card.setCity("Santa Barbara");
+		card.setState("Ca");
+		card.setZip("85284");
+                
+        System.out.println("\nRecurring Transaction:");
+
+		RecurringInfo info = new RecurringInfo();
+		info.setAmount("7.18");
+		info.setCreate("true");
+		info.setLimit("12");
+		info.setPeriodic_number("1");
+		info.setPeriodic_type("month");
+		info.setStartDate("2012-02-15");
+
+		HashMap response1 = ql.scheduleRecurringCharge(card, info);
+		//save transaction ID to use with instant transaction
+		String transaction_id1 = (String) response1.get ("dc_transaction_id");
+		
+		//print the results of the request
+        printResults(response1);
+        
+        System.out.println("\nRecurring Transaction byTxId:");
+
+		RecurringInfo info2 = new RecurringInfo();
+		info2.setAmount("7.19");
+		info2.setCreate("true");
+		info2.setLimit("12");
+		info2.setPeriodic_number("1");
+		info2.setPeriodic_type("month");
+		info2.setStartDate("2012-02-15");
+
+		HashMap response4 = ql.scheduleRecurringCharge(transaction_id1, info2);
+	    
+       	//print the results of the request
+        printResults(response4);		
+	}
+	
 	private static void runCharges() {
 		CreditCardProcessor ql = new CreditCardProcessor ("pj-ql-01", "pj-ql-01p");
 
@@ -631,7 +683,7 @@ public class CreditCardProcessor
 		System.out.println("Normal Transaction:");
 
 		CreditCard card = new CreditCard();
-		card.setName("Dean Smiths");
+		card.setName("Dean Catalina");
 		card.setNumber("4444333322221111");
 		card.setExp_month("12");
 		card.setExp_year("12");
@@ -640,7 +692,7 @@ public class CreditCardProcessor
 		card.setCity("Santa Barbara");
 		card.setState("Ca");
 		card.setZip("85284");
-		HashMap response1 = ql.charge(card, "6.10");
+		HashMap response1 = ql.chargeImpl(card, "6.22");
 		
 		//save transaction ID to use with instant transaction
 		String transaction_id1 = (String) response1.get ("dc_transaction_id");
@@ -650,7 +702,7 @@ public class CreditCardProcessor
                 
         System.out.println("\nInstant Transaction:");
         
-       	HashMap response2 = ql.charge (transaction_id1, "6.11");
+       	HashMap response2 = ql.charge (transaction_id1, "6.23");
        	
        	//print the results of the request
        	printResults(response2);
@@ -658,7 +710,7 @@ public class CreditCardProcessor
         System.out.println("\nRecurring Transaction:");
 
 		RecurringInfo info = new RecurringInfo();
-		info.setAmount("7.02");
+		info.setAmount("7.04");
 		info.setCreate("true");
 		info.setLimit("12");
 		info.setPeriodic_number("1");
