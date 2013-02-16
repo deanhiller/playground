@@ -88,14 +88,28 @@ public class MyStuff extends Controller {
     
     public static void makePayment(String number) {
     	lookupCell(number);
-    	render(number);
-    }
-
-    public static void postPayment(String number, CreditCard card) {
-    	CellPhone phone = lookupCell(number);
     	
     	int amount = calculateProrateAmount();
     	String amountStr = centsToDollars(amount);
+    	
+    	render(number, amountStr);
+    }
+
+    public static void postPayment(String number, CreditCard card, String phoneNumber, String amountStr) {
+    	required("card.number", card.getNumber());
+    	required("card.name", card.getName());
+    	required("card.address", card.getAddress());
+    	required("card.city", card.getCity());
+    	required("card.cvv", card.getCvv());
+    	required("card.expMonth", card.getExpMonth());
+    	required("card.expYear", card.getExpYear());
+    	required("card.state", card.getState());
+    	required("card.zip", card.getZip());
+    	required("phoneNumber", phoneNumber);
+    	
+    	CellPhone phone = lookupCell(number);
+    	
+
     	CreditCardProcessor processor = new CreditCardProcessor("pj-ql-01", "pj-ql-01p");
     	Result res = processor.charge(card, amountStr);
     	if(res.isFailed()) {
@@ -105,7 +119,7 @@ public class MyStuff extends Controller {
     	if(validation.hasErrors()) {
     		params.flash(); // add http parameters to the flash scope
     		validation.keep(); // keep the errors for the next request
-    		render(number, card);    		
+    		renderTemplate("@makePayment", number, card);    		
     	}
     	
     	phone.setPaid(true);
@@ -116,10 +130,16 @@ public class MyStuff extends Controller {
     	info.setAmount(centsToDollars(monthlyPriceCents));
 		//Now we need to try the recurring charge and make sure that works as well, but since the first charge worked
     	//we will set paid on the phone to true
-    	processor.scheduleRecurringCharge(res.getTransactionId(), info );
+    	HashMap results = processor.scheduleRecurringCharge(res.getTransactionId(), info );
+    	log.info("PAYMENT RESULTS="+results);
     	
     	MyStuff.cell(number);
     }
+
+	private static void required(String field, String value) {
+		if(value == null || "".equals(value))
+			validation.addError(field, "This field is required");
+	}
 
 	private static String centsToDollars(int moneyInCents) {
 		String s = ""+moneyInCents;
@@ -139,7 +159,7 @@ public class MyStuff extends Controller {
 		Duration monthDuration = new Duration(beginOfMonth, endOfMonth);
 		
 		int numDaysTillNextMonth = (int) duration.getStandardDays();
-		int numDaysMonth = (int) monthDuration.getStandardDays();
+		int numDaysMonth = (int) monthDuration.getStandardDays()+1;
 		
 		int prorated = monthlyPriceCents*numDaysTillNextMonth / numDaysMonth;
 		return prorated;

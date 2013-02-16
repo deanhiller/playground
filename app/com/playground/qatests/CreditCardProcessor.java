@@ -139,8 +139,8 @@ public class CreditCardProcessor
 	}
 	
 	public HashMap authorize(CreditCard card, String amount) {
-		return authorize(card.getName(), card.getNumber(), card.getExp_month(), card.getExp_year(), 
-				card.getCvs(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), amount, "");
+		return authorize(card.getName(), card.getNumber(), card.getExpMonth(), card.getExpYear(), 
+				card.getCvv(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), amount, "");
 	}
 	
 	public HashMap authorize(String transactionId, String amount) {
@@ -179,8 +179,8 @@ public class CreditCardProcessor
 		return new Result(result);
 	}
 	public HashMap chargeImpl(CreditCard card, String amount) {
-		return charge(card.getName(), card.getNumber(), card.getExp_month(), card.getExp_year(), 
-				card.getCvs(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), 
+		return charge(card.getName(), card.getNumber(), card.getExpMonth(), card.getExpYear(), 
+				card.getCvv(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), 
 				amount, "");
 	}
 
@@ -217,8 +217,8 @@ public class CreditCardProcessor
 	}
 
 	public HashMap refund(CreditCard card, String amount) {
-		return refund(card.getName(), card.getNumber(), card.getExp_month(), card.getExp_year(), 
-				card.getCvs(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), amount, "");
+		return refund(card.getName(), card.getNumber(), card.getExpMonth(), card.getExpYear(), 
+				card.getCvv(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), amount, "");
 	}
 	
 	public HashMap refund(String transactionId, String amount) {
@@ -291,8 +291,8 @@ public class CreditCardProcessor
 	}
 	
 	public HashMap scheduleRecurringCharge(CreditCard card, RecurringInfo info) {
-		return scheduleCharge(card.getName(), card.getNumber(), card.getExp_month(), card.getExp_year(), 
-				card.getCvs(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), 
+		return scheduleCharge(card.getName(), card.getNumber(), card.getExpMonth(), card.getExpYear(), 
+				card.getCvv(), card.getAddress(), card.getCity(), card.getState(), card.getZip(), 
 				info.getAmount(), "", info.getCreate(),
 				info.getLimit(), info.getPeriodic_number(), info.getPeriodic_type(), info.getStartDate());
 	}
@@ -631,9 +631,9 @@ public class CreditCardProcessor
 		CreditCard card = new CreditCard();
 		card.setName("Dean Catalina");
 		card.setNumber("4444333322221111");
-		card.setExp_month("12");
-		card.setExp_year("12");
-		card.setCvs("999");
+		card.setExpMonth("12");
+		card.setExpYear("12");
+		card.setCvv("999");
 		card.setAddress("8320 Test St");
 		card.setCity("Santa Barbara");
 		card.setState("Ca");
@@ -685,9 +685,9 @@ public class CreditCardProcessor
 		CreditCard card = new CreditCard();
 		card.setName("Dean Catalina");
 		card.setNumber("4444333322221111");
-		card.setExp_month("12");
-		card.setExp_year("12");
-		card.setCvs("999");
+		card.setExpMonth("12");
+		card.setExpYear("12");
+		card.setCvv("999");
 		card.setAddress("8320 Test St");
 		card.setCity("Santa Barbara");
 		card.setState("Ca");

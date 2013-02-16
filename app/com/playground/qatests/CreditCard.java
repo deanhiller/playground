@@ -3,9 +3,9 @@ package com.playground.qatests;
 public class CreditCard {
 	private String name;
 	private String number;
-	private String exp_month;
-	private String exp_year;
-	private String cvs;
+	private String expMonth;
+	private String expYear;
+	private String cvv;
 	private String address;
 	private String city;
 	private String state;
@@ -23,23 +23,23 @@ public class CreditCard {
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	public String getExp_month() {
-		return exp_month;
+	public String getExpMonth() {
+		return expMonth;
 	}
-	public void setExp_month(String exp_month) {
-		this.exp_month = exp_month;
+	public void setExpMonth(String exp_month) {
+		this.expMonth = exp_month;
 	}
-	public String getExp_year() {
-		return exp_year;
+	public String getExpYear() {
+		return expYear;
 	}
-	public void setExp_year(String exp_year) {
-		this.exp_year = exp_year;
+	public void setExpYear(String exp_year) {
+		this.expYear = exp_year;
 	}
-	public String getCvs() {
-		return cvs;
+	public String getCvv() {
+		return cvv;
 	}
-	public void setCvs(String cvs) {
-		this.cvs = cvs;
+	public void setCvv(String cvv) {
+		this.cvv = cvv;
 	}
 	public String getAddress() {
 		return address;
@@ -65,5 +65,4 @@ public class CreditCard {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-	
 }
