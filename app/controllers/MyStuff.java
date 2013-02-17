@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.alvazan.play.NoSql;
 import com.playground.qatests.CreditCard;
 import com.playground.qatests.CreditCardProcessor;
+import com.playground.qatests.CreditCardProcessorImpl;
 import com.playground.qatests.RecurringInfo;
 import com.playground.qatests.Result;
 
@@ -22,6 +23,7 @@ import models.TimePeriodDbo;
 import models.UserDbo;
 import controllers.auth.Check;
 import controllers.auth.Secure;
+import play.Play;
 import play.mvc.Controller;
 import play.mvc.With;
 
@@ -106,22 +108,27 @@ public class MyStuff extends Controller {
     	required("card.state", card.getState());
     	required("card.zip", card.getZip());
     	required("phoneNumber", phoneNumber);
-    	
+
     	CellPhone phone = lookupCell(number);
     	
-
-    	CreditCardProcessor processor = new CreditCardProcessor("pj-ql-01", "pj-ql-01p");
+    	String mode = Play.configuration.getProperty("application.mode", "something");
+    	CreditCardProcessor processor = new CreditCardProcessorImpl("pj-ql-01", "pj-ql-01p");
+    	if("dev".equals(mode))
+    		processor = new FakeCardProcessor();
+    		
     	Result res = processor.charge(card, amountStr);
     	if(res.isFailed()) {
-    		
+    		log.info("failure processing credit card.  phone="+phoneNumber+" failure="+res.getErrorMessage()+" all="+res.getMap());
+        	validation.addError("none", "Failure processing credit card.  Payment Gateway response="+res.getErrorMessage());
     	}
-    	
+//lkjo45 dean@xsoftware.biz
     	if(validation.hasErrors()) {
     		params.flash(); // add http parameters to the flash scope
     		validation.keep(); // keep the errors for the next request
     		renderTemplate("@makePayment", number, card);    		
     	}
-    	
+
+    	phone.setCreditCardTxId(res.getTransactionId());
     	phone.setPaid(true);
     	NoSql.em().put(phone);
     	NoSql.em().flush();
@@ -130,9 +137,9 @@ public class MyStuff extends Controller {
     	info.setAmount(centsToDollars(monthlyPriceCents));
 		//Now we need to try the recurring charge and make sure that works as well, but since the first charge worked
     	//we will set paid on the phone to true
-    	HashMap results = processor.scheduleRecurringCharge(res.getTransactionId(), info );
-    	log.info("PAYMENT RESULTS="+results);
-    	
+    	Result resp = processor.scheduleRecurringCharge(res.getTransactionId(), info );
+    	log.info("PAYMENT RESULTS="+resp.getMap());
+
     	MyStuff.cell(number);
     }
 

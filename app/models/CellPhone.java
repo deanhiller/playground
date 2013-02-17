@@ -29,6 +29,7 @@ public class CellPhone {
 	private String phoneNumber;
 	private int messageCount;
 	private boolean paid;
+	private String transactionId;
 	
 	public String getKey() {
 		return key;
@@ -96,4 +97,10 @@ public class CellPhone {
 		return paid;
 	}
 
+	public void setCreditCardTxId(String transactionId) {
+		this.transactionId = transactionId;
+	}
+	public String getCreditCardTxId() {
+		return transactionId;
+	}
 }
