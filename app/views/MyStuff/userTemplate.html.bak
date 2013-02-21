@@ -7,12 +7,10 @@
 	<div class="t"></div>
 	<div class="m">
 		<ul>
-                        
+                        <a href="@{MyStuff.settings()}"><strong>Accout Settings</strong></a>
 			<div>
 				<a href="@{MyStuff.cellPhones()}"><strong>Phones</strong></a>
-		    </div>	
-						<a href="@{MyStuff.settings()}"><strong>Accout Settings</strong></a>
-			
+			</div>
 		</ul>
 
 		<script type="text/javascript" language="JavaScript">
