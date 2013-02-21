@@ -47,7 +47,7 @@
 		    <a href="@{Application.index()}"><strong>Home</strong></a>
 		</li>
 		#{if session.get('username') != null}
-			<li class="clearfix" id="page_dashboard">
+			<li class="clearfix" id="page_how">
 			    <a href="@{MyStuff.cellPhones()}"><strong>My Dashboard</strong></a>
 			</li>
 		#{/if}

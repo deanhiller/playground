@@ -3,7 +3,7 @@
 
 <h2>Cell Phones</h2>
 
-	<table border="1">
+	<table border="0">
 		<thead>
 		    <tr>
 	            <th>Cell Phone</th> 
