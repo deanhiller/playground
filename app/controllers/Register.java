@@ -16,9 +16,11 @@ public class Register extends Controller {
 		validation.required(email);
 		if(password == null) {
 			validation.addError("password", "password must be supplied");
-		} else if(!password.equals(verifyPassword)) {
+		}
+		if(!password.equals(verifyPassword)) {
 			validation.addError("verifyPassword", "Passwords did not match");
-		} else if(!email.contains("@"))
+		}
+		if(!email.contains("@"))
 			validation.addError("email", "This is not a valid email");
 		
 		EmailToUserDbo existing = NoSql.em().find(EmailToUserDbo.class, email);
