@@ -40,10 +40,6 @@ public class Application extends Controller {
     public static void setup() {
     	render();
     }
-
-	public static void forgot() {
-    	render();
-    }
     
     public static void postKey(String key) throws Throwable {
     	String username = session.get("username");

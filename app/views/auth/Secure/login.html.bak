@@ -14,7 +14,7 @@
 		<br/>
 
 <div>   
-	<a href="@{Application.forgot()}" class="note">Forgot Password</a>
+	<a href="@{Application.forgot()}" align="right" class="note">Forgot Password</a>
 </div>
 
 		<span class="btn_login">
