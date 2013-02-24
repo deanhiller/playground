@@ -3,9 +3,9 @@
 #{set tab:'setup' /}
 
 <ol>
-   <li>STEP 1: DOWNLOAD THE MOBILE APP TO YOUR PHONE</li>
-   <li>STEP 2: OPEN SNIFFYAPP ON YOUR PHONE AND IT WILL DISPLAY A KEY. WRITE THIS KEY DOWN</li>
-   <li>STEP 3: TYPE YOUR KEY IN BELOW</li>
+   <li>Step 1: DOWNLOAD THE MOBILE APP TO YOUR PHONE</li>
+   <li>Step 2: OPEN SNIFFYAPP ON YOUR PHONE AND IT WILL DISPLAY A KEY. WRITE THIS KEY DOWN</li>
+   <li>Step 3: TYPE YOUR KEY IN BELOW</li>
 </ol>
 
     #{form @Application.postKey()}

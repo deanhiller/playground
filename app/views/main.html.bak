@@ -13,7 +13,7 @@
 	<script src="@{'/public/javascripts/jquery-ui-1.8.17.custom.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 
 	#{get 'extraHeader' /}
-	<link rel="shortcut icon" href="/res/img/16by16.gif" type="image/x-icon" /> 
+	<link rel="shortcut icon" href="/res/img/16x16.gif" type="image/x-icon" /> 
 		<link href="/res/css/public.css" rel="stylesheet" />
 	<link href="/res/css/prediction.css" rel="stylesheet" />
 *{	<script type="text/javascript" src="/res/js/BubbleTooltips.js"/>}*
