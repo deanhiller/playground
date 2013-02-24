@@ -40,10 +40,6 @@ public class Application extends Controller {
     public static void setup() {
     	render();
     }
-
-	public static void forgot() {
-    	render();
-    }
     
     public static void postKey(String key) throws Throwable {
     	String username = session.get("username");
@@ -55,10 +51,8 @@ public class Application extends Controller {
     	//username is in session so they are logged in, fetch the user...
     	EmailToUserDbo ref = NoSql.em().find(EmailToUserDbo.class, username);
     	if(ref == null) {
-    		session.remove("username");
-    		session.put("key", key);
     		log.warn("should not be here, bug");
-    		Secure.login();
+    		unauthorized("should not end up here, bug");
     	}
     	
     	UserDbo user = NoSql.em().find(UserDbo.class, ref.getValue());
