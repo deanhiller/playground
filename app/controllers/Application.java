@@ -51,8 +51,10 @@ public class Application extends Controller {
     	//username is in session so they are logged in, fetch the user...
     	EmailToUserDbo ref = NoSql.em().find(EmailToUserDbo.class, username);
     	if(ref == null) {
+    		session.remove("username");
+    		session.put("key", key);
     		log.warn("should not be here, bug");
-    		unauthorized("should not end up here, bug");
+    		Secure.login();
     	}
     	
     	UserDbo user = NoSql.em().find(UserDbo.class, ref.getValue());
