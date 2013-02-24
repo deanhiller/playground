@@ -13,8 +13,8 @@ on the 1st of every month for that whole month.  You can cancel at any time by s
     	#{text objectId:'card.cvv',label:'Cvv:', help:'Cvv is the number on the back of your credit card', length:4, type:'text'/}
     	#{text objectId:'card.expMonth',label:'Exp. Month:', help:'The expiration month in digits(1, 2, 3...11, 12)', length:2, type:'text'/}
     	#{text objectId:'card.expYear',label:'Exp. Year:', help:'The expiration year in digits(2012,2013,2014...)', length:4, type:'text'/}
-    	#{text objectId:'card.address',label:'Street Address:', help:'Billing Address to the Credit Card being used', length:50, type:'text'/}
-    	#{text objectId:'card.city',label:'City:', length:10, type:'text'/}
+    	#{text objectId:'card.address',label:'Street Address:', help:'Cvv is the number on the back of your credit card', length:50, type:'text'/}
+    	#{text objectId:'card.city',label:'City:', help:'Cvv is the number on the back of your credit card', length:10, type:'text'/}
     	#{text objectId:'card.state',label:'State:', help:'Cvv is the number on the back of your credit card', length:2, type:'text'/}
     	#{text objectId:'card.zip',label:'Zipcode:', help:'Cvv is the number on the back of your credit card', length:6, type:'text'/}
     	#{text objectId:'phoneNumber',label:'Your Phone Number:', help:'Your phone number so support can call you back if you have issues(ex. 303-555-4444)', length:12, type:'text'/}
