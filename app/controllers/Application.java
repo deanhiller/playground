@@ -32,6 +32,10 @@ public class Application extends Controller {
 	public static void hiw() {
     	render();
     }
+	
+	public static void privacy() {
+	render();
+    }
 
     public static void how() {
     	render();
