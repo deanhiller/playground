@@ -27,8 +27,8 @@ public class PutTextMessage {
 	@XmlElement(name="remoteNumber")
     public String remoteNumber;
 
-	@JsonProperty("isOutgoing")
-	@XmlElement(name="isOutgoing")
+	@JsonProperty("outgoing")
+	@XmlElement(name="outgoing")
     public boolean isOutgoing;
 	
 	@JsonProperty("phoneTime")
