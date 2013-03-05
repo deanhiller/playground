@@ -23,6 +23,7 @@ import play.mvc.Util;
 import play.mvc.Scope.Session;
 import play.utils.Java;
 import controllers.Application;
+import controllers.MyStuff;
 
 public class Secure extends Controller {
 
@@ -120,7 +121,8 @@ public class Secure extends Controller {
 
         }
         // Redirect to the original URL (or /)
-        redirectToOriginalURL();
+        //redirectToOriginalURL();
+        MyStuff.cellPhones();
     }
 
     @Util
