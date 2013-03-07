@@ -1,12 +1,6 @@
-﻿<!-- DOCTYPE html -->
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
-
+<!DOCTYPE html>
 <html>
 <head>
-
-	<meta http-equiv="X-UA-Compatible" content="IE=8" />
-	<meta charset="${_response_encoding}">
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title>#{get 'title' /}</title>
 	<meta name="description" content="#{get 'desc' /}" />
     <script src="@{'/public/javascripts/jquery-1.7.1.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
@@ -16,10 +10,8 @@
 	<link rel="shortcut icon" href="/res/img/16by16.gif" type="image/x-icon" /> 
 		<link href="/res/css/public.css" rel="stylesheet" />
 	<link href="/res/css/prediction.css" rel="stylesheet" />
-*{	<script type="text/javascript" src="/res/js/BubbleTooltips.js"/>}*
 
-	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="/res${version}/css/common_ie7.css" /><![endif]-->  
-
+    <link href="public/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 
 
@@ -79,7 +71,7 @@
 
 		<div style="font-size: small;font-weight: bold;text-align: center;color: red">
 			#{ifErrors}
-			   <h1>Oops…</h1>
+			   <h1>Oops�</h1>
 			   #{errors}
 			       <li>${error}</li>
 			   #{/errors}
@@ -125,5 +117,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 
 </script>
 
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="public/bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>
