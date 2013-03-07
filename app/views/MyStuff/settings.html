@@ -1,9 +1,25 @@
 #{extends './userTemplate.html' /}
 #{set subtab:'settings'/}
-
-<h2>Account Settings</h2>
-
-	<table border="2">
+ <div class="lt">
+	<h2 class="title">Account Settings</h2>
+	<br/>
+	<br/>
+	<table>
+		<tr>
+			<td>
+				${msg}
+			</td>
+		</tr>
 	</table>
 
-
+	#{form @MyStuff.Accountsettings()}
+        #{text objectId:'password',label:'Existing Password:', length:50, type:'password' /} 
+        #{text objectId:'newpassword',label:'New Password:', length:50, type:'password'/}
+	    #{text objectId:'verifyPassword',label:'Confirm New Password:',type:'password'/}
+		<br/>
+		<br/>
+		 <span class="btn_register">
+			<input type="submit" value="Update" class="btn">
+		</span>
+    #{/form}
+</div>

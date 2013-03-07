@@ -1,6 +1,9 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -17,15 +20,21 @@ import com.playground.qatests.RecurringInfo;
 import com.playground.qatests.Result;
 
 import models.CellPhone;
+import models.EmailToUserDbo;
 import models.NumberToCell;
 import models.TextMessageDbo;
 import models.TimePeriodDbo;
 import models.UserDbo;
 import controllers.auth.Check;
 import controllers.auth.Secure;
+import controllers.auth.Secure.Security;
 import play.Play;
+import play.data.validation.Required;
+import play.libs.Crypto;
+import play.libs.Time;
 import play.mvc.Controller;
 import play.mvc.With;
+import play.mvc.Scope.Session;
 
 @With(Secure.class)
 public class MyStuff extends Controller {
@@ -56,10 +65,40 @@ public class MyStuff extends Controller {
 		render(user, phones);
 	}
 
-	public static void settings() {
-        render();
+	public static void settings(String msg) {
+		render(msg);
     }
-	
+	public static void Accountsettings(String password,String newpassword, String verifyPassword) throws Throwable {
+		validation.required(password);
+		validation.required(newpassword);
+		validation.required(verifyPassword);
+		String userName = Session.current().get("username");
+		EmailToUserDbo emailToUser = NoSql.em().find(EmailToUserDbo.class, userName);
+		String id1=emailToUser.getValue();
+		UserDbo user = NoSql.em().find(UserDbo.class, id1);
+	    String pass=user.getPassword();
+	    if (password == null || newpassword ==null || verifyPassword == null) {
+			validation.addError("oldpassword", "Please provide the required password.");
+		}
+		if (!pass.equals(password)) {
+			validation.addError("password", "Your existing password did not match.");
+		}
+		if (!newpassword.equals(verifyPassword)) {
+			validation.addError("verifyPassword", "New Password did not match");
+		}
+
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+			settings(null);
+		} else {
+			user.setPassword(newpassword);
+			NoSql.em().put(user);
+			NoSql.em().flush();
+			settings("Your password has been updated successfully");
+		}
+	}
+
 	public static void cell(String number) {
 		CellPhone phone = lookupCell(number);
 		
