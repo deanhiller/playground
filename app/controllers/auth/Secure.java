@@ -118,8 +118,8 @@ public class Secure extends Controller {
             String duration = "30d";  // maybe make this override-able 
             expiration.setTime(expiration.getTime() + Time.parseDuration(duration));
             response.setCookie("rememberme", Crypto.sign(username + "-" + expiration.getTime()) + "-" + username + "-" + expiration.getTime(), duration);
-
         }
+        
         // Redirect to the original URL (or /)
         //redirectToOriginalURL();
         MyStuff.cellPhones();
@@ -128,6 +128,7 @@ public class Secure extends Controller {
     @Util
 	public static void addUserToSession(String username) {
 		session.put("username", username);
+		CreatePhone.setupKeyPhone(username);
 	}
 
     public static void logout() throws Throwable {
