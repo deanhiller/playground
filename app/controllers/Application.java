@@ -33,7 +33,7 @@ public class Application extends Controller {
     	render();
     }
 	
-	public static void privacy() {
+	public static void about() {
 	render();
     }
 
