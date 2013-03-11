@@ -66,8 +66,10 @@ public class MyStuff extends Controller {
 	}
 
 	public static void settings(String msg) {
-		render(msg);
-    }
+		String userName = Session.current().get("username");
+		render(userName, msg);
+	}
+
 	public static void Accountsettings(String password,String newpassword, String verifyPassword) throws Throwable {
 		validation.required(password);
 		validation.required(newpassword);

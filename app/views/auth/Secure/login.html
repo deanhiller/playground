@@ -22,26 +22,12 @@
 		</span>
     #{/form}
 </div>
-
-
-
 <div class="rt">
 
-	<h2 class="title">Register</h2>
-	
-	Email needs to be correct to receive notifications and to keep account active.
+	<h2 class="title">Not a registered User?<a href="@{Application.register()}" class="note"><h2>Register</h2></a></h2>
+</div>	
 
-    #{form @Register.postRegister()}
-        #{text objectId:'email',label:'Email:', help:'Email to login', length:50, type:'text'/}
-    	#{text objectId:'password',label:'Password:', help:'Password', length:50, type:'password'/}
-		#{text objectId:'verifyPassword',label:'Verify Password:',help:'Confirmation password',type:'password'/}
-		    
-    	<span class="btn_register">
-			<input type="submit" value="Register" class="btn">
-		</span>    
-    #{/form}
-</div>
 
-#{license/}
+
 
 

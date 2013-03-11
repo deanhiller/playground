@@ -48,8 +48,11 @@ public class Application extends Controller {
 	public static void forgot() {
     	render();
     }
-    
-    public static void postKey(String key) throws Throwable {
+	public static void register() {
+    	render();
+    }
+
+	public static void postKey(String key) throws Throwable {
     	String username = session.get("username");
     	if(username == null) {
     		session.put("key", key);

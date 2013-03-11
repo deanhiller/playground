@@ -29,7 +29,7 @@
 		</div>
 	  *{  <a href="#" class="logout rt">forgot password?</a>}*
 	  	#{if session.get('username') == null}
-	    <a href="@{auth.Secure.login()}" class="logout rt">Register</a>
+	    <a href="@{Application.register()}" class="logout rt">Register</a>
 	    <a href="@{auth.Secure.login()}" class="logout rt">Log in</a>
 	    #{/if}
 	    #{else}
