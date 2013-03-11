@@ -53,11 +53,20 @@ public class Application extends Controller {
     }
 
 	public static void postKey(String key) throws Throwable {
-    	String username = session.get("username");
-    	if(username == null) {
-    		session.put("key", key);
-    		Secure.login();
-    	}
+		validation.required(key);
+		String username = session.get("username");
+		if (username == null) {
+			session.put("key", key);
+			CellPhone key2 = NoSql.em().find(CellPhone.class, key);
+			if (key2 == null) {
+				validation.addError("key", "Your key is invalid");
+			}
+			if (validation.hasErrors()) {
+				validation.keep();
+				setup();
+			} else
+				Secure.login();
+		}
     	
     	//username is in session so they are logged in, fetch the user...
     	EmailToUserDbo ref = NoSql.em().find(EmailToUserDbo.class, username);
