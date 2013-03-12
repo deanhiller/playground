@@ -11,11 +11,14 @@ import controllers.auth.Secure.Security;
 import play.mvc.Controller;
 
 public class Register extends Controller {
-
-	public static void postRegister(String email, String password, String verifyPassword) throws Throwable {
+	
+	public static void postRegister(String email, String password, String verifyPassword,boolean checkbox) throws Throwable {
 		validation.required(email);
+		if(checkbox==false){
+			validation.addError("checkbox", "Please agree to terms and conditions");
+		}
 		if(password == null) {
-			validation.addError("password", "password must be supplied");
+			validation.addError("password", "Password must be supplied");
 		}
 		if(!password.equals(verifyPassword)) {
 			validation.addError("verifyPassword", "Passwords did not match");

@@ -11,13 +11,18 @@
         #{text objectId:'email',label:'Email:', help:'Email to login', length:50, type:'text'/}
     	#{text objectId:'password',label:'Password:', help:'Password', length:50, type:'password'/}
 		#{text objectId:'verifyPassword',label:'Verify Password:',help:'Confirmation password',type:'password'/}
-		    
+
+	<div>
+		<input type="checkbox" name="checkbox">
+		<span> I have read and agreed to the #{license/}.
+		</span>
+	</div>
+	<br/>   
     	<span class="btn_register">
 			<input type="submit" value="Register" class="btn">
 		</span>    
     #{/form}
 </div>
-
 
 
 

@@ -9,7 +9,7 @@ GET  /                                         Application.index
 GET  /how                                      Application.how
 GET  /hiw                                      Application.hiw
 GET  /forgot                                   Application.forgot
-GET  /doregister                               Application.register
+GET  /register                               Application.register
 GET  /about				       Application.about
 
 #from the setup page a user can post a key he got off the cell phone

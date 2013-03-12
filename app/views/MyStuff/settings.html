@@ -10,7 +10,10 @@
 				${msg}
 			</td>
 		</tr>
-	</table>
+	  <tr>
+      <td><strong><label class="label span2">Email:</span></label> &nbsp&nbsp&nbsp${userName}</strong></td>
+      
+ 	</table>
 
 	#{form @MyStuff.Accountsettings()}
         #{text objectId:'password',label:'Existing Password:', length:50, type:'password' /} 
