@@ -13,12 +13,18 @@
 		<tbody>
 		    #{list phones, as:'phone'}
 		        <tr>
-		            <td>
-		            	<a href="@{MyStuff.cell(phone.phoneNumber)}"><span style="color: gray;">${phone.phoneNumber}</span></a>
-		            </td>
-		            <td>
+		          <td>
+					<a href="@{MyStuff.rename(phone.phoneNumber)}">[Rename]</a>
+		            #{if phone.name == null}
+       					<a href="@{MyStuff.cell(phone.phoneNumber)}"><span style="color: gray;">${phone.phoneNumber}</span></a>
+      				#{/if}
+      				#{else}
+        				<a href="@{MyStuff.cell(phone.phoneNumber)}"><span style="color: gray;">${phone.name}</span></a>
+      				#{/else}
+		          </td>
+		          <td>
 		            	Something else
-		            </td>
+		          </td>
 		        </tr>
 		    #{/list}
 		</tbody>

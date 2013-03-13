@@ -30,6 +30,7 @@ public class CellPhone {
 	private int messageCount;
 	private boolean paid;
 	private String transactionId;
+	private String name;
 	
 	public String getKey() {
 		return key;
@@ -38,7 +39,13 @@ public class CellPhone {
 	public void setKey(String key) {
 		this.key = key;
 	}
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
 	public List<UserDbo> getUsers() {
 		return users;
 	}

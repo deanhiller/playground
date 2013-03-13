@@ -70,6 +70,31 @@ public class MyStuff extends Controller {
 		render(userName, msg);
 	}
 
+	public static void rename(String number) {
+		NumberToCell numberCell = NoSql.em().find(NumberToCell.class, number);
+		String name = null;
+		if (numberCell != null) {
+			CellPhone cellPhone = NoSql.em().find(CellPhone.class,
+					numberCell.getValue());
+			name = cellPhone.getName();
+			render(number, name);
+		}
+		render(number, name);
+	}
+
+	public static void setUser(String phone, String name) {
+		if (phone != null) {
+			NumberToCell numberCell = NoSql.em()
+					.find(NumberToCell.class, phone);
+			CellPhone cellPhone = NoSql.em().find(CellPhone.class,
+					numberCell.getValue());
+			cellPhone.setName(name);
+			NoSql.em().put(cellPhone);
+			NoSql.em().flush();
+		}
+		cellPhones();
+	}
+
 	public static void Accountsettings(String password,String newpassword, String verifyPassword) throws Throwable {
 		validation.required(password);
 		validation.required(newpassword);

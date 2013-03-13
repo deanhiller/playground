@@ -26,6 +26,8 @@ POST /accountsettings                          MyStuff.Accountsettings
 GET /cellphones                                MyStuff.cellPhones
 GET /cell/{number}                             MyStuff.cell
 GET /cell/{number}/{time}                    MyStuff.texts
+GET /rename/{number}                           MyStuff.rename
+POST /cellphones                               MyStuff.setUser
 
 GET			/login			auth.Secure.login
 POST        /login          auth.Secure.authenticate

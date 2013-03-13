@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+
+<div class="lt">
+	<span class="title">Change the name of ${number}</span>
+	#{form @MyStuff.setUser()}
+	<table>
+		<tr>
+			<td>
+				<input type="hidden" name="phone" value="${number}">
+			</td>
+		</tr>
+	    <tr>
+	    	<td> 
+	        #{text objectId:'name',label:'Name:',  length:50, type:'text'/}
+	       </td>
+	    </tr>
+    </table>
+    <span class="btn_register">
+		<input type="submit" value="Update" class="btn">
+	</span>    
+    #{/form}
+</div> 
+
+
+
