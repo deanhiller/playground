@@ -16,7 +16,12 @@
 
 <div class="row">
 	<div class="span6">
-		<a href="" class="btn btn-large btn-primary margin">Signup Now</a>
+		#{if session.get('username') == null}
+			<a href="login" Class="btn btn-large btn-primary margin"><span>Signup Now</span></a>
+		#{/if}
+		#{else}
+			<a href="cellphones" Class="btn btn-large btn-primary margin"><span>My Dashboard</span></a>
+		#{/else}
 		<a href="" class="btn btn-large btn-primary margin">Learn More</a>
 	</div>
 	<div class="span3 offset2">
