@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.Random;
+
 import models.CellPhone;
 import models.EmailToUserDbo;
 import models.UserDbo;
@@ -17,6 +19,10 @@ public class Application extends Controller {
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
+	public static Random r = new Random(System.currentTimeMillis());
+	private static long counter1;
+	private static long counter2;
+	
     public static boolean isLoggedIn() {
     	String username = session.get("username");
     	if(username == null) {
@@ -26,9 +32,40 @@ public class Application extends Controller {
     }
     
     public static void index() {
-        render();
+    	String val = session.get("index");
+    	if("1".equals(val))
+    		index1();
+    	else if("2".equals(val))
+    		index2();
+
+    	int number = r.nextInt(2);
+    	if(number == 0) {
+        	incrementCounter1();
+    		index1();
+    	} else {
+    		incrementCounter2();
+    		index2();
+    	}
     }
 
+    public static void index1() {
+    	session.put("index", "1");
+        render();
+    }
+	public static void index2() {
+		session.put("index", "2");
+        render();
+    }
+    
+    private synchronized static void incrementCounter1() {
+		counter1++;
+		log.info("count page1="+counter1);
+	}
+    private synchronized static void incrementCounter2() {
+		counter2++;
+		log.info("count page1="+counter2);
+	}
+    
 	public static void hiw() {
     	render();
     }

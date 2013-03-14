@@ -6,6 +6,8 @@ GET  /api/keyrequest/{phoneNumber}/{secureKey} ApiKeyRequest.newKey
 POST /api/postdata                             ApiKeyRequest.postTextMessage
 
 GET  /                                         Application.index
+GET  /index1                                   Application.index1
+GET  /index2                                   Application.index2
 GET  /how                                      Application.how
 GET  /hiw                                      Application.hiw
 GET  /forgot                                   Application.forgot
