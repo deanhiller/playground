@@ -1,8 +1,11 @@
 #{extends './userTemplate.html' /}
 #{set subtab:'cell'/}
-
-<h2>Cell Phone ${period.phone.phoneNumber}</h2>
-
+	#{if period.phone.name == null}
+		<h2>Cell Phone ${period.phone.phoneNumber}</h2>
+	#{/if}
+	#{else}
+		<h2>Cell Phone of ${period.phone.name}</h2>
+	#{/else}
 	<table class="table">
 		<thead>
 		    <tr>
