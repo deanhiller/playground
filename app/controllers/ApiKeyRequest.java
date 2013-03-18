@@ -12,6 +12,7 @@ import models.CellPhone;
 import models.NumberToCell;
 import models.TextMessageDbo;
 import models.TimePeriodDbo;
+import models.message.HeartBeat;
 import models.message.NewKeyResponse;
 import models.message.PutTextMessage;
 
@@ -151,6 +152,18 @@ public class ApiKeyRequest extends Controller {
 		msgDbo.setOutgoing(msg.isOutgoing());
 		NoSql.em().fillInWithKey(msgDbo);
 		return msgDbo;
+	}
+
+	public static void heartBeat() {
+		String json = fetchJson();
+		HeartBeat hert = parseJson(json, HeartBeat.class);
+		String key = hert.getKey();
+		CellPhone phone = NoSql.em().find(CellPhone.class, key);
+		if (phone != null) {
+			phone.setLasttimestamp(System.currentTimeMillis());
+			NoSql.em().put(phone);
+			NoSql.em().flush();
+		}
 	}
 
 	private static String fetchJson() {

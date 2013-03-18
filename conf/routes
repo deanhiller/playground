@@ -4,6 +4,7 @@
 
 GET  /api/keyrequest/{phoneNumber}/{secureKey} ApiKeyRequest.newKey
 POST /api/postdata                             ApiKeyRequest.postTextMessage
+POST /heartbeat                                ApiKeyRequest.heartBeat
 
 GET  /                                         Application.index
 GET  /index1                                   Application.index1

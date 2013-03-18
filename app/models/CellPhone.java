@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.joda.time.DateTime;
+import org.joda.time.Instant;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import com.alvazan.orm.api.base.anno.NoSqlEntity;
 import com.alvazan.orm.api.base.anno.NoSqlId;
@@ -14,6 +17,8 @@ import com.alvazan.orm.api.base.anno.NoSqlOneToMany;
 
 @NoSqlEntity
 public class CellPhone {
+
+	private static DateTimeFormatter fmt = DateTimeFormat.forPattern("MMM dd, yyyy hh:mm a");
 
 	@NoSqlIndexed
 	@NoSqlId(usegenerator=false)
@@ -31,7 +36,8 @@ public class CellPhone {
 	private boolean paid;
 	private String transactionId;
 	private String name;
-	
+	private long lasttimestamp;
+
 	public String getKey() {
 		return key;
 	}
@@ -109,5 +115,19 @@ public class CellPhone {
 	}
 	public String getCreditCardTxId() {
 		return transactionId;
+	}
+
+	public long getLasttimestamp() {
+		return lasttimestamp;
+	}
+
+	public void setLasttimestamp(long lasttimestamp) {
+		this.lasttimestamp = lasttimestamp;
+	}
+
+	public String getHeartBeat() {
+		Instant instant = new Instant(this.lasttimestamp);
+		DateTime time = instant.toDateTime();
+		return fmt.print(time);
 	}
 }
