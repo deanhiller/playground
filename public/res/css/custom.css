@@ -2,5 +2,26 @@
 
 .content {
 	width: 600px;
-	
+}
+
+.entrykey input[type="text"] {
+	height: 18px;
+	font-size: 14px;
+	color: #006699;
+	text-align: left;
+	border: solid 1px #cecece;
+	margin-right: 5px;
+	font-weight: bold;
+	margin-bottom: 3px;
+	width: 380px;
+}
+
+.entrykey {
+	width: 780px;
+}
+
+.label {
+	line-height: 24px;
+	width: 150px;
+	text-align: right;
 }
