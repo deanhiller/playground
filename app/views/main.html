@@ -164,6 +164,21 @@
   </div>
 </div>
 
+#{ifErrors}
+ 	<div class="container">
+	  <div class="row-fluid">
+	  	<div class="offset3 span6 alert alert-error">
+	  	    <h4>Oops....</h4>
+	     	<ul>
+   				#{errors}
+    			<li>${error}</li>
+			   #{/errors}	     	
+	     	</ul>	  	
+	  	</div>
+	  </div>
+    </div> 
+#{/ifErrors}
+
 #{doLayout /}
 
 
