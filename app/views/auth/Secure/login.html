@@ -28,6 +28,20 @@
 </div>	
 
 
-
+<div id="content">
+  <div class="container"> 
+    <!-- Login form -->
+    #{form @auth.Secure.authenticate(), class:'form-login form-wrapper form-narrow'}
+    
+      <h3 class="title-divider"><span>Login</span> <small>Not signed up? <a href="@{Application.register()}">Sign up here</a>.</small></h3>
+      <input type="text" class="input-block-level" placeholder="Email address" name="username" value="${username}">
+      
+      <input type="password" class="input-block-level" placeholder="Password" name="password" value="${password}">
+     
+      <input class="btn btn-primary" value="Sign in" type="submit"></input>
+      | <a href="@{Application.forgot()}">Forgotten Password?</a>
+    #{/form}
+  </div>
+</div>
 
 
