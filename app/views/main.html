@@ -80,8 +80,8 @@
         <div class="row-fluid">
           <div class="span6"> 
             <!--branding/logo--> 
-            <a class="brand" href="index.htm" title="Home">
-            <h1><span>App</span>Strap<span>.</span></h1>
+            <a class="brand" href="@{Application.index()}" title="Home">
+            <h1><span>SNIFFY</span>APP<span>.</span></h1>
             </a>
             <div class="slogan">Responsive HTML Theme</div>
           </div>
@@ -93,7 +93,7 @@
             <!--social media icons-->
             <div class="social-media pull-right"> 
               <!--@todo: replace with company social media details--> 
-              <a href="#"><i class="icon-twitter"></i></a> <a href="#"><i class="icon-facebook"></i></a> <a href="#"><i class="icon-linkedin"></i></a> <a href="#"><i class="icon-google-plus"></i></a> </div>
+				<a href="http://facebook.com/SNIFFYAPP"><i class="icon-facebook"></i></a><a href="#"><i class="icon-google-plus"></i></a> </div>
           </div>
         </div>
       </div>
@@ -126,15 +126,14 @@
           <!--main navigation-->
           <ul class="nav" id="main-menu">
             <li class="home-link"><a href="@{Application.index()}"><i class="icon-home hidden-phone"></i><span class="visible-phone">Home</span></a></li>
-     
-            <li><a href="@{Application.setup()}" class="menu-item">Setup Phone</a></li>
-            <li><a href="@{Application.hiw()}" class="menu-item">How It Works</a></li>
 			
 			#{if session.get('username') != null}
 			<li id="page_dashboard">
 			    <a href="@{MyStuff.cellPhones()}" class="menu-item">My Dashboard</a></li>
 			#{/if}
 			
+			<li><a href="@{Application.setup()}" class="menu-item">Setup Phone</a></li>
+            <li><a href="@{Application.hiw()}" class="menu-item">How It Works</a></li>
 			<li><a href="@{Application.about()}" class="menu-item">About Us</a></li>
             <li><a href="http://sniffyapp.com/blog" class="menu-item">Blog</a></li>
               <ul class="dropdown-menu" role="menu" aria-labelledby="about-drop">
