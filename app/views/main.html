@@ -111,12 +111,12 @@
             <div class="dropdown-menu" role="menu" aria-labelledby="login-drop">
               <form action="login.htm" class="form-inline" id="login-form-drop" role="menuitem">
                 <div class="input-append">
-                  <input type="text" class="input-small email" placeholder="Email">
-                  <input type="password" class="input-small password" placeholder="Password">
-                  <input type="button" class="btn btn-primary login" value="Login">
+                  <input type="text" class="input-small email" placeholder="Email" name="username" value="${username}">
+                  <input type="password" class="input-small password" placeholder="Password" name="password" value="${password}">
+                  <input type="button" class="btn btn-primary login" value="Login" type="submit">
                 </div>
               </form>
-              <span class="divider" role="menuitem"></span> <small role="menuitem">Not a member? <a href="#" class="signup">Sign up now!</a></small> <small role="menuitem"><a href="#">Forgotten password?</a></small> </div>
+              <span class="divider" role="menuitem"></span> <small role="menuitem">Not a member? <a href="@{Application.register()}">Sign up now!</a></small> <small role="menuitem"><a href="@{Application.forgot()}">Forgot Password?</a></small> </div>
           </li>
         </ul>
         
