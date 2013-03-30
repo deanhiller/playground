@@ -1,31 +1,6 @@
 #{extends 'main.html' /}
 
-<div class="lt">
 
-	<h2 class="title">Existing Members Login</h2>
-
-	<br/>
-	<br/>
-	
-    #{form @auth.Secure.authenticate()}
-        #{text objectId:'username',label:'Email:', help:'Email to login', length:50, type:'text'/}
-    	#{text objectId:'password',label:'Password:', help:'Password', length:50, type:'password'/}
-		<br/>
-		<br/>
-
-<div>   
-	<a href="@{Application.forgot()}" class="note">Forgot Password</a>
-</div>
-
-		<span class="btn_login">
-			<input type="submit" value="Login" class="btn">
-		</span>
-    #{/form}
-</div>
-<div class="rt">
-
-	<h2 class="title">Not a registered User?<a href="@{Application.register()}" class="note"><h2>Register</h2></a></h2>
-</div>	
 
 
 <div id="content">
