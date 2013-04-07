@@ -59,8 +59,12 @@
             <a class="brand" href="@{Application.index()}" title="Home">
             <img src="/public/img/sniffyapp.png">
             </a>
-             <div class="slogan">An Android Application</div>
+            #{if session.get('username')}
+            	<div class="slogan">logged in as: ${userName}</div>
+            #{/if}
           </div>
+          
+
          </div>
        </div>
      </div>

@@ -1,7 +1,10 @@
 #{extends './userTemplate.html' /}
 #{set subtab:'settings'/}
- <div class="lt">
-	<h2 class="title">Account Settings</h2>
+ <div id="content">
+  <div class="container"> 
+    <!-- Account Settings Form -->
+	#{form @MyStuff.Accountsettings(), class:'form-horizontal form-login form-wrapper form-mdeium'}
+	<h2 class="title-divider">Account Settings</h2>
 	<br/>
 	<br/>
 	<table>
@@ -15,7 +18,7 @@
       
  	</table>
 
-	#{form @MyStuff.Accountsettings()}
+    
         #{text objectId:'password',label:'Existing Password:', length:50, type:'password' /} 
         #{text objectId:'newpassword',label:'New Password:', length:50, type:'password'/}
 	    #{text objectId:'verifyPassword',label:'Confirm New Password:',type:'password'/}
@@ -25,4 +28,5 @@
 			<input type="submit" value="Update" class="btn">
 		</span>
     #{/form}
+	</div>
 </div>
