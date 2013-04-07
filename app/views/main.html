@@ -14,20 +14,20 @@
 <meta name="author" content="Themelize.me">
 
 <!-- Bootstrap CSS -->
-<link href="public/css/bootstrap.css" rel="stylesheet">
-<link href="public/css/responsive.css" rel="stylesheet">
+<link href="/public/css/bootstrap.css" rel="stylesheet">
+<link href="/public/css/responsive.css" rel="stylesheet">
 
 <!-- Flexslider -->
-<link href="public/css/flexslider.css" rel="stylesheet">
+<link href="/public/css/flexslider.css" rel="stylesheet">
 
 <!-- Theme style -->
-<link href="public/css/theme-style.css" rel="stylesheet">
+<link href="/public/css/theme-style.css" rel="stylesheet">
 
 <!--Your custom colour override-->
 <link href="#" id="colour-scheme" rel="stylesheet">
 
 <!-- Your custom override -->
-<link href="public/css/custom-style.css" rel="stylesheet">
+<link href="/public/css/custom-style.css" rel="stylesheet">
 
 <link href="public/css/sniffyapp.css" rel="stylesheet">
 
@@ -37,10 +37,10 @@
     <![endif]-->
 
 <!-- Le fav and touch icons - @todo: fill with your icons or remove -->
-<link rel="shortcut icon" href="public/img/icons/favicon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="public/img/icons/114x114.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="public/img/icons/72x72.png">
-<link rel="apple-touch-icon-precomposed" href="public/img/icons/default.png">
+<link rel="shortcut icon" href="/public/img/icons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/img/icons/114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/img/icons/72x72.png">
+<link rel="apple-touch-icon-precomposed" href="/public/img/icons/default.png">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300|Rambla|Calligraffitti' rel='stylesheet' type='text/css'>
 
 
@@ -111,14 +111,17 @@
           <li><a href="@{Application.register()}" class="btn btn-primary signup">Sign Up</a></li>
           <li class="dropdown"> <a href="login.htm" class="btn btn-primary dropdown-toggle login" id="login-drop" data-toggle="dropdown">Login</a>
             <div class="dropdown-menu" role="menu" aria-labelledby="login-drop">
-              <form action="login.htm" class="form-inline" id="login-form-drop" role="menuitem">
+
+              
+#{form @auth.Secure.authenticate(), class:'form-inline'}
                 <div class="input-append">
-                  <input type="text" class="input-small email" placeholder="Email">
-                  <input type="password" class="input-small password" placeholder="Password">
-                  <input type="button" class="btn btn-primary login" value="Login">
+                  <input type="text" class="input-small email" placeholder="Email" name="username" value="">
+                  <input type="password" class="input-small password" placeholder="Password" name="password" value="">
+                  <input class="btn btn-primary" value="Login" type="submit"></input>
                 </div>
-              </form>
-              <span class="divider" role="menuitem"></span> <small role="menuitem">Not a member? <a href="#" class="signup">Sign up now!</a></small> <small role="menuitem"><a href="#">Forgotten password?</a></small> </div>
+               #{/form}
+              
+              <span class="divider" role="menuitem"></span> <small role="menuitem">Not a member? <a href="@{Application.register()}">Sign up now!</a></small> <small role="menuitem"><a href="@{Application.forgot()}">Forgot Password?</a></small> </div>
           </li>
         </ul>
         
@@ -240,29 +243,29 @@
 </footer>
 
 <!--Scripts --> 
-<script src="public/js/jquery.js"></script> 
+<script src="/public/js/jquery.js"></script> 
 
 <!-- @todo: remove unused Javascript for better performance --> 
-<script src="public/js/bootstrap-transition.js"></script> 
-<script src="public/js/bootstrap-alert.js"></script> 
-<script src="public/js/bootstrap-affix.js"></script> 
-<script src="public/js/bootstrap-modal.js"></script> 
-<script src="public/js/bootstrap-dropdown.js"></script> 
-<script src="public/js/bootstrap-scrollspy.js"></script> 
-<script src="public/js/bootstrap-tab.js"></script> 
-<script src="public/js/bootstrap-tooltip.js"></script> 
-<script src="public/js/bootstrap-popover.js"></script> 
-<script src="public/js/bootstrap-button.js"></script> 
-<script src="public/js/bootstrap-collapse.js"></script> 
-<script src="public/js/bootstrap-carousel.js"></script> 
-<script src="public/js/bootstrap-typeahead.js"></script> 
+<script src="/public/js/bootstrap-transition.js"></script> 
+<script src="/public/js/bootstrap-alert.js"></script> 
+<script src="/public/js/bootstrap-affix.js"></script> 
+<script src="/public/js/bootstrap-modal.js"></script> 
+<script src="/public/js/bootstrap-dropdown.js"></script> 
+<script src="/public/js/bootstrap-scrollspy.js"></script> 
+<script src="/public/js/bootstrap-tab.js"></script> 
+<script src="/public/js/bootstrap-tooltip.js"></script> 
+<script src="/public/js/bootstrap-popover.js"></script> 
+<script src="/public/js/bootstrap-button.js"></script> 
+<script src="/public/js/bootstrap-collapse.js"></script> 
+<script src="/public/js/bootstrap-carousel.js"></script> 
+<script src="/public/js/bootstrap-typeahead.js"></script> 
 
 <!--Non-Bootstrap JS--> 
-<script src="public/js/jquery.quicksand.js"></script> 
-<script src="public/js/jquery.flexslider-min.js"></script> 
+<script src="/public/js/jquery.quicksand.js"></script> 
+<script src="/public/js/jquery.flexslider-min.js"></script> 
 
 <!--Custom scripts mainly used to trigger libraries --> 
-<script src="public/js/script.js"></script>
+<script src="/public/js/script.js"></script>
 </body>
 
 
