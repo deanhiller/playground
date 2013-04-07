@@ -51,16 +51,20 @@
   <div class="navbar  navbar-static-top"> 
     
     <!--Header & Branding region-->
-    <div class="container">
-      <div class="header-inline container">
-        <div class="row">
-          <div class="span2"> 
+    <div class="header">
+      <div class="header-inner container">
+        <div class="row-fluid">
+          <div class="span9"> 
             <!--branding/logo--> 
             <a class="brand" href="@{Application.index()}" title="Home">
             <img src="/public/img/sniffyapp.png">
             </a>
-            
+            #{if session.get('username')}
+            	<div class="slogan">logged in as: ${userName}</div>
+            #{/if}
           </div>
+          
+
          </div>
        </div>
      </div>
@@ -72,21 +76,26 @@
         
         <!--user menu-->
         <ul class="nav user-menu pull-right">
-          <li><a href="@{Application.register()}" class="btn btn-primary signup">Sign Up</a></li>
-          <li class="dropdown"> <a href="login.htm" class="btn btn-primary dropdown-toggle login" id="login-drop" data-toggle="dropdown">Login</a>
-            <div class="dropdown-menu" role="menu" aria-labelledby="login-drop">
-
-              
-#{form @auth.Secure.authenticate(), class:'form-inline'}
-                <div class="input-append">
-                  <input type="text" class="input-small email" placeholder="Email" name="username" value="">
-                  <input type="password" class="input-small password" placeholder="Password" name="password" value="">
-                  <input class="btn btn-primary" value="Login" type="submit"></input>
-                </div>
-               #{/form}
-              
-              <span class="divider" role="menuitem"></span> <small role="menuitem">Not a member? <a href="@{Application.register()}">Sign up now!</a></small> <small role="menuitem"><a href="@{Application.forgot()}">Forgot Password?</a></small> </div>
-          </li>
+           #{if session.get('username')}
+              <li><a href="@{auth.Secure.logout()}" class="btn btn-primary signup">Logout</a></li>
+	       #{/if}
+	       #{else}
+	          <li><a href="@{Application.register()}" class="btn btn-primary signup">Sign Up</a></li>
+	          <li class="dropdown"> <a href="login.htm" class="btn btn-primary dropdown-toggle login" id="login-drop" data-toggle="dropdown">Login</a>
+	            <div class="dropdown-menu" role="menu" aria-labelledby="login-drop">
+	
+	              
+				   #{form @auth.Secure.authenticate(), class:'form-inline'}
+	                <div class="input-append">
+	                  <input type="text" class="input-small email" placeholder="Email" name="username" value="">
+	                  <input type="password" class="input-small password" placeholder="Password" name="password" value="">
+	                  <input class="btn btn-primary" value="Login" type="submit"></input>
+	                </div>
+	               #{/form}
+	              
+	              <span class="divider" role="menuitem"></span> <small role="menuitem">Not a member? <a href="@{Application.register()}">Sign up now!</a></small> <small role="menuitem"><a href="@{Application.forgot()}">Forgot Password?</a></small> </div>
+	          </li>
+	       #{/else}
         </ul>
         
         <!--everything within this div is collapsed on mobile-->
