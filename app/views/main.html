@@ -97,10 +97,17 @@
             <li class="home-link"><a href="@{Application.index()}"><i class="icon-home hidden-phone"></i><span class="visible-phone">Home</span></a></li>
 			
 			#{if session.get('username') != null}
-			<li id="page_dashboard">
-			    <a href="@{MyStuff.cellPhones()}" class="menu-item">My Dashboard</a></li>
-			#{/if}
+            <li class="dropdown"><a href="@{MyStuff.cellPhones()}" class="dropdown-toggle" id="pages-drop" data-toggle="dropdown">My Dashboard</a> 
+            #{/if}
+			  
+			  <!-- Dropdown Menu -->
+              <ul class="dropdown-menu pull-left" role="menu" aria-labelledby="pages-drop">
+                <li role="menuitem"><a href="@{MyStuff.settings()}" tabindex="-1" class="menu-item">Account Settings</a></li>
+                <li role="menuitem"><a href="@{MyStuff.cellPhones()}" tabindex="-1" class="menu-item">Phones</a></li>
+              </ul>
 			
+
+
 			<li><a href="@{Application.setup()}" class="menu-item">Setup Phone</a></li>
             <li><a href="@{Application.hiw()}" class="menu-item">How It Works</a></li>
 			<li><a href="@{Application.about()}" class="menu-item">About Us</a></li>
@@ -112,17 +119,7 @@
               </ul>
             </li>
            
-            <li class="dropdown"><a href="pages.htm" class="dropdown-toggle" id="pages-drop" data-toggle="dropdown">More +</a> 
-              <!-- Dropdown Menu -->
-              <ul class="dropdown-menu pull-left" role="menu" aria-labelledby="pages-drop">
-                <li role="menuitem"><a href="login.htm" tabindex="-1" class="menu-item">Login</a></li>
-                <li role="menuitem"><a href="signup.htm" tabindex="-1" class="menu-item">Sign Up</a></li>
-                <li role="menuitem"><a href="starter.htm" tabindex="-1" class="menu-item">Starter Snippets</a></li>
-                <li role="menuitem"><a href="index-static.htm" tabindex="-1" class="menu-item">Homepage Static Banner</a></li>
-                <li role="menuitem"><a href="fixed-header.htm" tabindex="-1" class="menu-item">Fixed Header</a></li>
-                <li role="menuitem"><a href="colours.htm" tabindex="-1" class="menu-item">Theme Colours</a></li>
-                <li role="menuitem"><a href="elements.htm" tabindex="-1" class="menu-item">Theme Elements</a></li>
-              </ul>
+		 
             </li>
           </ul>
         </div>
