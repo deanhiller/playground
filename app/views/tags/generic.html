@@ -1,4 +1,17 @@
-	<div class="entry">
+<div class="control-group ${_arg.errorClass}">
+	<label class="control-label">
+	#{if _arg.help}
+		<a href="#" rel="tooltip" title="${_arg.help}"><i class="icon-info-sign"></i></a>
+	#{/if}
+	</label>
+	<div class="controls">
+		 #{doBody /}
+		 *{ It says help-block ONLY because that makes it go below the input area - use help-inline to be to the right }*
+		 <span class="help-block">${_arg.error}</span>
+	</div>
+</div>
+
+	*{ <div class="entry">
 		<div class="spacer"></div>
 			<span class="label ${_arg.errorClass}">${_arg.label}</span>
 			<span class="input ${_arg.errorClass}"> #{doBody /} </span>
@@ -6,4 +19,4 @@
 			<div class="clear"></div>
 			<span class="hasError">${_arg.error}</span>
 		<div style="clear: both;"></div>
-	</div>
+	</div> }*

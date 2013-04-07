@@ -8,14 +8,16 @@
 <div id="content">
   <div class="container"> 
     <!-- Sign Up form -->
-    #{form @Register.postRegister(), class:'form-login form-wrapper form-medium'}
+    #{form @Register.postRegister(), class:'form-horizontal form-login form-wrapper form-medium'}
     
       <h3 class="title-divider"><span>Sign Up</span> <small>Already signed up? <a href="@{auth.Secure.login()}">Login here</a>.</small></h3>
       
       <h5>Account Information</h5>
-      <input type="text" class="input-block-level" placeholder="Email address" name="email" value="${email}">
-      <input type="password" class="input-block-level" placeholder="Password" name="password" value="${password}">
-      <input type="password" class="input-block-level" placeholder="Verify Password" name="verifyPassword" value="${verifyPassword}">
+      
+      #{text type:'text',objectId:'email',label:'Email address', help:'Email to login'/}
+      #{text type:'password',objectId:'password',label:'Password'/}
+      #{text type:'password',objectId:'verifyPassword',label:'Verify Password'/}
+      
       <label class="checkbox">
         <input type="checkbox" name="checkbox">
        <span> I have read and agreed to the #{license/}.

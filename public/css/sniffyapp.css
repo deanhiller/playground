@@ -1,0 +1,16 @@
+
+.form-horizontal .control-label {
+	width: 10px;
+}
+
+.form-horizontal .controls {
+    margin-left: 20px;
+}
+
+.help-block, .help-inline {
+    color: rgb(248, 9, 9);
+}
+
+.form-horizontal .control-group {
+	margin-bottom: 10px;
+}
