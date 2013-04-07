@@ -109,13 +109,16 @@
           <li><a href="@{Application.register()}" class="btn btn-primary signup">Sign Up</a></li>
           <li class="dropdown"> <a href="login.htm" class="btn btn-primary dropdown-toggle login" id="login-drop" data-toggle="dropdown">Login</a>
             <div class="dropdown-menu" role="menu" aria-labelledby="login-drop">
-              <form action="login.htm" class="form-inline" id="login-form-drop" role="menuitem">
+
+              
+#{form @auth.Secure.authenticate(), class:'form-inline'}
                 <div class="input-append">
-                  <input type="text" class="input-small email" placeholder="Email" name="username" value="${username}">
-                  <input type="password" class="input-small password" placeholder="Password" name="password" value="${password}">
-                  <input type="button" class="btn btn-primary login" value="Login" type="submit">
+                  <input type="text" class="input-small email" placeholder="Email" name="username" value="">
+                  <input type="password" class="input-small password" placeholder="Password" name="password" value="">
+                  <input class="btn btn-primary" value="Login" type="submit"></input>
                 </div>
-              </form>
+               #{/form}
+              
               <span class="divider" role="menuitem"></span> <small role="menuitem">Not a member? <a href="@{Application.register()}">Sign up now!</a></small> <small role="menuitem"><a href="@{Application.forgot()}">Forgot Password?</a></small> </div>
           </li>
         </ul>
