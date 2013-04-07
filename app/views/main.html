@@ -50,56 +50,28 @@
 <div id="navigation" class="wrapper">
   <div class="navbar  navbar-static-top"> 
     
-    <!--Hidden Header Region-->
-    <div class="header-hidden">
-      <div class="header-hidden-inner container">
-        <div class="row-fluid">
-          <div class="span4">
-            <h3>About Us</h3>
-            <p>Making the web a prettier place one template at a time! We make beautiful, quality, responsive Drupal & web templates!</p>
-            <a href="about.htm" class="btn btn-mini btn-primary">Find out more</a> </div>
-          <div class="span4"> 
-            <!--@todo: replace with company contact details-->
-            <h3>Contact Us</h3>
-            <address>
-            <p><abbr title="Email"><i class="icon-envelope"></i></abbr> support@sniffyapp.com</p>
-          </div>
-          <div class="span4"> 
-            <!--Colour Switch for demo - @todo: remove in production-->
-            <div class="colour-switcher">
-              <h3>Theme Colours</h3>
-              <a href="#green" class="green active _tooltip" data-placement="bottom" data-original-title="Green (Default)">Green</a> <a href="#red" class="red _tooltip" data-placement="bottom" data-original-title="Red">Red</a> <a href="#blue" class="blue _tooltip" data-placement="bottom" data-original-title="Blue">Blue</a>
-              <p>Cookies are NOT enabled so colour selection is not persistent.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
     <!--Header & Branding region-->
-    <div class="header">
-      <div class="header-inner container">
-        <div class="row-fluid">
-          <div class="span6"> 
+    <div class="container">
+      <div class="header-inline container">
+        <div class="row">
+          <div class="span2"> 
             <!--branding/logo--> 
             <a class="brand" href="@{Application.index()}" title="Home">
-            <h1><span>SNIFFY</span>APP<span>.</span></h1>
+            <img src="/public/img/sniffyapp.png">
             </a>
+
             <div class="slogan">logged in as: ${userName}</div>
           </div>
           
           <!--header rightside-->
           <div class="span6">
             <div id="header-hidden-link"> <a href="#" class="show-hide" title="Click me you'll get a surprise" data-target=".header-hidden"><i></i>Open</a> </div>
+
             
-            <!--social media icons-->
-            <div class="social-media pull-right"> 
-              <!--@todo: replace with company social media details--> 
-				<a href="http://facebook.com/SNIFFYAPP"><i class="icon-facebook"></i></a><a href="#"><i class="icon-google-plus"></i></a> </div>
           </div>
-        </div>
-      </div>
-    </div>
+         </div>
+       </div>
+     </div>
     <div class="container">
       <div class="navbar-inner"> 
         
@@ -108,21 +80,26 @@
         
         <!--user menu-->
         <ul class="nav user-menu pull-right">
-          <li><a href="@{Application.register()}" class="btn btn-primary signup">Sign Up</a></li>
-          <li class="dropdown"> <a href="login.htm" class="btn btn-primary dropdown-toggle login" id="login-drop" data-toggle="dropdown">Login</a>
-            <div class="dropdown-menu" role="menu" aria-labelledby="login-drop">
-
-              
-#{form @auth.Secure.authenticate(), class:'form-inline'}
-                <div class="input-append">
-                  <input type="text" class="input-small email" placeholder="Email" name="username" value="">
-                  <input type="password" class="input-small password" placeholder="Password" name="password" value="">
-                  <input class="btn btn-primary" value="Login" type="submit"></input>
-                </div>
-               #{/form}
-              
-              <span class="divider" role="menuitem"></span> <small role="menuitem">Not a member? <a href="@{Application.register()}">Sign up now!</a></small> <small role="menuitem"><a href="@{Application.forgot()}">Forgot Password?</a></small> </div>
-          </li>
+           #{if session.get('username')}
+              <li><a href="@{auth.Secure.logout()}" class="btn btn-primary signup">Logout</a></li>
+	       #{/if}
+	       #{else}
+	          <li><a href="@{Application.register()}" class="btn btn-primary signup">Sign Up</a></li>
+	          <li class="dropdown"> <a href="login.htm" class="btn btn-primary dropdown-toggle login" id="login-drop" data-toggle="dropdown">Login</a>
+	            <div class="dropdown-menu" role="menu" aria-labelledby="login-drop">
+	
+	              
+				   #{form @auth.Secure.authenticate(), class:'form-inline'}
+	                <div class="input-append">
+	                  <input type="text" class="input-small email" placeholder="Email" name="username" value="">
+	                  <input type="password" class="input-small password" placeholder="Password" name="password" value="">
+	                  <input class="btn btn-primary" value="Login" type="submit"></input>
+	                </div>
+	               #{/form}
+	              
+	              <span class="divider" role="menuitem"></span> <small role="menuitem">Not a member? <a href="@{Application.register()}">Sign up now!</a></small> <small role="menuitem"><a href="@{Application.forgot()}">Forgot Password?</a></small> </div>
+	          </li>
+	       #{/else}
         </ul>
         
         <!--everything within this div is collapsed on mobile-->
@@ -206,18 +183,15 @@
       <div class="span5 col">
         <div class="block">
           <h3>About Us</h3>
-          <p>Making the web a prettier place one template at a time! We make beautiful, quality, responsive Drupal & web templates!</p>
+          <p>We are tight, the tightest dudes you've ever met, so freaking tight!</p>
         </div>
       </div>
       <div class="span4 col">
         <div class="block newsletter">
-          <h3>Newsletter</h3>
-          <p>Stay up to date with our latest news and product releases by signing up to our newsletter.</p>
-          <!--@todo: replace with mailchimp code-->
+         
           <form class="form-inline">
             <div class="input-append">
-              <input class="input-medium" type="text" placeholder="Email" />
-              <button class="btn btn-primary" type="button">Go!</button>
+              
             </div>
           </form>
         </div>
@@ -227,15 +201,10 @@
       <div id="toplink"><a href="#top" class="top-link" title="Back to top">Back To Top <i class="icon-chevron-up"></i></a></div>
       <!--@todo: replace with company copyright details-->
       <div class="subfooter">
-        <div class="span6">
+        <div class="span6 offset3">
           All Rights Reserved. Software and Website done by &copy; SNIFFYAPP, LLC 2007 - Present
         </div>
-        <div class="span6">
-          <ul class="inline pull-right">
-            <li><a href="#">Terms</a></li>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Contact Us</a></li>
-          </ul>
+        
         </div>
       </div>
     </div>
