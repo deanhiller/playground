@@ -13,11 +13,11 @@
       <h3 class="title-divider"><span>Sign Up</span> <small>Already signed up? <a href="@{auth.Secure.login()}">Login here</a>.</small></h3>
       
       <h5>Account Information</h5>
-      
+
       #{text type:'text',objectId:'email',label:'Email address', help:'Email to login'/}
       #{text type:'password',objectId:'password',label:'Password'/}
       #{text type:'password',objectId:'verifyPassword',label:'Verify Password'/}
-      
+
       <label class="checkbox">
         <input type="checkbox" name="checkbox">
        <span> I have read and agreed to the #{license/}.
