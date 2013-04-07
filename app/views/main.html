@@ -60,7 +60,7 @@
             <img src="/public/img/sniffyapp.png">
             </a>
             #{if session.get('username')}
-            	<div class="slogan">logged in as: ${userName}</div>
+            	<div class="slogan">logged in as: ${session.get('username')}</div>
             #{/if}
           </div>
           
