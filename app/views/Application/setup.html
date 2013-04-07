@@ -2,6 +2,10 @@
 #{set title:'Home' /}
 #{set tab:'setup' /}
 
+<br>
+<br>
+<div class="container">
+
 1.	Install <a href="/public/sniffy/sniffy.apk"> SniffyApp </a>on your Android smartphone.
 <br>
 <br>
@@ -10,8 +14,11 @@
 <br>
 3.	Enter your Secure Key below.
 
+</div>
+
+<br>
     #{form @Application.postKey()}
-	<div id="login:userNameDecorate">
+	<div class="container" id="login:userNameDecorate">
     	<div class="entrykey">
     		<div class="spacer"></div>
     		<span class="label">Key:</span>
@@ -20,6 +27,8 @@
         	</span>
     	</div>
     </div>
+
+
 
 	<br/>
 	<br/>

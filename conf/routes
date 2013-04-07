@@ -11,6 +11,7 @@ GET  /index1                                   Application.index1
 GET  /index2                                   Application.index2
 GET  /how                                      Application.how
 GET  /hiw                                      Application.hiw
+POST  /hiw                                      Application.hiw
 GET  /forgot                                   Application.forgot
 GET  /register                               Application.register
 GET  /about				       Application.about
@@ -31,6 +32,9 @@ GET /cell/{number}                             MyStuff.cell
 GET /cell/{number}/{time}                    MyStuff.texts
 GET /rename/{number}                           MyStuff.rename
 POST /cellphones                               MyStuff.setUser
+
+POST /notifyurl                              Notify.validate
+GET /notifyurl                              Notify.validate
 
 GET			/login			auth.Secure.login
 POST        /login          auth.Secure.authenticate

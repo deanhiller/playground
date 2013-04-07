@@ -6,7 +6,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>AppStrap Bootstrap Theme by Themelize.me</title>
+<title>Marketing Text Can Go Here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- @todo: fill with your company info or remove -->
@@ -83,7 +83,7 @@
             <a class="brand" href="@{Application.index()}" title="Home">
             <h1><span>SNIFFY</span>APP<span>.</span></h1>
             </a>
-            <div class="slogan">Responsive HTML Theme</div>
+            <div class="slogan">An Android Application</div>
           </div>
           
           <!--header rightside-->
@@ -165,6 +165,21 @@
     </div>
   </div>
 </div>
+
+#{ifErrors}
+ 	<div class="container">
+	  <div class="row-fluid">
+	  	<div class="offset3 span6 alert alert-error">
+	  	    <h4>Oops....</h4>
+	     	<ul>
+   				#{errors}
+    			<li>${error}</li>
+			   #{/errors}	     	
+	     	</ul>	  	
+	  	</div>
+	  </div>
+    </div> 
+#{/ifErrors}
 
 #{doLayout /}
 
