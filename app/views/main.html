@@ -51,24 +51,20 @@
   <div class="navbar  navbar-static-top"> 
     
     <!--Header & Branding region-->
-    <div class="container">
-      <div class="header-inline container">
-        <div class="row">
-          <div class="span2"> 
+    <div class="header">
+      <div class="header-inner container">
+        <div class="row-fluid">
+          <div class="span9"> 
             <!--branding/logo--> 
             <a class="brand" href="@{Application.index()}" title="Home">
             <img src="/public/img/sniffyapp.png">
             </a>
-
-            <div class="slogan">logged in as: ${userName}</div>
+            #{if session.get('username')}
+            	<div class="slogan">logged in as: ${userName}</div>
+            #{/if}
           </div>
           
-          <!--header rightside-->
-          <div class="span6">
-            <div id="header-hidden-link"> <a href="#" class="show-hide" title="Click me you'll get a surprise" data-target=".header-hidden"><i></i>Open</a> </div>
 
-            
-          </div>
          </div>
        </div>
      </div>

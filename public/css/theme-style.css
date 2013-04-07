@@ -189,7 +189,7 @@ a:focus {
   background: rgba(255, 255, 255, 0.9);
   border-top: 1px solid #55a79a;
   color: #242424;
-  height: 60px;
+  /* height: 60px; Theme header does not expand with sizes of stuff */
 }
 #navigation .header .header-inner {
   position: relative;
