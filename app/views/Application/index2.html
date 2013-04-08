@@ -1,57 +1,33 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
-#{set tab:'home' /}
+#{set tab:'home' /}	
 
-<div class="row">
-  <div class="span12">
-
-	Index 2222
-     <img src="public/res/css/images/fr_pagelogo.png"/>
-	 
-
+<div class="hero" id="highlighted">
+  <div class="inner"> 
+    
+	<!--Flexslider Showshow-->
+    <section class="flexslider-wrapper container">
+      <div class="flexslider" data-slidernav="auto" data-transition="slide"> 
+        <!--The Slides-->
+        <div class="slides"> 
+          
+          <!--Slide #1 with caption-->
+          <div class="slide row-fluid">
+            <div class="span7"><img src="public/img/slides/slide1.png" alt="Slide 1" /></div>
+            <div class="span5 caption">
+              <h2>Need to monitor text messages?</h2>
+              <!--<h4>By <a href="http://themelize.me">A Header</a></h4>-->
+              <p>An android application created to help monitor text messages. Click Signup Now to try it for free!</p>
+              <a href="@{Application.register()}" class="btn btn-large btn-primary">Signup Now</a> </div>
+          </div>
+          
+          <!--Slide #2 straight image 1170px wide x 390px high-->
+          <div class="slide row-fluid"> <img src="public/img/slides/slide2.png" alt="Slide 2" /> </div>
+          
+          <!--Slide #3 & so on below--> 
+          
+        </div>
+      </div>
+    </section>
   </div>
 </div>
-
-<br>
-<br>
-
-<div class="row">
-	<div class="span6">
-		#{if session.get('username') == null}
-			<a href="login" Class="btn btn-large btn-primary margin"><span>Signup Now</span></a>
-		#{/if}
-		#{else}
-			<a href="cellphones" Class="btn btn-large btn-primary margin"><span>My Dashboard</span></a>
-		#{/else}
-		<a href="" class="btn btn-large btn-primary margin">Learn More</a>
-	</div>
-	<div class="span3 offset2">
-		<img src="public/res/images/google_play.gif"/>
-	</div>
-</div>
-
-
-
-
-
-
-<div class="row">
-  <div class="span6">
- 
-  </div>
-
-
- 
-
-<div class="row">
- 
-  <div class="span4">...</div>
-
-
- 
-</div>
-	
-	
-	
-
-
