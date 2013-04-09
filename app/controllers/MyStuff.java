@@ -151,7 +151,9 @@ public class MyStuff extends Controller {
 	
     public static void completeRegister(String number) {
     	lookupCell(number);
-    	render(number);
+    	int amt= calculateProrateAmount();
+    	String amountStr = centsToDollars(amt);
+    	render(number,amountStr);
     }
     
     public static void makePayment(String number) {
