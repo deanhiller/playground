@@ -1,6 +1,6 @@
 #{extends './userTemplate.html' /}
 #{set subtab:'dashboard'/}
-<div class="container>
+<div class="container">
 <h2>Cell Phones</h2>
 </div>
 
@@ -37,25 +37,5 @@
 	</table>
 
 
-<form action="https://www.sandbox.paypal.com/us/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_xclick-subscriptions">
-<input type="hidden" name="business" value="madhukar@easility.com">
-<input type="hidden" name="lc" value="US">
-<input type="hidden" name="item_name" value="sniffyapp">
-<input type="hidden" name="item_number" value="355251059457614">
-<input type="hidden" name="no_note" value="1">
-<input type="hidden" name="a1" value="2.00">
-<input type="hidden" name="p1" value="1">
-<input type="hidden" name="t1" value="M">
-<input type="hidden" name="src" value="1">
-<input type="hidden" name="a3" value="7.00">
-<input type="hidden" name="p3" value="1">
-<input type="hidden" name="t3" value="M">
-<input type="hidden" name="currency_code" value="USD">
-<input type='hidden' name='return' value='http://localhost:9000/hiw'>
-<input type="hidden" name="notify_url" value="http://sniffyapp.com/notifyurl">
-<input type="hidden" name="cancel_return"  value="http://localhost:9000" />	
-<input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribeCC_LG.gif:NonHostedGuest">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
+
+
