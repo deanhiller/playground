@@ -17,22 +17,18 @@
 </div>
 
 <br>
-    #{form @Application.postKey()}
+	<div id="content">
 	<div class="container" id="login:userNameDecorate">
+    #{form @Application.postKey(), class:'form-setup form-wrapper form-narrow'}
+
+	 <h5 class="title-divider"><span>Enter Generated Key:</span></h5>
     	<div class="entrykey">
     		<div class="spacer"></div>
-    		<span class="label">Key:</span>
     		<span class="input">
-        		<input type="text" size="19" name="key" id="key" class="boxtpl" value="">
+        		<input type="text" size="19" name="key" id="key" class="input-block-level" placeholder="Key" value="">
         	</span>
-    	</div>
-    </div>
-
-
-
-	<br/>
-	<br/>
-
+<br>
+<br>
 	<div class="bt_box">
 		<span class="btn_login">
 			<input type="submit" value="Submit" class="btn">
@@ -40,3 +36,6 @@
 	</div>
 
     #{/form}
+</div>
+    </div>
+    </div>

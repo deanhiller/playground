@@ -7,18 +7,6 @@
 	<h2 class="title-divider">Account Settings</h2>
 	<br/>
 	<br/>
-	<table>
-		<tr>
-			<td>
-				${msg}
-			</td>
-		</tr>
-	  <tr>
-      <td><strong><label class="label span2">Email:</span></label> &nbsp&nbsp&nbsp${userName}</strong></td>
-      
- 	</table>
-
-    
         #{text objectId:'password',label:'Existing Password:', length:50, type:'password' /} 
         #{text objectId:'newpassword',label:'New Password:', length:50, type:'password'/}
 	    #{text objectId:'verifyPassword',label:'Confirm New Password:',type:'password'/}
