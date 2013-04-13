@@ -14,6 +14,7 @@ import com.alvazan.play.NoSql;
 
 import play.Play;
 import play.data.validation.Required;
+import play.data.validation.Validation;
 import play.libs.Crypto;
 import play.libs.Time;
 import play.mvc.Before;
@@ -92,18 +93,13 @@ public class Secure extends Controller {
     public static void authenticate(@Required String username, String password, boolean remember) throws Throwable {
     	log.info("trying to login with username="+username);
         // Check tokens
-        Boolean allowed = false;
-        try {
-            // This is the deprecated method name
-            allowed = (Boolean)Security.invoke("authentify", username, password);
-        } catch (UnsupportedOperationException e ) {
-            // This is the official method name
-            allowed = (Boolean)Security.invoke("authenticate", username, password);
-        }
-        if(validation.hasErrors() || !allowed) {
+        Boolean allowed = (Boolean)Security.invoke("authenticate", username, password);
+        Validation val = validation;
+        if(val.hasErrors() || !allowed) {
             flash.keep("url");
             flash.error("secure.error");
-            params.flash();
+            params.flash(); // add http parameters to the flash scope
+	        validation.keep(); // keep the errors for the next request
             login();
         }
         
@@ -184,6 +180,7 @@ public class Secure extends Controller {
         		if(user != null && user.getPassword().equals(password))
         			return true;
         	}
+        	
             return false;
         }
 
