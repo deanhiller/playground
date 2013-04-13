@@ -94,15 +94,16 @@ public class Secure extends Controller {
     	log.info("trying to login with username="+username);
         // Check tokens
         Boolean allowed = (Boolean)Security.invoke("authenticate", username, password);
-        Validation val = validation;
-        if(val.hasErrors() || !allowed) {
+        if(!allowed) {
+        	flash.error("Login access is denied(username or password is incorrect)");
+        }
+        if(validation.hasErrors() || !allowed) {
             flash.keep("url");
-            flash.error("secure.error");
             params.flash(); // add http parameters to the flash scope
 	        validation.keep(); // keep the errors for the next request
             login();
         }
-        
+
         Session temp = session;
         
         // Mark user as connected

@@ -50,21 +50,21 @@
 	<classpathentry kind="lib" path="lib/jregex-1.2_01.jar"/>
 	<classpathentry kind="lib" path="lib/jsr107cache-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/junit-4.10.jar"/>
-	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="lib/mail-1.4.3.jar"/>
 	<classpathentry kind="lib" path="lib/memcached-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.20.jar"/>
-	<classpathentry kind="lib" path="lib/netty-3.4.2.Final.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.jdt.core-3.7.1.v_B76_R37x.jar"/>
 	<classpathentry kind="lib" path="lib/oval-1.50.jar"/>
 	<classpathentry kind="lib" path="lib/postgresql-9.0.jar"/>
 	<classpathentry kind="lib" path="lib/signpost-core-1.2.jar"/>
-	<classpathentry kind="lib" path="lib/slf4j-api-1.6.1.jar"/>
-	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/snakeyaml-1.7.jar"/>
 	<classpathentry kind="lib" path="lib/validation-api-1.0.0.GA.jar"/>
 	<classpathentry kind="lib" path="lib/xmlpull-1.1.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/xstream-1.4.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 6"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.6.6.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-over-slf4j-1.6.6.jar"/>
+	<classpathentry kind="lib" path="lib/netty-3.5.9.Final-sources.jar"/>
+	<classpathentry kind="lib" path="lib/netty-3.5.9.Final.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
