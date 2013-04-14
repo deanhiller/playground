@@ -13,6 +13,7 @@ import com.alvazan.play.NoSql;
 
 import controllers.auth.Secure;
 
+import play.Play;
 import play.mvc.Controller;
 
 public class Application extends Controller {
@@ -29,6 +30,12 @@ public class Application extends Controller {
     		return false;
     	}
     	return true;
+    }
+    public static boolean isProdMode() {
+    	String mode = Play.configuration.getProperty("application.mode");
+    	if("prod".equals(mode))
+    		return true;
+    	return false;
     }
     
     public static void index() {
