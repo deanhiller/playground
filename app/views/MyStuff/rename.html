@@ -1,9 +1,10 @@
 #{extends 'main.html' /}
 
 <div class="lt">
-	<span class="title">Change the name of ${number}</span>
-	#{form @MyStuff.setUser()}
-	<table>
+	
+	#{form @MyStuff.setUser(), class:'form-setup form-wrapper form-narrow'}
+	<b> <span class="title">Change the name of ${number}</span>
+	<table> </b>
 		<tr>
 			<td>
 				<input type="hidden" name="phone" value="${number}">
