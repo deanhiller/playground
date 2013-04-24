@@ -150,12 +150,32 @@ public class MyStuff extends Controller {
 	}
 	
     public static void completeRegister(String number) {
-    	lookupCell(number);
-    	int amt= calculateProrateAmount();
-    	String amountStr = centsToDollars(amt);
-    	render(number,amountStr);
-    }
-    
+
+		lookupCell(number);
+		int amt = calculateProrateAmount();
+		String amountStr = centsToDollars(amt);
+
+		String mode = Play.configuration.getProperty("application.mode");
+		String cancelUrl;
+		String returnUrl;
+		String businessId;
+		String paypalUrl;
+		if ("dev".equals(mode)) {
+			cancelUrl = Play.configuration.getProperty("dev.cancelUrl");
+			returnUrl = Play.configuration.getProperty("dev.returnUrl");
+			businessId = Play.configuration.getProperty("dev.businessId");
+			paypalUrl = Play.configuration.getProperty("dev.paypalUrl");
+
+		} else {
+			cancelUrl = Play.configuration.getProperty("prod.cancelUrl");
+			returnUrl = Play.configuration.getProperty("prod.returnUrl");
+			businessId = Play.configuration.getProperty("prod.businessId");
+			paypalUrl = Play.configuration.getProperty("prod.paypalUrl");
+
+		}
+		render(number, amountStr, paypalUrl, cancelUrl, returnUrl, businessId);
+	}
+
     public static void makePayment(String number) {
     	lookupCell(number);
     	
@@ -238,5 +258,13 @@ public class MyStuff extends Controller {
 		
 		int prorated = monthlyPriceCents*numDaysTillNextMonth / numDaysMonth;
 		return prorated;
+	}
+	
+	public static void success() {
+		render();
+	}
+
+	public static void cancel() {
+		render();
 	}
 }

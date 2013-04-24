@@ -28,6 +28,8 @@ POST /register                                 Register.postRegister
 GET  /accountsettings                          MyStuff.settings
 POST /accountsettings                          MyStuff.Accountsettings
 GET /cellphones                                MyStuff.cellPhones
+GET /success                                  MyStuff.success
+GET /cancel                                	   MyStuff.cancel
 GET /cell/{number}                             MyStuff.cell
 GET /cell/{number}/{time}                    MyStuff.texts
 GET /rename/{number}                           MyStuff.rename
