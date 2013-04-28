@@ -109,7 +109,7 @@ public class Application extends Controller {
 				validation.keep();
 				setup();
 			} else
-				Secure.login();
+				register();
 		}
     	
     	//username is in session so they are logged in, fetch the user...
