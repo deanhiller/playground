@@ -38,6 +38,9 @@ POST /cellphones                               MyStuff.setUser
 POST /notifyurl                              Notify.validate
 GET /notifyurl                              Notify.validate
 
+POST /notify                              Notify.validate
+GET /notify                              Notify.validate
+
 GET			/login			auth.Secure.login
 POST        /login          auth.Secure.authenticate
 GET         /logout         auth.Secure.logout

@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import com.alvazan.play.NoSql;
 
+import play.Play;
 import play.mvc.Controller;
 import play.mvc.With;
 import play.mvc.Scope.Session;
@@ -38,7 +39,15 @@ public class Notify extends Controller {
 		log.info("IN NOTIFY URL11");
 		String str = "cmd=_notify-validate&" + params.get("body");
 		log.info(str);
-		URL url = new URL("https://www.sandbox.paypal.com/us/cgi-bin/webscr");
+		String mode = Play.configuration.getProperty("application.mode");
+		URL url;
+		if ("dev".equals(mode)) {
+			url = new URL(Play.configuration.getProperty("dev.paypalUrl"));
+
+		} else {
+			url = new URL(Play.configuration.getProperty("prod.paypalUrl"));
+
+		}
 		URLConnection connection = url.openConnection();
 		connection.setDoOutput(true);
 		connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
