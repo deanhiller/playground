@@ -69,7 +69,7 @@ public class Notify extends Controller {
 		} else {
 			if (txnType.equals("subscr_payment"))
 				managePayment(result, itemNumber);
-			else if ((txnType.equals("subscr-cancel")))
+			else if ((txnType.equals("subscr_cancel")))
 				manageCancel(result, itemNumber);
 		}
 	}
