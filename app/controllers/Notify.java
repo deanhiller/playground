@@ -39,8 +39,14 @@ public class Notify extends Controller {
 		log.info("IN NOTIFY URL11");
 		String str = "cmd=_notify-validate&" + params.get("body");
 		log.info(str);
+		String mode = Play.configuration.getProperty("application.mode");
+		URL url;
+		if ("dev".equals(mode)) {
+			url = new URL(Play.configuration.getProperty("dev.paypalUrl"));
+		} else {
+			url = new URL(Play.configuration.getProperty("prod.paypalUrl"));
 
-		URL url = new URL(Play.configuration.getProperty("paypalUrl"));
+		}
 
 		URLConnection connection = url.openConnection();
 		connection.setDoOutput(true);

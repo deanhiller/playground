@@ -155,10 +155,24 @@ public class MyStuff extends Controller {
 		int amt = calculateProrateAmount();
 		String amountStr = centsToDollars(amt);
 
-		String cancelUrl = Play.configuration.getProperty("dev.cancelUrl");
-		String returnUrl = Play.configuration.getProperty("dev.returnUrl");
-		String businessId = Play.configuration.getProperty("dev.businessId");
-		String paypalUrl = Play.configuration.getProperty("dev.paypalUrl");
+		String mode = Play.configuration.getProperty("application.mode");
+		String cancelUrl;
+		String returnUrl;
+		String businessId;
+		String paypalUrl;
+		if ("dev".equals(mode)) {
+			cancelUrl = Play.configuration.getProperty("dev.cancelUrl");
+			returnUrl = Play.configuration.getProperty("dev.returnUrl");
+			businessId = Play.configuration.getProperty("dev.businessId");
+			paypalUrl = Play.configuration.getProperty("dev.paypalUrl");
+
+		} else {
+			cancelUrl = Play.configuration.getProperty("prod.cancelUrl");
+			returnUrl = Play.configuration.getProperty("prod.returnUrl");
+			businessId = Play.configuration.getProperty("prod.businessId");
+			paypalUrl = Play.configuration.getProperty("prod.paypalUrl");
+
+		}
 
 		render(number, amountStr, paypalUrl, cancelUrl, returnUrl, businessId);
 	}
