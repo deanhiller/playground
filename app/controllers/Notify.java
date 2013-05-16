@@ -39,15 +39,9 @@ public class Notify extends Controller {
 		log.info("IN NOTIFY URL11");
 		String str = "cmd=_notify-validate&" + params.get("body");
 		log.info(str);
-		String mode = Play.configuration.getProperty("application.mode");
-		URL url;
-		if ("dev".equals(mode)) {
-			url = new URL(Play.configuration.getProperty("dev.paypalUrl"));
 
-		} else {
-			url = new URL(Play.configuration.getProperty("prod.paypalUrl"));
+		URL url = new URL(Play.configuration.getProperty("paypalUrl"));
 
-		}
 		URLConnection connection = url.openConnection();
 		connection.setDoOutput(true);
 		connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
@@ -61,37 +55,45 @@ public class Notify extends Controller {
 		in.close();
 
 		// 	assign posted variables to local variables
-		String itemName = params.get("item_name");
 		String itemNumber = params.get("item_number");
-		String paymentStatus = params.get("payment_status");
-		String paymentAmount = params.get("mc_gross");
-		String paymentCurrency = params.get("mc_currency");
-		String txnId = params.get("txn_id");
-		String receiverEmail = params.get("receiver_email");
-		String payerEmail = params.get("payer_email");
-		
+		String txnType = params.get("txn_type");
+		if (itemNumber == null) {
+			// Return as it is of no use
+			return;
+		} else {
+			if (txnType.equals("subscr_payment"))
+				managePayment(result, itemNumber);
+			else if ((txnType.equals("subscr-cancel")))
+				manageCancel(result, itemNumber);
+		}
+	}
+	
+	private static void managePayment(String result, String itemNumber) {
 		NumberToCell numberCell = NoSql.em().find(NumberToCell.class, itemNumber);
 		CellPhone cellPhone = NoSql.em().find(CellPhone.class, numberCell.getValue());
 		log.info("RESULT is " + result);
-		if("VERIFIED".equals(result)) {
+		String paymentStatus = params.get("payment_status");
+		String txnId = params.get("txn_id");
+		if ("VERIFIED".equals(result)) {
 			if ("Completed".equals(paymentStatus)) {
-				if(cellPhone != null) {
+				if (cellPhone != null) {
 					log.info("CHANGING STATUS TO PAID for number " + itemNumber);
 					cellPhone.setPaid(true);
 					cellPhone.setCreditCardTxId(txnId);
 					NoSql.em().put(cellPhone);
 					NoSql.em().flush();
 				} else {
-					log.info("Payment at paypal is completed but cellPhone= " + cellPhone + " is not found in sniffyapp");
+					log.info("Payment at paypal is completed but cellPhone= "
+							+ cellPhone + " is not found in sniffyapp");
 				}
 			} else {
-				if(cellPhone != null) {
+				if (cellPhone != null) {
 					cellPhone.setPaid(false);
 					cellPhone.setCreditCardTxId(txnId);
 					NoSql.em().put(cellPhone);
 					NoSql.em().flush();
 				}
-			}		
+			}
 		}
 		else if("INVALID".equals(result)) {
 			if(cellPhone != null) {
@@ -104,6 +106,34 @@ public class Notify extends Controller {
 		}
 		else {
 			log.info("Error with Paypal status");
+		}		
+	}
+	
+	private static void manageCancel(String result, String itemNumber) {
+		NumberToCell numberCell = NoSql.em().find(NumberToCell.class, itemNumber);
+		CellPhone cellPhone = NoSql.em().find(CellPhone.class, numberCell.getValue());
+		log.info("RESULT is " + result);
+		String txnId = params.get("txn_id");
+		if("VERIFIED".equals(result)) {
+				if(cellPhone != null) {
+					log.info("CHANGING STATUS TO UNPAID for number " + itemNumber);
+					cellPhone.setPaid(false);
+					cellPhone.setCreditCardTxId(txnId);
+					NoSql.em().put(cellPhone);
+					NoSql.em().flush();
+				}
+		}
+		else if("INVALID".equals(result)) {
+			if(cellPhone != null) {
+				cellPhone.setPaid(false);
+				NoSql.em().flush();
+			}
+			else {
+				log.info("Payment at paypal is NOT completed for cellPhone= " + cellPhone);
+			}
+		} else {
+			log.info("Error with Paypal status");
 		}
 	}
+
 }
