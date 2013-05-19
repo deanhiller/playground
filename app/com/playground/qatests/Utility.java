@@ -68,7 +68,7 @@ public class Utility {
 
 	public static String sendRequest(DefaultHttpClient httpclient, String requestUri, String password) throws IOException,
 			ClientProtocolException {
-		HttpHost targetHost = new HttpHost("localhost", 9000, "http"); 
+		HttpHost targetHost = new HttpHost("sniffyapp.com", 80, "http"); 
 		//BasicHttpContext localcontext = setupPreEmptiveBasicAuth(targetHost, httpclient, getKey);
 		
 		log.info("trying to hit url="+requestUri);
@@ -126,6 +126,6 @@ public class Utility {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(msg);
-		Utility.sendPostRequest(httpclient, "http://localhost:9000/api/postdata", json);
+		Utility.sendPostRequest(httpclient, "http://sniffyapp.com/api/postdata", json);
 	}
 }
