@@ -38,6 +38,5 @@
     <root>
         <level value="INFO" />
         <appender-ref ref="FILE" />
-        <appender-ref ref="CASSANDRA"/>
     </root>
 </configuration>
