@@ -97,29 +97,24 @@
           
           <!--main navigation-->
           <ul class="nav" id="main-menu">
-            <li class="home-link"><a href="@{Application.index()}"><i class="icon-home hidden-phone"></i><span class="visible-phone">Home</span></a></li>
+            <li id="page_home" class="home-link"><a href="@{Application.index()}"><i class="icon-home hidden-phone"></i><span class="visible-phone">Home</span></a></li>
 			
 			#{if session.get('username') != null}
-            <li class="dropdown"><a href="@{MyStuff.cellPhones()}" class="dropdown-toggle" id="pages-drop" data-toggle="dropdown">My Dashboard</a> 
-            #{/if}
-			  
+            <li id="page_dashboard" class="dropdown"><a href="@{MyStuff.cellPhones()}" class="dropdown-toggle" id="pages-drop" data-toggle="dropdown">My Dashboard</a>
 			  <!-- Dropdown Menu -->
               <ul class="dropdown-menu pull-left" role="menu" aria-labelledby="pages-drop">
                 <li role="menuitem"><a href="@{MyStuff.cellPhones()}" tabindex="-1" class="menu-item">Phones</a></li>
 				<li role="menuitem"><a href="@{MyStuff.settings()}" tabindex="-1" class="menu-item">Account Settings</a></li>
               </ul>
-			
+            </li>
+			#{/if}
 
 
-			<li><a href="@{Application.setup()}" class="menu-item">Setup Phone</a></li>
-            <li><a href="@{Application.hiw()}" class="menu-item">How It Works</a></li>
-			<li><a href="@{Application.about()}" class="menu-item">About Us</a></li>
-            <li><a href="http://sniffyapp.com/blog" class="menu-item">Blog</a></li>
+			<li id="page_setup"><a href="@{Application.setup()}" class="menu-item">Setup Phone</a></li>
+            <li id="page_hiw"><a href="@{Application.hiw()}" class="menu-item">How It Works</a></li>
+			<li id="page_about"><a href="@{Application.about()}" class="menu-item">About Us</a></li>
+            <li id="page_blog"><a href="http://sniffyapp.com/blog" class="menu-item">Blog</a></li>
        
-            </li>
-           
-		 
-            </li>
           </ul>
         </div>
         <!--/.nav-collapse --> 
@@ -127,6 +122,17 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript" language="JavaScript">
+function setClass(id, className) {
+    var obj = document.getElementById(id);
+    if (obj != null) {
+        obj.className = obj.className+" "+className;
+    }
+}
+
+setClass("page_" + "#{get 'tab'/}", "active");
+</script>
 
 #{ifErrors}
  	<div class="container">

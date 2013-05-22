@@ -4,6 +4,12 @@
  * Written by Themelize.me (http://themelize.me)
  * 
  *******************************************************/
+#main-menu li.active {
+	background-color: rgba(255, 255, 255, 0.044);
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.08));
+	background-repeat: repeat-x;
+} 
+ 
 .clearfix {
   *zoom: 1;
 }
