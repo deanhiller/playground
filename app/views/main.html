@@ -6,7 +6,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>Marketing Text Can Go Here</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- @todo: fill with your company info or remove -->
@@ -33,13 +33,6 @@
       <script src="public/js/html5.js"></script>
     <![endif]-->
 
-<!-- Le fav and touch icons - @todo: fill with your icons or remove -->
-<link rel="shortcut icon" href="/public/img/icons/favicon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/img/icons/114x114.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/img/icons/72x72.png">
-<link rel="apple-touch-icon-precomposed" href="/public/img/icons/default.png">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300|Rambla|Calligraffitti' rel='stylesheet' type='text/css'>
-
 
 </head>
 
@@ -53,8 +46,8 @@
         <div class="row-fluid">
           <div class="span9"> 
             <!--branding/logo--> 
-            <a class="brand" href="@{Application.index()}" title="Home">
-            <img src="/public/img/sniffyapp.png">
+            <a class="brand" href="@{Application.index()}" title="Home - Text Message Monitoring Application for Android">
+            <img src="/public/img/sniffyapp.png" alt="Monitor Text Messages">
             </a>
             #{if session.get('username')}
             	<div class="slogan">logged in as: ${session.get('username')}</div>
@@ -112,8 +105,8 @@
 			  
 			  <!-- Dropdown Menu -->
               <ul class="dropdown-menu pull-left" role="menu" aria-labelledby="pages-drop">
-                <li role="menuitem"><a href="@{MyStuff.settings()}" tabindex="-1" class="menu-item">Account Settings</a></li>
                 <li role="menuitem"><a href="@{MyStuff.cellPhones()}" tabindex="-1" class="menu-item">Phones</a></li>
+				<li role="menuitem"><a href="@{MyStuff.settings()}" tabindex="-1" class="menu-item">Account Settings</a></li>
               </ul>
 			
 
@@ -122,11 +115,7 @@
             <li><a href="@{Application.hiw()}" class="menu-item">How It Works</a></li>
 			<li><a href="@{Application.about()}" class="menu-item">About Us</a></li>
             <li><a href="http://sniffyapp.com/blog" class="menu-item">Blog</a></li>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="about-drop">
-                <li role="menuitem"><a href="about.htm" tabindex="-1" class="menu-item">About Us</a></li>
-                <li role="menuitem"><a href="team.htm" tabindex="-1" class="menu-item">Our Team</a></li>
-                <li role="menuitem"><a href="contact.htm" tabindex="-1" class="menu-item">Contact</a></li>
-              </ul>
+       
             </li>
            
 		 
@@ -178,7 +167,8 @@
     <div class="row">
       <div class="span3 col">
         <div class="block contact-block"> 
-          <!--@todo: replace with company contact details-->
+          
+		  <!--@todo: replace with company contact details-->
           <h3>Contact Us</h3>
           <address>
           <p><abbr title="Email"><i class="icon-envelope"></i></abbr> support@sniffyapp.com</p>
@@ -203,7 +193,8 @@
     </div>
     <div class="row-fluid">
       <div id="toplink"><a href="#top" class="top-link" title="Back to top">Back To Top <i class="icon-chevron-up"></i></a></div>
-      <!--@todo: replace with company copyright details-->
+      
+	  <!--@todo: replace with company copyright details-->
       <div class="subfooter">
         <div class="span6 offset3">
           All Rights Reserved. Software and Website done by &copy; SNIFFYAPP, LLC 2007 - Present
@@ -259,7 +250,7 @@
 	</script>
 #{/if}
 #{else}
-NOT THERE
+
 #{/else}
 
 </body>
