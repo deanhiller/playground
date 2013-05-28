@@ -16,6 +16,7 @@ public class UserDbo {
 	@NoSqlId
 	private String id;
 	
+	@NoSqlIndexed
 	private String email;
 	
 	private String password;
